@@ -1,12 +1,24 @@
 import React from 'react';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 
-function App() {
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import store from './redux/store/store';
+import globalTheme from './theme/globalTheme';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">Hello React World</header>
-    </div>
+    <ReduxProvider store={store}>
+      <ThemeProvider theme={globalTheme}>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/login" component={Login} />
+        </Switch>
+      </ThemeProvider>
+    </ReduxProvider>
   );
-}
+};
 
 export default App;
