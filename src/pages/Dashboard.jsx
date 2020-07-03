@@ -1,12 +1,10 @@
 import React from 'react';
 
-import PageBkg from '../components/ui/PageBkg';
-
 const Dashboard = () => {
   return (
-    <PageBkg>
+    <div>
       <p>Dashboard Page</p>
-    </PageBkg>
+    </div>
   );
 };
 
