@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
-  width: 100vw;
+  /* width: 100vw; */
   height: 15vh;
   border: 1px solid red;
+  grid-area: navbar;
 `;
 
 const Navbar = () => {
