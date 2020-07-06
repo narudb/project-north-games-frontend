@@ -1,10 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const DashboardWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+`;
 
 const Dashboard = () => {
   return (
-    <div>
+    <DashboardWrapper>
       <p>Dashboard Page</p>
-    </div>
+    </DashboardWrapper>
   );
 };
 

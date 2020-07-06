@@ -21,14 +21,15 @@ const PageWrapper = styled.div`
   grid-column-gap: 5px;
   grid-template-areas:
     'navbar navbar navbar'
-    'asideMenu content .'
-    'asideMenu content .'
-    'asideMenu content .'
-    'asideMenu content .';
+    'asideMenu main .'
+    'asideMenu main .'
+    'asideMenu main .'
+    'asideMenu main .';
 `;
 
 const Main = styled.main`
-  grid-area: content;
+  border: 1px solid yellowgreen;
+  grid-area: main;
 `;
 
 const App = () => {
