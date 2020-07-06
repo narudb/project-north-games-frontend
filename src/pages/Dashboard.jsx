@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import TitleStyle from '../components/ui/Title';
 
 const DashboardWrapper = styled.div`
   width: 100%;
@@ -10,6 +11,7 @@ const DashboardWrapper = styled.div`
 const Dashboard = () => {
   return (
     <DashboardWrapper>
+      <TitleStyle>Actu à la une</TitleStyle>
       <p>Dashboard Page</p>
     </DashboardWrapper>
   );
