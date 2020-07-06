@@ -1,13 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Provider as ReduxProvider } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 
 import AsideMenu from './components/AsideMenu';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
-import store from './redux/store/store';
 import globalTheme from './theme/globalTheme';
 
 const PageWrapper = styled.div`
@@ -34,20 +32,18 @@ const Main = styled.main`
 
 const App = () => {
   return (
-    <ReduxProvider store={store}>
-      <ThemeProvider theme={globalTheme}>
-        <PageWrapper>
-          <Navbar />
-          <AsideMenu />
-          <Main>
-            <Switch>
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/login" component={Login} />
-            </Switch>
-          </Main>
-        </PageWrapper>
-      </ThemeProvider>
-    </ReduxProvider>
+    <ThemeProvider theme={globalTheme}>
+      <PageWrapper>
+        <Navbar />
+        <AsideMenu />
+        <Main>
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/login" component={Login} />
+          </Switch>
+        </Main>
+      </PageWrapper>
+    </ThemeProvider>
   );
 };
 
