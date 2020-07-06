@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const CardWrapper = styled.div`
   width: 230px;
@@ -37,21 +38,31 @@ const TextStyle = styled.p`
 `;
 
 const NewsCard = () => {
+  const [cardsData, setCardsData] = useState([]);
+
+  const url = '/news';
+
+  const fetchCardsData = () => {
+    axios.get(url).then((res) => setCardsData(res.data));
+  };
+
+  useEffect(() => {
+    fetchCardsData();
+  }, []);
   return (
-    <CardWrapper>
-      <Img />
-      {/* <img alt="image" /> */}
-      <TextWrapper>
-        <Title>Title</Title>
-        <TextStyle>
-          Lorem Ipsum has been the industrys standard dummy text ever since the
-          1500s... Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Culpa enim sunt earum reprehenderit accusantium consectetur nihil
-          dolore aspernatur! Nostrum amet nobis cum, provident tenetur placeat
-          recusandae quo laudantium aperiam distinctio?
-        </TextStyle>
-      </TextWrapper>
-    </CardWrapper>
+    <div>
+      {cardsData.map((card) => {
+        return (
+          <CardWrapper key={card.id}>
+            <Img>{/* <img src={card.picture_url} alt="image" /> */}</Img>
+            <TextWrapper>
+              <Title>{card.title}</Title>
+              <TextStyle>{card.content}</TextStyle>
+            </TextWrapper>
+          </CardWrapper>
+        );
+      })}
+    </div>
   );
 };
 
