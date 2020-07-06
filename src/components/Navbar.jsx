@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Searchbar from './Searchbar';
 
 const HeaderWrapper = styled.header`
   height: 15vh;
@@ -11,6 +12,7 @@ const Navbar = () => {
   return (
     <HeaderWrapper>
       <p>Header</p>
+      <Searchbar />
     </HeaderWrapper>
   );
 };
