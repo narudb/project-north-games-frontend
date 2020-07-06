@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const DivInput = styled.input`
   background-color: ${(props) => props.theme.colors.secondary};
@@ -12,5 +13,38 @@ const DivInput = styled.input`
 `;
 
 export default function Searchbar() {
-  return <DivInput type="text" placeholder="" />;
+  const [news, setNews] = useState([]);
+  const [searchNewsByTitle, setSearchNewsByTitle] = useState([]);
+
+  useLayoutEffect(() => {
+    axios.get('/news').then((res) => {
+      setNews(res.data);
+    });
+  }, []);
+
+  const searchTitle = (needle) => {
+    setSearchNewsByTitle(
+      news.filter((newsby) => {
+        return newsby.title.toLowerCase().includes(needle.toLowerCase());
+      })
+    );
+  };
+
+  return (
+    <div>
+      <DivInput
+        type="text"
+        placeholder=""
+        onChange={(e) => {
+          searchTitle(e.target.value);
+        }}
+      />
+
+      <div>
+        {searchNewsByTitle.map((title) => (
+          <p>{title}</p>
+        ))}
+      </div>
+    </div>
+  );
 }
