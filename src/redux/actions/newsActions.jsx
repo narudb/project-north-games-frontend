@@ -1,5 +1,6 @@
-const newsActions = () => ({
+const getNews = (content) => ({
   type: 'GET-ALL',
+  payload: { content },
 });
 
-export default newsActions;
+export default getNews;
