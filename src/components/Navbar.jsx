@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
   height: 15vh;
-  border: 1px solid red;
   grid-area: navbar;
   display: flex;
   justify-content: space-between;
