@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AsideWrapper = styled.div`
-  border: 1px solid purple;
   padding: 10px 25px;
   grid-area: asideMenu;
   display: flex;
@@ -24,7 +23,6 @@ const StyledLink = styled(NavLink).attrs({ activeClassName })`
 const NavLinkWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
-  border: 1px solid yellowgreen;
   height: 75%;
   justify-content: space-between;
 `;
@@ -33,7 +31,6 @@ const SettingsWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
-  border: 1px solid coral;
   height: 85px;
 `;
 
