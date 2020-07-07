@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const CardWrapper = styled.div`
   width: 230px;
   height: 168px;
@@ -10,12 +15,19 @@ const CardWrapper = styled.div`
   );
   border-radius: 5px;
   overflow: hidden;
+  margin-top: 20px;
+  margin-right: 20px;
 `;
 
-const Img = styled.div`
+const CardImg = styled.div`
   width: 100%;
   height: 92px;
   background-color: gray;
+  overflow: hidden;
+`;
+
+const NewsImg = styled.img`
+  width: 100%;
 `;
 
 const TextWrapper = styled.div`
@@ -50,21 +62,25 @@ const NewsCard = () => {
   }, []);
 
   return (
-    <div>
-      {cardsData
-        .map((card) => {
-          return (
-            <CardWrapper key={card.id}>
-              <Img />
-              <TextWrapper>
-                <Title>{card.title}</Title>
-                <TextStyle>{card.contenText}</TextStyle>
-              </TextWrapper>
-            </CardWrapper>
-          );
-        })
-        .slice(0, 3)}
-    </div>
+    <>
+      <CardContainer>
+        {cardsData
+          .map((card) => {
+            return (
+              <CardWrapper key={card.id}>
+                <CardImg>
+                  <NewsImg src={card.pictureUrl} alt="news-img" />
+                </CardImg>
+                <TextWrapper>
+                  <Title>{card.title}</Title>
+                  <TextStyle>{card.contenText}</TextStyle>
+                </TextWrapper>
+              </CardWrapper>
+            );
+          })
+          .slice(0, 3)}
+      </CardContainer>
+    </>
   );
 };
 
