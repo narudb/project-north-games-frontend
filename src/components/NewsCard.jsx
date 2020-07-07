@@ -42,26 +42,28 @@ const NewsCard = () => {
 
   const url = '/news';
 
-  const fetchCardsData = () => {
-    axios.get(url).then((res) => setCardsData(res.data));
-  };
-
   useEffect(() => {
+    const fetchCardsData = () => {
+      axios.get(url).then((res) => setCardsData(res.data));
+    };
     fetchCardsData();
   }, []);
+
   return (
     <div>
-      {cardsData.map((card) => {
-        return (
-          <CardWrapper key={card.id}>
-            <Img>{/* <img src={card.picture_url} alt="image" /> */}</Img>
-            <TextWrapper>
-              <Title>{card.title}</Title>
-              <TextStyle>{card.content}</TextStyle>
-            </TextWrapper>
-          </CardWrapper>
-        );
-      })}
+      {cardsData
+        .map((card) => {
+          return (
+            <CardWrapper key={card.id}>
+              <Img />
+              <TextWrapper>
+                <Title>{card.title}</Title>
+                <TextStyle>{card.contenText}</TextStyle>
+              </TextWrapper>
+            </CardWrapper>
+          );
+        })
+        .slice(0, 3)}
     </div>
   );
 };
