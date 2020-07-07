@@ -43,7 +43,7 @@ const Logos = styled.img`
   opacity: 1;
 `;
 
-const Navbar = () => {
+const AsideMenu = () => {
   return (
     <AsideWrapper>
       <NavLinkWrapper>
@@ -81,4 +81,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AsideMenu;
