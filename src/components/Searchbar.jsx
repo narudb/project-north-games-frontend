@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -15,34 +15,34 @@ const DivInput = styled.input`
 export default function Searchbar() {
   const [news, setNews] = useState([]);
   const [searchNewsByTitle, setSearchNewsByTitle] = useState([]);
+  const [searchTitle, setSearchTitle] = useState('');
 
   useLayoutEffect(() => {
-    axios.get('/news').then((res) => {
+    axios.get(`/news?author=${searchTitle}`).then((res) => {
       setNews(res.data);
     });
   }, []);
 
-  const searchTitle = (needle) => {
+  useEffect(() => {
     setSearchNewsByTitle(
-      news.filter((newsby) => {
-        return newsby.title.toLowerCase().includes(needle.toLowerCase());
-      })
+      news.filter((byNews) =>
+        byNews.title.toLowerCase().includes(searchTitle.toLowerCase())
+      )
     );
-  };
+  }, [searchTitle]);
 
   return (
     <div>
       <DivInput
         type="text"
-        placeholder=""
         onChange={(e) => {
-          searchTitle(e.target.value);
+          setSearchTitle(e.target.value);
         }}
       />
 
       <div>
-        {searchNewsByTitle.map((title) => (
-          <p>{title}</p>
+        {searchNewsByTitle.map((oneNews) => (
+          <p key={oneNews.id}>{oneNews.title}</p>
         ))}
       </div>
     </div>
