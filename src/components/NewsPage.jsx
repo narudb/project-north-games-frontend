@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 // import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function NewsPage() {
-  const [oneNews, setOneNews] = useState({});
+  const dispatch = useDispatch();
+  const oneNews = useSelector((state) => state.newsReducer.oneNews);
   const { id } = useParams();
 
-  useEffect(() => {
-    axios.get(`/news/${id}`).then((res) => {
-      setOneNews(res.data);
+  const getOneNews = () => {
+    axios.get(`/news/${id}`).then(({ data }) => {
+      dispatch({
+        type: 'GET_ALL',
+        data,
+      });
     });
-  }, []);
+  };
+  useEffect(() => {
+    getOneNews();
+  }, [dispatch]);
 
   return (
     <div>
