@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 import globalTheme from './theme/globalTheme';
 
 const PageWrapper = styled.div`
-  background: linear-gradient(${(props) => props.theme.colors.gradient});
+  background: linear-gradient(${(props) => props.theme.colors.bckgGradient});
   width: 100vw;
   height: 100vh;
   color: ${(props) => props.theme.colors.primary};
