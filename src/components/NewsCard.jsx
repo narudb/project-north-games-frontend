@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CardContainer = styled.div`
   display: flex;
@@ -67,15 +68,17 @@ const NewsCard = () => {
         {cardsData
           .map((card) => {
             return (
-              <CardWrapper key={card.id}>
-                <CardImg>
-                  <NewsImg src={card.pictureUrl} alt="news-img" />
-                </CardImg>
-                <TextWrapper>
-                  <Title>{card.title}</Title>
-                  <TextStyle>{card.contenText}</TextStyle>
-                </TextWrapper>
-              </CardWrapper>
+              <Link to={`/news/${card.id}`}>
+                <CardWrapper key={card.id}>
+                  <CardImg>
+                    <NewsImg src={card.pictureUrl} alt="news-img" />
+                  </CardImg>
+                  <TextWrapper>
+                    <Title>{card.title}</Title>
+                    <TextStyle>{card.contenText}</TextStyle>
+                  </TextWrapper>
+                </CardWrapper>
+              </Link>
             );
           })
           .slice(0, 3)}
