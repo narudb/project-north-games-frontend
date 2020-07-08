@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AsideWrapper = styled.div`
-  padding: 10px 25px;
+  padding: 15px;
   grid-area: asideMenu;
   display: flex;
   flex-flow: column wrap;

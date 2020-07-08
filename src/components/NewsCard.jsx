@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 const CardWrapper = styled.div`
   width: 230px;
@@ -9,12 +15,19 @@ const CardWrapper = styled.div`
   );
   border-radius: 5px;
   overflow: hidden;
+  margin-top: 20px;
+  margin-right: 20px;
 `;
 
-const Img = styled.div`
+const CardImg = styled.div`
   width: 100%;
   height: 92px;
   background-color: gray;
+  overflow: hidden;
+`;
+
+const NewsImg = styled.img`
+  width: 100%;
 `;
 
 const TextWrapper = styled.div`
@@ -37,21 +50,37 @@ const TextStyle = styled.p`
 `;
 
 const NewsCard = () => {
+  const [cardsData, setCardsData] = useState([]);
+
+  const url = '/news';
+
+  useEffect(() => {
+    const fetchCardsData = () => {
+      axios.get(url).then((res) => setCardsData(res.data));
+    };
+    fetchCardsData();
+  }, []);
+
   return (
-    <CardWrapper>
-      <Img />
-      {/* <img alt="image" /> */}
-      <TextWrapper>
-        <Title>Title</Title>
-        <TextStyle>
-          Lorem Ipsum has been the industrys standard dummy text ever since the
-          1500s... Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Culpa enim sunt earum reprehenderit accusantium consectetur nihil
-          dolore aspernatur! Nostrum amet nobis cum, provident tenetur placeat
-          recusandae quo laudantium aperiam distinctio?
-        </TextStyle>
-      </TextWrapper>
-    </CardWrapper>
+    <>
+      <CardContainer>
+        {cardsData
+          .map((card) => {
+            return (
+              <CardWrapper key={card.id}>
+                <CardImg>
+                  <NewsImg src={card.pictureUrl} alt="news-img" />
+                </CardImg>
+                <TextWrapper>
+                  <Title>{card.title}</Title>
+                  <TextStyle>{card.contenText}</TextStyle>
+                </TextWrapper>
+              </CardWrapper>
+            );
+          })
+          .slice(0, 3)}
+      </CardContainer>
+    </>
   );
 };
 

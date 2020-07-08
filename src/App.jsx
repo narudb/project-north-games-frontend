@@ -25,7 +25,6 @@ const PageWrapper = styled.div`
 `;
 
 const Main = styled.main`
-  border: 1px solid yellowgreen;
   grid-area: main;
 `;
 
