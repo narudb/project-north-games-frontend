@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
   height: 15vh;
+
   grid-area: navbar;
   display: flex;
   justify-content: space-between;
@@ -61,4 +62,5 @@ const Navbar = () => {
     </HeaderWrapper>
   );
 };
+
 export default Navbar;
