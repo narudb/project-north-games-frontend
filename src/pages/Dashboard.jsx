@@ -20,7 +20,6 @@ const DashboardWrapper = styled.div`
 
 const FormWrapper = styled.div`
   grid-area: form;
-  border: 1px solid purple;
   display: flex;
   flex-flow: column wrap;
   padding: 10px;
