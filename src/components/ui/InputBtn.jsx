@@ -4,6 +4,7 @@ const InputBtn = styled.input`
   padding: 8px;
   border-radius: 5px;
   font-family: 'Montserrat';
+  font-size: 14px;
   outline: none;
   border: none;
   color: ${(props) => props.theme.colors.mediumGray};

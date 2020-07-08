@@ -6,6 +6,7 @@ const Button = styled.button`
   border-radius: 5px;
   font-family: 'Montserrat';
   font-weight: bold;
+  font-size: 16px;
   outline: none;
   border: none;
   color: ${(props) => props.theme.colors.secondary};
