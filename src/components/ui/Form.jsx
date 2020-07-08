@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const FormStyle = styled.form`
-  border: 1px solid blueviolet;
   margin: 10px;
   height: 70%;
   display: flex;
