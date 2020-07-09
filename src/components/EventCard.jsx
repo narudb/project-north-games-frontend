@@ -59,7 +59,7 @@ const Adress = styled.p`
 
 const EventCard = () => {
   const dispatch = useDispatch();
-  const eventsData = useSelector((state) => state.newsReducer.eventsData);
+  const eventsData = useSelector((state) => state.eventsReducer.eventsData);
 
   const getAllEvents = () => {
     axios.get('/events').then(({ data }) => {
