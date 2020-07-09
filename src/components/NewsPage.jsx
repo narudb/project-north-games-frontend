@@ -1,9 +1,21 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+const NewsPageContainer = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const ImageNews = styled.img`
+  object-fit: cover;
+  width: 50vw;
+  height: 50vh;
+`;
 export default function NewsPage() {
   const dispatch = useDispatch();
   const oneNews = useSelector((state) => state.newsReducer.oneNews);
@@ -17,17 +29,21 @@ export default function NewsPage() {
       });
     });
   };
+
   useEffect(() => {
     getOneNews();
   }, [dispatch]);
 
   return (
-    <div>
+    <NewsPageContainer>
       <h2>{oneNews.title}</h2>
-      <p>{oneNews.author}</p>
-      <p>{oneNews.creationDate}</p>
-      <img src={oneNews.pictureUrl} alt={oneNews.title} />
+      <p>
+        written by
+        <span>{oneNews.author}</span>
+        {oneNews.creationDate}
+      </p>
+      <ImageNews src={oneNews.pictureUrl} alt={oneNews.title} />
       <p>{oneNews.content}</p>
-    </div>
+    </NewsPageContainer>
   );
 }

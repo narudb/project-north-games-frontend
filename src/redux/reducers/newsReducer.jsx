@@ -9,10 +9,10 @@ const newsReducer = (state = { ...store }, action) => {
         ...store,
         oneNews: action.data,
       };
+
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
 export default newsReducer;
