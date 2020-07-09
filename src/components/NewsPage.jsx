@@ -5,16 +5,25 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 const NewsPageContainer = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+`;
+
+const POneNews = styled.p`
+  font-family: ${(props) => props.theme.fonts.primary};
+`;
+
+const TitleOneNews = styled.h2`
+  font-family: ${(props) => props.theme.fonts.primary};
+  font-size: 20px;
 `;
 
 const ImageNews = styled.img`
   object-fit: cover;
   width: 50vw;
   height: 50vh;
+  border-radius: 5px;
 `;
 export default function NewsPage() {
   const dispatch = useDispatch();
@@ -36,14 +45,14 @@ export default function NewsPage() {
 
   return (
     <NewsPageContainer>
-      <h2>{oneNews.title}</h2>
-      <p>
+      <TitleOneNews>{oneNews.title}</TitleOneNews>
+      <POneNews>
         written by
-        <span>{oneNews.author}</span>
+        <span>{oneNews.author} </span>
         {oneNews.creationDate}
-      </p>
+      </POneNews>
       <ImageNews src={oneNews.pictureUrl} alt={oneNews.title} />
-      <p>{oneNews.content}</p>
+      <POneNews>{oneNews.content}</POneNews>
     </NewsPageContainer>
   );
 }
