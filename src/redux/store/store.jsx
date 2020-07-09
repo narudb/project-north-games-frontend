@@ -1,9 +1,9 @@
 import { combineReducers, createStore } from 'redux';
 
-import newsReducer from '../reducers/newsReducer';
+import oneNewsReducer from '../reducers/oneNewsReducer';
 
 const rootReducer = combineReducers({
-  newsReducer,
+  oneNewsReducer,
 });
 
 /* eslint-disable no-underscore-dangle */

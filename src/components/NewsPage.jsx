@@ -18,13 +18,13 @@ const ImageNews = styled.img`
 `;
 export default function NewsPage() {
   const dispatch = useDispatch();
-  const oneNews = useSelector((state) => state.newsReducer.oneNews);
+  const oneNews = useSelector((state) => state.oneNewsReducer.oneNews);
   const { id } = useParams();
 
   const getOneNews = () => {
     axios.get(`/news/${id}`).then(({ data }) => {
       dispatch({
-        type: 'GET_ALL',
+        type: 'GET_ONE_NEWS',
         data,
       });
     });
