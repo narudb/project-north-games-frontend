@@ -6,8 +6,12 @@ const InputStyle = styled.input`
   border-radius: 5px;
   font-size: 14px;
   outline-color: ${(props) => props.theme.colors.secondary};
-  padding: 3px;
+  padding: 4px;
   border: none;
+
+  &::placeholder {
+    font-style: italic;
+  }
 `;
 
 export default InputStyle;
