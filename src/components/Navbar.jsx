@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Searchbar from './Searchbar';
 
 const HeaderWrapper = styled.header`
   height: 15vh;
@@ -49,7 +50,7 @@ const Navbar = () => {
     <HeaderWrapper>
       <SearchWrapper>
         <Logo src="/images/north_games_logo.svg" alt=" north game's logo" />
-        <input type="text" placeholder="SearchBar's place" />
+        <Searchbar />
       </SearchWrapper>
       <Div>
         <Notif src="/icons/notif-icon.svg" alt="notification icons" />
