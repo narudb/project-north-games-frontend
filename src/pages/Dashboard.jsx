@@ -7,7 +7,6 @@ import TitleStyle from '../components/ui/Title';
 import NewsCard from '../components/NewsCard';
 import EventCard from '../components/EventCard';
 
-
 const DashboardWrapper = styled.div`
   width: 50vw;
   height: 100%;
