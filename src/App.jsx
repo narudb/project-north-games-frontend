@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
-
 import AsideMenu from './components/AsideMenu';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -26,7 +25,6 @@ const PageWrapper = styled.div`
 `;
 
 const Main = styled.main`
-  border: 1px solid yellowgreen;
   grid-area: main;
 `;
 
