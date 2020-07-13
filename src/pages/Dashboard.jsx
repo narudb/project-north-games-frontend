@@ -3,9 +3,13 @@ import styled from 'styled-components';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import ButtonStyle from '../components/ui/Button';
+import TitleStyle from '../components/ui/Title';
+import NewsCard from '../components/NewsCard';
+import EventCard from '../components/EventCard';
+
 
 const DashboardWrapper = styled.div`
-  width: 100%;
+  width: 50vw;
   height: 100%;
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -30,6 +34,10 @@ const Dashboard = () => {
 
   return (
     <DashboardWrapper>
+      <TitleStyle>Actu à la une</TitleStyle>
+      <NewsCard />
+      <TitleStyle>Autour de moi</TitleStyle>
+      <EventCard />
       <p>Dashboard Page</p>
       <FormWrapper>
         {showSignup ? (

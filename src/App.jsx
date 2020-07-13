@@ -11,6 +11,7 @@ const PageWrapper = styled.div`
   background: linear-gradient(${(props) => props.theme.colors.bckgGradient});
   width: 100vw;
   height: 100vh;
+  overflow: scroll;
   color: ${(props) => props.theme.colors.primary};
   display: grid;
   grid-template-columns: 15vw 1fr 5vw;
