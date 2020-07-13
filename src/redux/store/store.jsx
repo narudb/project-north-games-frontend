@@ -1,8 +1,11 @@
 import { combineReducers, createStore } from 'redux';
-
+import eventsReducer from '../reducers/eventsReducer';
+import newsReducer from '../reducers/newsReducer';
 import oneNewsReducer from '../reducers/oneNewsReducer';
 
 const rootReducer = combineReducers({
+  newsReducer,
+  eventsReducer,
   oneNewsReducer,
 });
 

@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-const CardContainer = styled.div`
+const NewsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 40px;
 `;
 
-const CardWrapper = styled.div`
+const NewsWrapper = styled.div`
   width: 230px;
   height: 168px;
   background: linear-gradient(
@@ -51,38 +53,41 @@ const TextStyle = styled.p`
 `;
 
 const NewsCard = () => {
-  const [cardsData, setCardsData] = useState([]);
+  const dispatch = useDispatch();
+  const newsData = useSelector((state) => state.newsReducer.newsData);
 
-  const url = '/news';
-
+  const getAllNews = () => {
+    axios.get('/news').then(({ data }) => {
+      dispatch({
+        type: 'GET_ALL_NEWS',
+        data,
+      });
+    });
+  };
   useEffect(() => {
-    const fetchCardsData = () => {
-      axios.get(url).then((res) => setCardsData(res.data));
-    };
-    fetchCardsData();
-  }, []);
-
+    getAllNews();
+  }, [dispatch]);
   return (
     <>
-      <CardContainer>
-        {cardsData
-          .map((card) => {
+      <NewsContainer>
+        {newsData
+          .map((news) => {
             return (
-              <Link to={`/news/${card.id}`}>
-                <CardWrapper key={card.id}>
+              <Link to={`/news/${news.id}`}>
+                <NewsWrapper key={news.id}>
                   <CardImg>
-                    <NewsImg src={card.pictureUrl} alt="news-img" />
+                    <NewsImg src={news.pictureUrl} alt="news-img" />
                   </CardImg>
                   <TextWrapper>
-                    <Title>{card.title}</Title>
-                    <TextStyle>{card.contenText}</TextStyle>
+                    <Title>{news.title}</Title>
+                    <TextStyle>{news.contenText}</TextStyle>
                   </TextWrapper>
-                </CardWrapper>
+                </NewsWrapper>
               </Link>
             );
           })
           .slice(0, 3)}
-      </CardContainer>
+      </NewsContainer>
     </>
   );
 };
