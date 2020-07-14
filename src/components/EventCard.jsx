@@ -60,23 +60,47 @@ const Adress = styled.p`
 const EventCard = () => {
   const dispatch = useDispatch();
   const eventsData = useSelector((state) => state.eventsReducer.eventsData);
+  const latClient = useSelector((state) => state.positionReducer.latClient);
+  const longClient = useSelector((state) => state.positionReducer.longClient);
 
-  const getAllEvents = () => {
-    axios.get('/events').then(({ data }) => {
-      dispatch({
-        type: 'GET_ALL_EVENTS',
-        data,
-      });
-    });
-  };
   useEffect(() => {
+    const getAllEvents = () => {
+      const distance = (evt) => {
+        const newEvent = evt;
+        const result = Math.sqrt(
+          (newEvent.eventLatitude - latClient) *
+            111 *
+            ((newEvent.eventLatitude - latClient) * 111) +
+            (newEvent.eventLongitude - longClient) *
+              70 *
+              ((newEvent.eventLongitude - longClient) * 70)
+        );
+        newEvent.distance = result.toFixed(3);
+        return newEvent;
+      };
+      axios
+        .get('/events')
+        .then((response) => response.data)
+        .then((data) => {
+          data.map((evt) => {
+            return distance(evt);
+          });
+          dispatch({
+            type: 'GET_ALL_EVENTS',
+            data,
+          });
+        });
+    };
     getAllEvents();
-  }, [dispatch]);
+  }, [dispatch, latClient, longClient]);
 
   return (
     <>
       <CardContainer>
         {eventsData
+          .sort((st1, st2) => {
+            return st1.distance - st2.distance;
+          })
           .map((event) => {
             return (
               <CardWrapper key={event.id}>
@@ -86,7 +110,10 @@ const EventCard = () => {
                 <TextWrapper>
                   <Date>{event.eventDate}</Date>
                   <Title>{event.title}</Title>
-                  <Adress>{event.adress}</Adress>
+                  <Adress>
+                    {event.adress} <br />
+                    {event.eventLatitude} {event.eventLongitude}
+                  </Adress>
                 </TextWrapper>
               </CardWrapper>
             );

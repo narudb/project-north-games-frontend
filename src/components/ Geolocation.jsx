@@ -1,24 +1,26 @@
-import React from 'react';
 import { usePosition } from 'use-position';
+import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 
 export default function Geolocation() {
+  const dispatch = useDispatch();
   const watch = true;
-  const { latitude, longitude, timestamp, accuracy, error } = usePosition(
-    watch,
-    { enableHighAccuracy: true }
-  );
+  const { latitude, longitude } = usePosition(watch, {
+    enableHighAccuracy: true,
+  });
+
+  useEffect(() => {
+    const getUserGeolocation = () => {
+      dispatch({ type: 'GET_LATITUDE', latClient: latitude });
+      dispatch({ type: 'GET_LONGITUDE', longClient: longitude });
+    };
+    getUserGeolocation();
+  }, [latitude, longitude]);
 
   return (
     <code>
-      latitude: {latitude}
-      <br />
-      longitude: {longitude}
-      <br />
-      timestamp: {timestamp}
-      <br />
-      accuracy: {accuracy && `${accuracy}m`}
-      <br />
-      error: {error}
+      <p>Your Geolocation</p>
+      latitude : {latitude} longitude: {longitude}
     </code>
   );
 }

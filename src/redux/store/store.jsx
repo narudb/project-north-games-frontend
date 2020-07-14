@@ -1,10 +1,12 @@
 import { combineReducers, createStore } from 'redux';
 import eventsReducer from '../reducers/eventsReducer';
 import newsReducer from '../reducers/newsReducer';
+import positionReducer from '../reducers/positionReducer';
 
 const rootReducer = combineReducers({
   newsReducer,
   eventsReducer,
+  positionReducer,
 });
 
 /* eslint-disable no-underscore-dangle */
