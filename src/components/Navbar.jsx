@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Searchbar from './Searchbar';
+import Geolocation from './ Geolocation';
 
 const HeaderWrapper = styled.header`
   height: 15vh;
@@ -52,6 +53,7 @@ const Navbar = () => {
         <Logo src="/images/north_games_logo.svg" alt=" north game's logo" />
         <Searchbar />
       </SearchWrapper>
+      <Geolocation />
       <Div>
         <Notif src="/icons/notif-icon.svg" alt="notification icons" />
         <UserIdentity>
