@@ -1,6 +1,6 @@
 import { usePosition } from 'use-position';
 import { useDispatch } from 'react-redux';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function Geolocation() {
   const dispatch = useDispatch();
@@ -17,10 +17,5 @@ export default function Geolocation() {
     getUserGeolocation();
   }, [dispatch, latitude, longitude]);
 
-  return (
-    <code>
-      <p>Your Geolocation</p>
-      latitude : {latitude} longitude: {longitude}
-    </code>
-  );
+  return null;
 }
