@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const AsideWrapper = styled.div`
   padding: 15px;
+  height: 80vh;
   grid-area: asideMenu;
   display: flex;
   flex-flow: column wrap;

@@ -1,9 +1,15 @@
-const initialState = [];
+const store = {
+  newsData: [],
+};
 
-const newsReducer = (state = initialState, action) => {
+const newsReducer = (state = { ...store }, action) => {
   switch (action.type) {
-    case 'GET-ALL':
-      return [...state, action.payload.content];
+    case 'GET_ALL_NEWS':
+      return {
+        ...store,
+        newsData: action.data,
+      };
+
     default:
       break;
   }
