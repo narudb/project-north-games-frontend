@@ -7,4 +7,7 @@ export default {
     dark: '#000',
     mediumGray: '#606b72',
   },
+  fonts: {
+    primary: 'Montserrat, sans-serif',
+  },
 };
