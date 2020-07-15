@@ -15,7 +15,7 @@ export default function Geolocation() {
       dispatch({ type: 'GET_LONGITUDE', longClient: longitude });
     };
     getUserGeolocation();
-  }, [latitude, longitude]);
+  }, [dispatch, latitude, longitude]);
 
   return (
     <code>
