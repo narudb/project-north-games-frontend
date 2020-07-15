@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 const NewsContainer = styled.div`
@@ -13,7 +14,7 @@ const NewsWrapper = styled.div`
   width: 230px;
   height: 168px;
   background: linear-gradient(
-    ${(props) => props.theme.colors.NewsCardGradient}
+    ${(props) => props.theme.colors.newsCardGradient}
   );
   border-radius: 5px;
   overflow: hidden;
@@ -72,15 +73,17 @@ const NewsCard = () => {
         {newsData
           .map((news) => {
             return (
-              <NewsWrapper key={news.id}>
-                <CardImg>
-                  <NewsImg src={news.pictureUrl} alt="news-img" />
-                </CardImg>
-                <TextWrapper>
-                  <Title>{news.title}</Title>
-                  <TextStyle>{news.contenText}</TextStyle>
-                </TextWrapper>
-              </NewsWrapper>
+              <Link to={`/news/${news.id}`}>
+                <NewsWrapper key={news.id}>
+                  <CardImg>
+                    <NewsImg src={news.pictureUrl} alt="news-img" />
+                  </CardImg>
+                  <TextWrapper>
+                    <Title>{news.title}</Title>
+                    <TextStyle>{news.contenText}</TextStyle>
+                  </TextWrapper>
+                </NewsWrapper>
+              </Link>
             );
           })
           .slice(0, 3)}
