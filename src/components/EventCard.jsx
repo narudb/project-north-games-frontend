@@ -10,6 +10,7 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
   height: 80%;
   overflow-y: scroll;
+
   ::-webkit-scrollbar {
     width: 8px;
   }
