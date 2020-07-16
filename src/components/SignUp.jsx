@@ -29,7 +29,7 @@ const SignUp = () => {
 
   const formValid = (form) => {
     Object.values(form).forEach((val) => {
-      if (val.length < 0) {
+      if (val.length === 0) {
         setValide(false);
       }
     });
