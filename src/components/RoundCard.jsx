@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
   display: flex;
@@ -46,9 +47,8 @@ const NewsImg = styled.img`
 `;
 
 const TextWrapper = styled.div`
-  padding: 10px 15px;
+  padding: 10px 5px;
   color: ${(props) => props.theme.colors.secondary};
-  text-transform: uppercase;
 `;
 
 const Title = styled.h3`
@@ -57,6 +57,10 @@ const Title = styled.h3`
   line-height: 18px;
   color: ${(props) => props.theme.colors.dark};
   white-space: nowrap;
+  text-transform: uppercase;
+  width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Date = styled.h4`
@@ -71,15 +75,17 @@ const Adress = styled.p`
   white-space: nowrap;
   font-size: 11px;
   line-height: 15px;
+  color: ${(props) => props.theme.colors.mediumGray};
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${(props) => props.theme.colors.mediumGray};
+  width: 175px;
 `;
 
 const Author = styled.p`
   grid-area: author;
   font-size: 11px;
   line-height: 15px;
+  text-transform: uppercase;
 `;
 
 const RoundCard = () => {
@@ -110,7 +116,7 @@ const RoundCard = () => {
                     src={
                       round.roundImage !== null
                         ? round.roundImage
-                        : 'images/dice-twenty-faces-one.png'
+                        : globalTheme.pictures.round
                     }
                     alt={round.gameName}
                   />
@@ -118,7 +124,10 @@ const RoundCard = () => {
                 <TextWrapper>
                   <Title>{round.roundName}</Title>
                   <Adress>{round.roundPlace}</Adress>
-                  <Author>par {round.roundCreator}</Author>
+                  <Author>
+                    <span style={{ textTransform: 'none' }}>par</span>{' '}
+                    {round.roundCreator}
+                  </Author>
                   <Date>{round.roundDate}</Date>
                 </TextWrapper>
               </CardWrapper>

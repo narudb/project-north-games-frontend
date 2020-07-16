@@ -2,11 +2,13 @@ import { combineReducers, createStore } from 'redux';
 import eventsReducer from '../reducers/eventsReducer';
 import newsReducer from '../reducers/newsReducer';
 import oneNewsReducer from '../reducers/oneNewsReducer';
+import roundsReducer from '../reducers/roundsReducer';
 
 const rootReducer = combineReducers({
   newsReducer,
   eventsReducer,
   oneNewsReducer,
+  roundsReducer,
 });
 
 /* eslint-disable no-underscore-dangle */

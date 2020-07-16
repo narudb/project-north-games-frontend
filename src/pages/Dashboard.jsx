@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TitleStyle from '../components/ui/Title';
 import NewsCard from '../components/NewsCard';
 import EventCard from '../components/EventCard';
+import RoundCard from '../components/RoundCard';
 
 const DashboardWrapper = styled.div`
   width: 50vw;
@@ -17,7 +18,8 @@ const Dashboard = () => {
       <NewsCard />
       <TitleStyle>Autour de moi</TitleStyle>
       <EventCard />
-      <p>Dashboard Page</p>
+      <TitleStyle>Prochaines parties</TitleStyle>
+      <RoundCard />
     </DashboardWrapper>
   );
 };
