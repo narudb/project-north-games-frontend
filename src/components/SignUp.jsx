@@ -75,48 +75,42 @@ const SignUp = () => {
           handleSubmit(e);
         }}
       >
-        <>
-          <Input
-            type="text"
-            name="name"
-            required
-            onBlur={(e) => {
-              handleChange(e);
-            }}
-            placeholder="Ton Nom"
-          />
-          {formErrors.name.length > 0 && (
-            <StyledSpan>{formErrors.name}</StyledSpan>
-          )}
-        </>
-        <>
-          <Input
-            type="email"
-            name="mail"
-            required
-            onBlur={(e) => {
-              handleChange(e);
-            }}
-            placeholder="Ton Email"
-          />
-          {formErrors.mail.length > 0 && (
-            <StyledSpan>{formErrors.mail}</StyledSpan>
-          )}
-        </>
-        <>
-          <Input
-            type="password"
-            name="password"
-            required
-            onBlur={(e) => {
-              handleChange(e);
-            }}
-            placeholder="Ton mot de passe"
-          />
-          {formErrors.password.length > 0 && (
-            <StyledSpan>{formErrors.password}</StyledSpan>
-          )}
-        </>
+        <Input
+          type="text"
+          name="name"
+          required
+          onBlur={(e) => {
+            handleChange(e);
+          }}
+          placeholder="Ton Nom"
+        />
+        {formErrors.name.length > 0 && (
+          <StyledSpan>{formErrors.name}</StyledSpan>
+        )}
+        <Input
+          type="email"
+          name="mail"
+          required
+          onBlur={(e) => {
+            handleChange(e);
+          }}
+          placeholder="Ton Email"
+        />
+        {formErrors.mail.length > 0 && (
+          <StyledSpan>{formErrors.mail}</StyledSpan>
+        )}
+        <Input
+          type="password"
+          name="password"
+          required
+          onBlur={(e) => {
+            handleChange(e);
+          }}
+          placeholder="Ton mot de passe"
+        />
+        {formErrors.password.length > 0 && (
+          <StyledSpan>{formErrors.password}</StyledSpan>
+        )}
         <InputBtn type="submit" value="Je m'inscris" />
       </Form>
     </SignUpWrapper>
