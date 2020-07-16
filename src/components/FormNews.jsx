@@ -35,7 +35,7 @@ const FormNews = ({ open }) => {
         pauseOnHover
         style={{ fontSize: '30px', textAlign: 'center' }}
       />
-      {{ open } && (
+      {open && (
         <>
           <FormTitleStyle>Ajoutes ta news</FormTitleStyle>
           <Form
