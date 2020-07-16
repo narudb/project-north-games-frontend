@@ -1,5 +1,6 @@
 const initial = {
   eventsData: [],
+  oneEvent: {},
 };
 
 const eventsReducer = (state = initial, action) => {
@@ -8,6 +9,11 @@ const eventsReducer = (state = initial, action) => {
       return {
         ...state,
         eventsData: action.data,
+      };
+    case 'GET_ONE_EVENTS':
+      return {
+        ...state,
+        oneEvent: action.data,
       };
     default:
       break;

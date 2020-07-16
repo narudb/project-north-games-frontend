@@ -61,16 +61,13 @@ const EventCard = () => {
   const dispatch = useDispatch();
   const eventsData = useSelector((state) => state.eventsReducer.eventsData);
 
-  const getAllEvents = () => {
+  useEffect(() => {
     axios.get('/events').then(({ data }) => {
       dispatch({
         type: 'GET_ALL_EVENTS',
         data,
       });
     });
-  };
-  useEffect(() => {
-    getAllEvents();
   }, [dispatch]);
 
   return (
