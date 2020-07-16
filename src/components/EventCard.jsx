@@ -91,8 +91,8 @@ const EventCard = () => {
         {eventsData
           .map((event) => {
             return (
-              <Link to={`/events/${event.id}`}>
-                <CardWrapper key={event.id}>
+              <Link to={`/events/${event.id}`} key={event.id}>
+                <CardWrapper>
                   <CardImg>
                     <NewsImg src={event.pictureUrl} alt="event-img" />
                   </CardImg>
