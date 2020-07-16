@@ -1,11 +1,11 @@
-const store = {
+const initial = {
   oneNews: {},
 };
 
-const newsReducer = (state = { ...store }, action) => {
+const newsReducer = (state = initial, action) => {
   switch (action.type) {
     case 'GET_ONE_NEWS':
-      return { ...store, oneNews: action.data };
+      return { ...state, oneNews: action.data };
 
     default:
       return state;
