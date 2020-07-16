@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TitleStyle from '../components/ui/Title';
 import NewsCard from '../components/NewsCard';
-import EventCard from '../components/EventCard';
+import EventContainer from '../components/EventContainer';
 
 const DashboardWrapper = styled.div`
   width: 50vw;
@@ -15,9 +15,7 @@ const Dashboard = () => {
     <DashboardWrapper>
       <TitleStyle>Actu à la une</TitleStyle>
       <NewsCard />
-      <TitleStyle>Autour de moi</TitleStyle>
-      <EventCard />
-      <p>Dashboard Page</p>
+      <EventContainer />
     </DashboardWrapper>
   );
 };
