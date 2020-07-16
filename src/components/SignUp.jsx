@@ -63,7 +63,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formValid(formErrors)) {
-      axios.post(`http://localhost:5000/auth/signup`, newUser);
+      axios.post(`/auth/signup`, newUser);
     }
   };
 
