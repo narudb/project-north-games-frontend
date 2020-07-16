@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CardContainer = styled.div`
@@ -89,16 +90,18 @@ const EventCard = () => {
         {eventsData
           .map((event) => {
             return (
-              <CardWrapper key={event.id}>
-                <CardImg>
-                  <NewsImg src={event.pictureUrl} alt="event-img" />
-                </CardImg>
-                <TextWrapper>
-                  <Date>{event.eventDate}</Date>
-                  <Title>{event.title}</Title>
-                  <Adress>{event.adress}</Adress>
-                </TextWrapper>
-              </CardWrapper>
+              <Link to={`/events/${event.id}`}>
+                <CardWrapper key={event.id}>
+                  <CardImg>
+                    <NewsImg src={event.pictureUrl} alt="event-img" />
+                  </CardImg>
+                  <TextWrapper>
+                    <Date>{event.eventDate}</Date>
+                    <Title>{event.title}</Title>
+                    <Adress>{event.adress}</Adress>
+                  </TextWrapper>
+                </CardWrapper>
+              </Link>
             );
           })
           .slice(0, 3)}
