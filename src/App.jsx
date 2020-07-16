@@ -5,7 +5,7 @@ import AsideMenu from './components/AsideMenu';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
-import NewsPage from './components/NewsPage';
+import NewsPage from './pages/NewsPage';
 import globalTheme from './theme/globalTheme';
 
 const PageWrapper = styled.div`
