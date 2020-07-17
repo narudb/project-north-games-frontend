@@ -31,14 +31,11 @@ const FormWrapper = styled.div`
   padding: 10px;
 `;
 const Dashboard = () => {
-
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
-
   const [showSignup, toggleForm] = useState(true);
-
   return (
     <DashboardWrapper>
       <TitleStyle>
