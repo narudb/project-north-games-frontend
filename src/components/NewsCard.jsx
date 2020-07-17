@@ -56,15 +56,15 @@ const NewsCard = () => {
   const dispatch = useDispatch();
   const newsData = useSelector((state) => state.newsReducer.newsData);
 
-  const getAllNews = () => {
-    axios.get('/news').then(({ data }) => {
-      dispatch({
-        type: 'GET_ALL_NEWS',
-        data,
-      });
-    });
-  };
   useEffect(() => {
+    const getAllNews = () => {
+      axios.get('/news').then(({ data }) => {
+        dispatch({
+          type: 'GET_ALL_NEWS',
+          data,
+        });
+      });
+    };
     getAllNews();
   }, [dispatch]);
   return (
