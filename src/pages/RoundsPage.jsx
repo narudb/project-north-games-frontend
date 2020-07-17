@@ -49,15 +49,13 @@ const RoundInfos = styled.div`
   padding-left: 30px;
   display: flex;
   flex-flow: row wrap;
-  border: solid 1px red;
 `;
 
 const InfosWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   p {
     font-family: ${(props) => props.theme.fonts.primary};
     line-height: 30px;
@@ -77,7 +75,7 @@ const InfosWrapper = styled.div`
 
 const RoundText = styled.div`
   grid-area: text;
-  padding: 30px;
+  padding: 30px 30vw 0 0;
   display: flex;
   flex-flow: row wrap;
 `;
@@ -153,6 +151,12 @@ const RoundsPage = () => {
             alt="auteur"
           />
           <TextPara>{oneRound.roundCreator}</TextPara>
+        </InfosWrapper>
+        <InfosWrapper>
+          <img src="/icons/group-icon.svg" alt="Max players" />
+          <div>
+            <p>Nombre de joueurs : {oneRound.max_players}</p>
+          </div>
         </InfosWrapper>
       </RoundInfos>
       <RoundText>
