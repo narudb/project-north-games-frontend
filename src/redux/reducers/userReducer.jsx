@@ -1,5 +1,6 @@
 const initial = {
   loggedIn: false,
+  authData: {},
 };
 
 const userReducer = (state = initial, action) => {
@@ -8,7 +9,7 @@ const userReducer = (state = initial, action) => {
       return {
         ...state,
         loggedIn: true,
-        ...action.payload,
+        authData: { ...action.payload },
       };
     case 'LOGOUT':
       return {
