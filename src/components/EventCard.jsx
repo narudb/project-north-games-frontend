@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import StyledLink from './ui/StyledLink';
 
 const CardContainer = styled.div`
   display: flex;
@@ -119,7 +119,7 @@ const EventCard = () => {
           })
           .map((event) => {
             return (
-              <Link to={`/events/${event.id}`} key={event.id}>
+              <StyledLink to={`/events/${event.id}`} key={event.id}>
                 <CardWrapper>
                   <CardImg>
                     <NewsImg src={event.pictureUrl} alt="event-img" />
@@ -130,7 +130,7 @@ const EventCard = () => {
                     <Adress>{event.adress}</Adress>
                   </TextWrapper>
                 </CardWrapper>
-              </Link>
+              </StyledLink>
             );
           })
           .slice(0, 3)}
