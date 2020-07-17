@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import NewsPage from './pages/NewsPage';
+import RoundsPage from './pages/RoundsPage';
 import globalTheme from './theme/globalTheme';
 
 const PageWrapper = styled.div`
@@ -41,6 +42,7 @@ const App = () => {
             <Route exact path="/" component={Dashboard} />
             <Route path="/login" component={Login} />
             <Route path="/news/:id" component={NewsPage} />
+            <Route path="/rounds/:id" component={RoundsPage} />
           </Switch>
         </Main>
       </PageWrapper>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
@@ -86,6 +87,9 @@ const Author = styled.p`
   font-size: 11px;
   line-height: 15px;
   text-transform: uppercase;
+  span {
+    text-transform: none;
+  }
 `;
 
 const RoundCard = () => {
@@ -110,27 +114,28 @@ const RoundCard = () => {
         {roundsData
           .map((round) => {
             return (
-              <CardWrapper key={round.roundId}>
-                <CardImg>
-                  <NewsImg
-                    src={
-                      round.roundImage !== null
-                        ? round.roundImage
-                        : globalTheme.pictures.round
-                    }
-                    alt={round.gameName}
-                  />
-                </CardImg>
-                <TextWrapper>
-                  <Title>{round.roundName}</Title>
-                  <Adress>{round.roundPlace}</Adress>
-                  <Author>
-                    <span style={{ textTransform: 'none' }}>par</span>{' '}
-                    {round.roundCreator}
-                  </Author>
-                  <Date>{round.roundDate}</Date>
-                </TextWrapper>
-              </CardWrapper>
+              <Link to={`/rounds/${round.roundId}`}>
+                <CardWrapper key={round.roundId}>
+                  <CardImg>
+                    <NewsImg
+                      src={
+                        round.roundImage !== null
+                          ? round.roundImage
+                          : globalTheme.pictures.round
+                      }
+                      alt={round.gameName}
+                    />
+                  </CardImg>
+                  <TextWrapper>
+                    <Title>{round.roundName}</Title>
+                    <Adress>{round.roundPlace}</Adress>
+                    <Author>
+                      <span>par</span> {round.roundCreator}
+                    </Author>
+                    <Date>{round.roundDate}</Date>
+                  </TextWrapper>
+                </CardWrapper>
+              </Link>
             );
           })
           .slice(0, 10)}
