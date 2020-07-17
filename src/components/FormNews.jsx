@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,16 +13,28 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const FormNews = ({ open }) => {
   const [news, setNews] = useState({});
+  const authToken = useSelector((state) => state.userReducer.token);
+
   const NewsChange = (e) => {
     const tmp = { ...news, [e.target.name]: e.target.value };
     setNews(tmp);
   };
+
   const error = () => toast.error('oups il y a une erreur');
   const notify = () => toast.dark('ta news a bien été posté!');
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${backend}/news`, news).then(notify).catch(error);
+    axios
+      .post(`${backend}/news`, news, {
+        headers: {
+          Authorization: `Bearer${authToken || null}`,
+        },
+      })
+      .then(notify)
+      .catch(error);
   };
+
   return (
     <div>
       <ToastContainer
