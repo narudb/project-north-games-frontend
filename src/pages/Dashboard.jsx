@@ -5,6 +5,7 @@ import SignUp from '../components/SignUp';
 import ButtonStyle from '../components/ui/Button';
 import TitleStyle from '../components/ui/Title';
 import NewsCard from '../components/NewsCard';
+import EventContainer from '../components/EventContainer';
 import EventCard from '../components/EventCard';
 import Geolocation from '../components/Geolocation';
 
@@ -31,11 +32,11 @@ const FormWrapper = styled.div`
 
 const Dashboard = () => {
   const [showSignup, toggleForm] = useState(true);
-
   return (
     <DashboardWrapper>
       <TitleStyle>Actu à la une</TitleStyle>
       <NewsCard />
+      <EventContainer />
       <TitleStyle>Autour de moi</TitleStyle>
       <Geolocation />
       <EventCard />

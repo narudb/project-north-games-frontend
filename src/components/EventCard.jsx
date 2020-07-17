@@ -1,12 +1,27 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 80%;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.colors.primary};
+    border-radius: 5px;
+  }
 `;
 
 const CardWrapper = styled.div`
@@ -15,7 +30,7 @@ const CardWrapper = styled.div`
   background: ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   overflow: hidden;
-  margin-top: 20px;
+  margin-bottom: 15px;
   margin-right: 20px;
 `;
 
@@ -103,19 +118,18 @@ const EventCard = () => {
           })
           .map((event) => {
             return (
-              <CardWrapper key={event.id}>
-                <CardImg>
-                  <NewsImg src={event.pictureUrl} alt="event-img" />
-                </CardImg>
-                <TextWrapper>
-                  <Date>{event.eventDate}</Date>
-                  <Title>{event.title}</Title>
-                  <Adress>
-                    {event.adress} <br />
-                    {event.eventLatitude} {event.eventLongitude}
-                  </Adress>
-                </TextWrapper>
-              </CardWrapper>
+              <Link to={`/events/${event.id}`} key={event.id}>
+                <CardWrapper>
+                  <CardImg>
+                    <NewsImg src={event.pictureUrl} alt="event-img" />
+                  </CardImg>
+                  <TextWrapper>
+                    <Date>{event.eventDate}</Date>
+                    <Title>{event.title}</Title>
+                    <Adress>{event.adress}</Adress>
+                  </TextWrapper>
+                </CardWrapper>
+              </Link>
             );
           })
           .slice(0, 3)}
