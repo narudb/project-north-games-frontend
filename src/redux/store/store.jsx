@@ -3,12 +3,14 @@ import eventsReducer from '../reducers/eventsReducer';
 import newsReducer from '../reducers/newsReducer';
 import positionReducer from '../reducers/positionReducer';
 import oneNewsReducer from '../reducers/oneNewsReducer';
+import roundsReducer from '../reducers/roundsReducer';
 
 const rootReducer = combineReducers({
   newsReducer,
   eventsReducer,
   positionReducer,
   oneNewsReducer,
+  roundsReducer,
 });
 
 /* eslint-disable no-underscore-dangle */
