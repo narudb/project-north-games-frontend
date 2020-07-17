@@ -23,10 +23,10 @@ const DashboardWrapper = styled.div`
 `;
 
 const FormWrapper = styled.div`
-  height: 100%;
+  height: 45vh;
   grid-area: form;
   display: grid;
-  padding: 15px 10px;
+  padding: 17px 10px;
 `;
 
 const Dashboard = () => {
