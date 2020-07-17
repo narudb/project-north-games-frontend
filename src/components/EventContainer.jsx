@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TitleStyle from './ui/Title';
 import EventCard from './EventCard';
+import Geolocation from './Geolocation';
 
 const StyledContainer = styled.div`
   grid-area: events;
@@ -18,6 +19,7 @@ const EventContainer = () => {
     <StyledContainer>
       <TitleStyle>Autour de moi</TitleStyle>
       <EventCard />
+      <Geolocation />
     </StyledContainer>
   );
 };
