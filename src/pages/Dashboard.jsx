@@ -7,6 +7,8 @@ import TitleStyle from '../components/ui/Title';
 import NewsCard from '../components/NewsCard';
 import EventContainer from '../components/EventContainer';
 import EventCard from '../components/EventCard';
+import FormNews from '../components/FormNews';
+import AddBtn from '../components/ui/AddBtn';
 import Geolocation from '../components/Geolocation';
 
 const DashboardWrapper = styled.div`
@@ -29,12 +31,21 @@ const FormWrapper = styled.div`
   flex-flow: column wrap;
   padding: 10px;
 `;
-
 const Dashboard = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
   const [showSignup, toggleForm] = useState(true);
   return (
     <DashboardWrapper>
-      <TitleStyle>Actu à la une</TitleStyle>
+      <TitleStyle>
+        Actu à la une{' '}
+        <AddBtn type="submit" value="open" onClick={handleClick}>
+          +
+        </AddBtn>
+      </TitleStyle>{' '}
+      <FormNews open={open} />
       <NewsCard />
       <EventContainer />
       <TitleStyle>Autour de moi</TitleStyle>
@@ -71,5 +82,4 @@ const Dashboard = () => {
     </DashboardWrapper>
   );
 };
-
 export default Dashboard;

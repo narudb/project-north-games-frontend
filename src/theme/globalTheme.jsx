@@ -6,6 +6,7 @@ export default {
     newsCardGradient: '35.75deg, #FCA044 1.97%, #FE757B 96.85%',
     dark: '#000',
     mediumGray: '#606b72',
+    greyButton: '#e7e8e9',
   },
   fonts: {
     primary: 'Montserrat, sans-serif',
