@@ -8,7 +8,7 @@ import FormNews from './FormNews';
 const StyledContainer = styled.div`
   grid-area: news;
   height: 45vh;
-  overflow: scroll;
+  overflow: hidden;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
