@@ -12,7 +12,6 @@ import InputBtn from './ui/FormInputBtn';
 import 'react-toastify/dist/ReactToastify.css';
 
 const FormContainer = styled.div`
-  border: solid 1px red;
   width: 100%;
   overflow-y: scroll;
   height: 70%;
@@ -21,7 +20,7 @@ const FormContainer = styled.div`
 
 const FormNews = () => {
   const [news, setNews] = useState({});
-  const authToken = useSelector((state) => state.userReducer.token);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
 
   const NewsChange = (e) => {
     const tmp = { ...news, [e.target.name]: e.target.value };
@@ -36,7 +35,7 @@ const FormNews = () => {
     axios
       .post(`${backend}/news`, news, {
         headers: {
-          Authorization: `Bearer${authToken || null}`,
+          Authorization: `Bearer ${authToken || null}`,
         },
       })
       .then(notify)
