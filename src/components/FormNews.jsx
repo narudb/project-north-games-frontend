@@ -20,7 +20,11 @@ const FormNews = ({ open, setOpen }) => {
   const notify = () => toast.dark('ta news a bien été posté!');
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${backend}/news`, news).then(notify).catch(error);
+    axios
+      .post(`${backend}/news`, news)
+      .then(notify)
+      .then(setOpen(!open))
+      .catch(error);
   };
   return (
     <div>
