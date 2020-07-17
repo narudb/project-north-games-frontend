@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
+import StyledLink from './ui/StyledLink';
 
 const CardContainer = styled.div`
   display: flex;
@@ -129,7 +129,7 @@ const RoundCard = () => {
         {roundsData
           .map((round) => {
             return (
-              <Link to={`/rounds/${round.roundId}`}>
+              <StyledLink to={`/rounds/${round.roundId}`}>
                 <CardWrapper key={round.roundId}>
                   <CardImg>
                     <NewsImg
@@ -150,7 +150,7 @@ const RoundCard = () => {
                     <Date>{round.roundDate}</Date>
                   </TextWrapper>
                 </CardWrapper>
-              </Link>
+              </StyledLink>
             );
           })
           .slice(0, 10)}
