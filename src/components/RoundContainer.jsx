@@ -5,6 +5,7 @@ import RoundCard from './RoundCard';
 
 const StyledContainer = styled.div`
   grid-area: aside;
+  height: 45vh;
   overflow: scroll;
   display: flex;
   flex-flow: row wrap;
