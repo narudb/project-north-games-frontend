@@ -15,6 +15,11 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 const NewsContainer = () => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
@@ -23,12 +28,12 @@ const NewsContainer = () => {
 
   return (
     <StyledContainer>
-      <TitleStyle>
-        Actu à la une{' '}
+      <TitleWrapper>
+        <TitleStyle>Actu à la une </TitleStyle>
         <AddBtn type="submit" value="open" onClick={handleClick}>
           +
         </AddBtn>
-      </TitleStyle>{' '}
+      </TitleWrapper>
       <FormNews open={open} />
       <NewsCard />
     </StyledContainer>
