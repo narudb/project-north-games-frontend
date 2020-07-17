@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { backend } from '../conf';
 import { Link } from 'react-router-dom';
+import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
