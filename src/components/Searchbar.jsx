@@ -21,7 +21,7 @@ export default function Searchbar() {
     axios.get(`/news?author=${searchTitle}`).then((res) => {
       setNews(res.data);
     });
-  }, []);
+  }, [searchTitle]);
 
   useEffect(() => {
     setSearchNewsByTitle(
