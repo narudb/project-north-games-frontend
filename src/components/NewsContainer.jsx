@@ -6,7 +6,6 @@ import FormNews from './FormNews';
 import StyledContainer from './ui/StyledContainer';
 import TitleWrapper from './ui/TitleWrapper';
 
-
 const NewsContainer = () => {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
