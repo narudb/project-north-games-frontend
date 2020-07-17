@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import globalTheme from '../theme/globalTheme';
+import StyledLink from './ui/StyledLink';
 
 const CardContainer = styled.div`
   display: flex;
@@ -100,7 +100,7 @@ const GroupCard = () => {
         {groupsData
           .map((group) => {
             return (
-              <Link to={`/groups/${group.groupId}`}>
+              <StyledLink to={`/groups/${group.groupId}`}>
                 <CardWrapper key={group.groupId}>
                   <CardImg>
                     <GroupImg
@@ -117,7 +117,7 @@ const GroupCard = () => {
                     <p>{group.maxPlayers} membres</p>
                   </TextWrapper>
                 </CardWrapper>
-              </Link>
+              </StyledLink>
             );
           })
           .slice(0, 10)}
