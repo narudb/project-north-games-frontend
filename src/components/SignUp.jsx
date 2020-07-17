@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { backend } from '../conf';
 import Title from './ui/Title';
 import Form from './ui/Form';
 import Input from './ui/Input';
@@ -63,7 +64,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formValid(formErrors)) {
-      axios.post(`/auth/signup`, newUser);
+      axios.post(`${backend}/auth/signup`, newUser);
     }
   };
 
