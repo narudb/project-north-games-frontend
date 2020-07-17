@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   padding: 8px;
+  width: 60%;
+  justify-self: center;
   align-self: center;
   border-radius: 5px;
   font-family: 'Montserrat';

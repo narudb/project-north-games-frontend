@@ -99,9 +99,11 @@ const TextPara = styled.p`
 
 const TextTitle = styled.h3`
   font-weight: bold;
+  font-size: 18px;
   border-bottom: 2px solid #fff;
   margin-bottom: 10px;
   margin-right: 10px;
+  letter-spacing: 0.1em;
 `;
 
 const EventsPage = () => {
