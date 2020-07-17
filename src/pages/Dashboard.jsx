@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import EventContainer from '../components/EventContainer';
 import NewsContainer from '../components/NewsContainer';
@@ -23,13 +24,21 @@ const DashboardWrapper = styled.div`
 `;
 
 const Dashboard = () => {
+  const isLoggedIn = useSelector((state) => state.userReducer.loggedIn);
+
   return (
     <DashboardWrapper>
       <NewsContainer />
       <EventContainer />
-      <FormContainer />
-      <RoundContainer />
-      <GroupContainer />
+      {isLoggedIn ? (
+        <>
+          <RoundContainer />
+          <GroupContainer />
+        </>
+      ) : (
+        <FormContainer />
+      )}
+
       <Geolocation />
     </DashboardWrapper>
   );
