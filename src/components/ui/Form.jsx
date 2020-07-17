@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const FormStyle = styled.form`
-  margin-top: 30px;
-  height: 70%;
+  margin-top: 10px;
+  height: 90%;
   display: flex;
   flex-flow: column wrap;
   align-items: center;

@@ -16,7 +16,7 @@ const PageWrapper = styled.div`
   overflow: scroll;
   color: ${(props) => props.theme.colors.primary};
   display: grid;
-  grid-template-columns: 15vw 1fr 20px;
+  grid-template-columns: 15vw 1fr 30px;
   grid-template-rows: 15vh auto;
   grid-column-gap: 5px;
   grid-template-areas:

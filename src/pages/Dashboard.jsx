@@ -3,20 +3,17 @@ import styled from 'styled-components';
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
 import ButtonStyle from '../components/ui/Button';
-import TitleStyle from '../components/ui/Title';
-import NewsCard from '../components/NewsCard';
 import EventContainer from '../components/EventContainer';
-import RoundCard from '../components/RoundCard';
-import FormNews from '../components/FormNews';
-import AddBtn from '../components/ui/AddBtn';
-import Geolocation from '../components/Geolocation';
+import NewsContainer from '../components/NewsContainer';
+import RoundContainer from '../components/RoundContainer';
 
 const DashboardWrapper = styled.div`
-  width: 50vw;
+  width: 100%;
   height: 100%;
   display: grid;
+  grid-column-gap: 20px;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: 1fr 1fr 5px 1fr 1fr;
   grid-template-areas:
     'news form'
     'news form'
@@ -26,33 +23,19 @@ const DashboardWrapper = styled.div`
 `;
 
 const FormWrapper = styled.div`
+  height: 100%;
   grid-area: form;
-  display: flex;
-  flex-flow: column wrap;
-  padding: 10px;
+  display: grid;
+  padding: 15px 10px;
 `;
+
 const Dashboard = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(!open);
-  };
   const [showSignup, toggleForm] = useState(true);
+
   return (
     <DashboardWrapper>
-      <TitleStyle>
-        Actu à la une{' '}
-        <AddBtn type="submit" value="open" onClick={handleClick}>
-          +
-        </AddBtn>
-      </TitleStyle>{' '}
-      <FormNews open={open} />
-      <NewsCard />
+      <NewsContainer />
       <EventContainer />
-      <TitleStyle>Autour de moi</TitleStyle>
-      <Geolocation />
-      <TitleStyle>Prochaines parties</TitleStyle>
-      <RoundCard />
-      <p>Dashboard Page</p>
       <FormWrapper>
         {showSignup ? (
           <>
@@ -80,6 +63,7 @@ const Dashboard = () => {
           </>
         )}
       </FormWrapper>
+      <RoundContainer />
     </DashboardWrapper>
   );
 };
