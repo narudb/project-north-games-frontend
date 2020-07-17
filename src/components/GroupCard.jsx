@@ -72,13 +72,10 @@ const Title = styled.h3`
   font-size: 13px;
   line-height: 18px;
   color: ${(props) => props.theme.colors.secondary};
-  white-space: nowrap;
+  white-space: normal;
   text-transform: uppercase;
   width: 180px;
   max-height: 42px;
-  flex-wrap: wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const GroupCard = () => {
