@@ -10,7 +10,7 @@ const DashboardWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-column-gap: 20px;
+  grid-column-gap: 30px;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 1fr 5px 1fr 1fr;
   grid-template-areas:

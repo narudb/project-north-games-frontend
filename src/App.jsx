@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 import AsideMenu from './components/AsideMenu';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -16,7 +17,7 @@ const PageWrapper = styled.div`
   overflow: scroll;
   color: ${(props) => props.theme.colors.primary};
   display: grid;
-  grid-template-columns: 15vw 1fr 30px;
+  grid-template-columns: 10vw 1fr 30px;
   grid-template-rows: 15vh auto;
   grid-column-gap: 5px;
   grid-template-areas:
