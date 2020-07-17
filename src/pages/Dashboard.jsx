@@ -6,12 +6,10 @@ import ButtonStyle from '../components/ui/Button';
 import TitleStyle from '../components/ui/Title';
 import NewsCard from '../components/NewsCard';
 import EventContainer from '../components/EventContainer';
-import EventCard from '../components/EventCard';
 import RoundCard from '../components/RoundCard';
 import FormNews from '../components/FormNews';
 import AddBtn from '../components/ui/AddBtn';
 import Geolocation from '../components/Geolocation';
-
 
 const DashboardWrapper = styled.div`
   width: 50vw;
