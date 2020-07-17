@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import NewsPage from './pages/NewsPage';
+import RoundsPage from './pages/RoundsPage';
 import EventsPage from './pages/EventsPage';
 import globalTheme from './theme/globalTheme';
 
@@ -43,6 +44,7 @@ const App = () => {
             <Route exact path="/" component={Dashboard} />
             <Route path="/login" component={Login} />
             <Route path="/news/:id" component={NewsPage} />
+            <Route path="/rounds/:id" component={RoundsPage} />
             <Route path="/events/:id" component={EventsPage} />
           </Switch>
         </Main>
