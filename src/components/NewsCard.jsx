@@ -8,7 +8,10 @@ import StyledLink from './ui/StyledLink';
 const NewsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
   margin-bottom: 40px;
+  overflow: scroll;
 `;
 
 const NewsWrapper = styled.div`
@@ -19,8 +22,7 @@ const NewsWrapper = styled.div`
   );
   border-radius: 5px;
   overflow: hidden;
-  margin-top: 20px;
-  margin-right: 20px;
+  margin: 10px;
 `;
 
 const CardImg = styled.div`

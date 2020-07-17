@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import styled from 'styled-components';
 import { backend } from '../conf';
 import FormTitleStyle from './ui/FormTitle';
 import Form from './ui/FormPost';
@@ -11,7 +11,15 @@ import InputContent from './ui/FormContent';
 import InputBtn from './ui/FormInputBtn';
 import 'react-toastify/dist/ReactToastify.css';
 
-const FormNews = ({ open }) => {
+const FormContainer = styled.div`
+  border: solid 1px red;
+  width: 100%;
+  overflow-y: scroll;
+  height: 70%;
+  display: block;
+`;
+
+const FormNews = () => {
   const [news, setNews] = useState({});
   const authToken = useSelector((state) => state.userReducer.token);
 
@@ -36,7 +44,7 @@ const FormNews = ({ open }) => {
   };
 
   return (
-    <div>
+    <FormContainer>
       <ToastContainer
         position="bottom-left"
         autoClose={6000}
@@ -47,63 +55,56 @@ const FormNews = ({ open }) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        style={{ fontSize: '30px', textAlign: 'center' }}
+        style={{ fontSize: '20px', textAlign: 'center' }}
       />
-      {open && (
-        <>
-          <FormTitleStyle>Ajoutes ta news</FormTitleStyle>
-          <Form
-            onSubmit={(e) => {
-              handleSubmit(e);
+      <FormTitleStyle>Ajoutes ta news</FormTitleStyle>
+      <div>
+        <Form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          <Input
+            type="text"
+            name="author"
+            required
+            onChange={(e) => {
+              NewsChange(e);
             }}
-          >
-            <Input
-              type="text"
-              name="author"
-              required
-              onChange={(e) => {
-                NewsChange(e);
-              }}
-              placeholder="Auteur"
-            />
-            <Input
-              type="text"
-              name="title"
-              required
-              onChange={(e) => {
-                NewsChange(e);
-              }}
-              placeholder="Titre"
-            />
-            <InputContent
-              type="text"
-              name="content"
-              required
-              onChange={(e) => {
-                NewsChange(e);
-              }}
-              placeholder="Contenu"
-            />
-            <Input
-              type="text"
-              name="picture_url"
-              required
-              onChange={(e) => {
-                NewsChange(e);
-              }}
-              placeholder="url de ton image"
-            />
-            <InputBtn type="submit" value="poster" />
-          </Form>
-        </>
-      )}
-    </div>
+            placeholder="Auteur"
+          />
+          <Input
+            type="text"
+            name="title"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Titre"
+          />
+          <InputContent
+            type="text"
+            name="content"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Contenu"
+          />
+          <Input
+            type="text"
+            name="picture_url"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="url de ton image"
+          />
+          <InputBtn type="submit" value="poster" />
+        </Form>
+      </div>
+    </FormContainer>
   );
 };
-FormNews.propTypes = {
-  open: PropTypes.bool,
-};
-FormNews.defaultProps = {
-  open: false,
-};
+
 export default FormNews;
