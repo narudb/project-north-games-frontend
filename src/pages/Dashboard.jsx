@@ -9,7 +9,6 @@ import EventContainer from '../components/EventContainer';
 import EventCard from '../components/EventCard';
 import Geolocation from '../components/Geolocation';
 
-
 const DashboardWrapper = styled.div`
   width: 50vw;
   height: 100%;
