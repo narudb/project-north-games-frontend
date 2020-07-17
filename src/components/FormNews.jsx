@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { backend } from '../conf';
 import FormTitleStyle from './ui/FormTitle';
 import Form from './ui/FormPost';
 import Input from './ui/FormInput';
@@ -19,7 +20,7 @@ const FormNews = ({ open }) => {
   const notify = () => toast.dark('ta news a bien été posté!');
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`/news`, news).then(notify).catch(error);
+    axios.post(`${backend}/news`, news).then(notify).catch(error);
   };
   return (
     <div>

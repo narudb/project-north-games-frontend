@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { backend } from '../conf';
 
 const NewsPageContainer = styled.div`
   display: grid;
@@ -112,7 +113,7 @@ const EventsPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`/events/${id}`).then(({ data }) => {
+    axios.get(`${backend}/events/${id}`).then(({ data }) => {
       dispatch({
         type: 'GET_ONE_EVENTS',
         data,

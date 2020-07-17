@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import axios from 'axios';
+import { backend } from '../conf';
 import Title from './ui/Title';
 import Form from './ui/Form';
 import Input from './ui/Input';
@@ -65,7 +66,7 @@ const SignUp = () => {
     e.preventDefault();
     if (formValid(formErrors)) {
       axios
-        .post(`/auth/signup`, newUser)
+        .post(`${backend}/auth/signup`, newUser)
         .then(
           toast.success('Votre compte à bien été créé', {
             position: 'bottom-right',
