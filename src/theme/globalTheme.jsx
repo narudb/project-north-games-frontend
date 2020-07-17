@@ -11,4 +11,10 @@ export default {
   fonts: {
     primary: 'Montserrat, sans-serif',
   },
+  pictures: {
+    avatar: '/images/wizard-face.png',
+    event: '/images/newspaper.png',
+    round: '/images/dice-twenty-faces-one.png',
+    group: '/images/round-table.png',
+  },
 };
