@@ -28,16 +28,14 @@ const EventContainer = () => {
           +
         </AddBtn>
       </TitleWrapper>
-      <>
-        {openBtnEvent ? (
-          <FormEvent
-            openBtnEvent={openBtnEvent}
-            setOpenBtnEvent={setOpenBtnEvent}
-          />
-        ) : (
-          <EventCard />
-        )}
-      </>
+      {openBtnEvent ? (
+        <FormEvent
+          openBtnEvent={openBtnEvent}
+          setOpenBtnEvent={setOpenBtnEvent}
+        />
+      ) : (
+        <EventCard />
+      )}
     </StyledContainer>
   );
 };
