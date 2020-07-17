@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import TitleStyle from './ui/Title';
-import RoundCard from './RoundCard';
+import GroupCard from './GroupCard';
 
 const StyledContainer = styled.div`
-  grid-area: asideTop;
+  grid-area: asideDown;
   height: 45vh;
   overflow: hidden;
   display: flex;
@@ -13,13 +13,13 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
-const RoundContainer = () => {
+const GroupContainer = () => {
   return (
     <StyledContainer>
-      <TitleStyle>Prochaines parties</TitleStyle>
-      <RoundCard />
+      <TitleStyle>Mes groupes</TitleStyle>
+      <GroupCard />
     </StyledContainer>
   );
 };
 
-export default RoundContainer;
+export default GroupContainer;

@@ -5,6 +5,7 @@ import positionReducer from '../reducers/positionReducer';
 import oneNewsReducer from '../reducers/oneNewsReducer';
 import roundsReducer from '../reducers/roundsReducer';
 import userReducer from '../reducers/userReducer';
+import groupsReducer from '../reducers/groupsReducers';
 
 const rootReducer = combineReducers({
   newsReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   oneNewsReducer,
   roundsReducer,
   userReducer,
+  groupsReducer,
 });
 
 /* eslint-disable no-underscore-dangle */
