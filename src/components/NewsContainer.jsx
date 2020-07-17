@@ -20,8 +20,7 @@ const NewsContainer = () => {
           +
         </AddBtn>
       </TitleWrapper>
-      <FormNews open={open} setOpen={setOpen} />
-      <NewsCard />
+      <>{open ? <FormNews open={open} setOpen={setOpen} /> : <NewsCard />}</>
     </StyledContainer>
   );
 };

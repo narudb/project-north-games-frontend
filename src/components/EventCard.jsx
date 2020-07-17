@@ -6,11 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CardContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 80%;
-  overflow-y: scroll;
-
+  justify-content: center;
+  flex-flow: row wrap;
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -30,8 +27,7 @@ const CardWrapper = styled.div`
   background: ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   overflow: hidden;
-  margin-bottom: 15px;
-  margin-right: 20px;
+  margin: 1em;
 `;
 
 const CardImg = styled.div`
@@ -131,8 +127,7 @@ const EventCard = () => {
                 </CardWrapper>
               </Link>
             );
-          })
-          .slice(0, 3)}
+          })}
       </CardContainer>
     </>
   );
