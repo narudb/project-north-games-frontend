@@ -56,15 +56,15 @@ const NewsCard = () => {
   const dispatch = useDispatch();
   const newsData = useSelector((state) => state.newsReducer.newsData);
 
-  const getAllNews = () => {
-    axios.get('/news').then(({ data }) => {
-      dispatch({
-        type: 'GET_ALL_NEWS',
-        data,
-      });
-    });
-  };
   useEffect(() => {
+    const getAllNews = () => {
+      axios.get('/news').then(({ data }) => {
+        dispatch({
+          type: 'GET_ALL_NEWS',
+          data,
+        });
+      });
+    };
     getAllNews();
   }, [dispatch]);
   return (
@@ -73,8 +73,8 @@ const NewsCard = () => {
         {newsData
           .map((news) => {
             return (
-              <Link to={`/news/${news.id}`}>
-                <NewsWrapper key={news.id}>
+              <Link to={`/news/${news.id}`} key={news.id}>
+                <NewsWrapper>
                   <CardImg>
                     <NewsImg src={news.pictureUrl} alt="news-img" />
                   </CardImg>
