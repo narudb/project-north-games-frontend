@@ -35,27 +35,29 @@ const RoundImg = styled.img`
 `;
 
 const Avatar = styled.img`
-  height: 8vh;
-  width: 8vh;
+  height: 6vh;
+  width: 6vh;
   border: solid 4px white;
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  opacity: 1;
 `;
 
 const RoundInfos = styled.div`
   grid-area: infos;
-  padding: 30px;
+  padding-left: 30px;
   display: flex;
   flex-flow: row wrap;
+  border: solid 1px red;
 `;
 
 const InfosWrapper = styled.div`
   width: 100%;
-  height: 50%;
-  padding: 15px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   p {
     font-family: ${(props) => props.theme.fonts.primary};
     line-height: 30px;
@@ -87,14 +89,6 @@ const TextWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 20px;
-`;
-
-const AuthorWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: baseline;
 `;
 
 const TextPara = styled.p`
@@ -149,7 +143,7 @@ const RoundsPage = () => {
             <p>{oneRound.roundPlace}</p>
           </div>
         </InfosWrapper>
-        <AuthorWrapper>
+        <InfosWrapper>
           <Avatar
             src={
               oneRound.roundAvatar !== null
@@ -159,7 +153,7 @@ const RoundsPage = () => {
             alt="auteur"
           />
           <TextPara>{oneRound.roundCreator}</TextPara>
-        </AuthorWrapper>
+        </InfosWrapper>
       </RoundInfos>
       <RoundText>
         <TextWrapper>
