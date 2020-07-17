@@ -1,13 +1,19 @@
-const store = {
+const initial = {
   eventsData: [],
+  oneEvent: {},
 };
 
-const eventsReducer = (state = { ...store }, action) => {
+const eventsReducer = (state = initial, action) => {
   switch (action.type) {
     case 'GET_ALL_EVENTS':
       return {
-        ...store,
+        ...state,
         eventsData: action.data,
+      };
+    case 'GET_ONE_EVENTS':
+      return {
+        ...state,
+        oneEvent: action.data,
       };
     default:
       break;
