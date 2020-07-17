@@ -5,7 +5,8 @@ import AsideMenu from './components/AsideMenu';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
-import NewsPage from './components/NewsPage';
+import NewsPage from './pages/NewsPage';
+import EventsPage from './pages/EventsPage';
 import globalTheme from './theme/globalTheme';
 
 const PageWrapper = styled.div`
@@ -15,7 +16,7 @@ const PageWrapper = styled.div`
   overflow: scroll;
   color: ${(props) => props.theme.colors.primary};
   display: grid;
-  grid-template-columns: 15vw 1fr 5vw;
+  grid-template-columns: 15vw 1fr 30px;
   grid-template-rows: 15vh auto;
   grid-column-gap: 5px;
   grid-template-areas:
@@ -41,6 +42,7 @@ const App = () => {
             <Route exact path="/" component={Dashboard} />
             <Route path="/login" component={Login} />
             <Route path="/news/:id" component={NewsPage} />
+            <Route path="/events/:id" component={EventsPage} />
           </Switch>
         </Main>
       </PageWrapper>

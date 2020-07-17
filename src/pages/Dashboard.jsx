@@ -1,25 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
-import TitleStyle from '../components/ui/Title';
-import NewsCard from '../components/NewsCard';
-import EventCard from '../components/EventCard';
+import EventContainer from '../components/EventContainer';
+import NewsContainer from '../components/NewsContainer';
+import RoundContainer from '../components/RoundContainer';
+import FormContainer from '../components/FormContainer';
+import Geolocation from '../components/Geolocation';
 
 const DashboardWrapper = styled.div`
-  width: 50vw;
+  width: 100%;
   height: 100%;
-  padding: 15px;
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 5px 1fr 1fr;
+  grid-template-areas:
+    'news asideTop'
+    'news asideTop'
+    '. .'
+    'events asideDown'
+    'events asideDown';
 `;
 
 const Dashboard = () => {
   return (
     <DashboardWrapper>
-      <TitleStyle>Actu à la une</TitleStyle>
-      <NewsCard />
-      <TitleStyle>Autour de moi</TitleStyle>
-      <EventCard />
-      <p>Dashboard Page</p>
+      <NewsContainer />
+      <EventContainer />
+      <FormContainer />
+      <RoundContainer />
+      <Geolocation />
     </DashboardWrapper>
   );
 };
-
 export default Dashboard;
