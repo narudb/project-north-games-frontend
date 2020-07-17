@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { backend } from '../conf';
 
 const DivInput = styled.input`
   background-color: ${(props) => props.theme.colors.secondary};
@@ -18,7 +19,7 @@ export default function Searchbar() {
   const [searchTitle, setSearchTitle] = useState('');
 
   useLayoutEffect(() => {
-    axios.get(`/news?author=${searchTitle}`).then((res) => {
+    axios.get(`${backend}/news?author=${searchTitle}`).then((res) => {
       setNews(res.data);
     });
   }, [searchTitle]);

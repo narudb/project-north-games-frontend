@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { backend } from '../conf';
 
 const CardContainer = styled.div`
   display: flex;
@@ -94,7 +95,7 @@ const EventCard = () => {
         return newEvent;
       };
       axios
-        .get('/events')
+        .get(`${backend}/events`)
         .then((response) => response.data)
         .then((data) => {
           data.map((evt) => {

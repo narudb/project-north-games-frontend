@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
@@ -111,7 +112,7 @@ const RoundCard = () => {
   const roundsData = useSelector((state) => state.roundsReducer.roundsData);
 
   const getAllRounds = () => {
-    axios.get('/rounds').then(({ data }) => {
+    axios.get(`${backend}/rounds`).then(({ data }) => {
       dispatch({
         type: 'GET_ALL_ROUNDS',
         data,
