@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
@@ -31,15 +30,12 @@ const CardWrapper = styled.div`
   height: 84px;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-column-gap: 1px;
   grid-template-areas:
     'img title title'
-    'img place place'
-    'img author author'
-    'img . .'
-    'img date date'
-    'img . .';
+    'img text text'
+    'img author author';
   background: ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   overflow: hidden;
@@ -56,7 +52,7 @@ const CardImg = styled.div`
   border-radius: 5px;
 `;
 
-const NewsImg = styled.img`
+const GroupImg = styled.img`
   grid-area: img;
   width: 80px;
   height: 80px;
@@ -64,90 +60,61 @@ const NewsImg = styled.img`
 
 const TextWrapper = styled.div`
   padding: 10px 5px;
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.mediumGray};
+  p {
+    font-size: 11px;
+    line-height: 15px;
+  }
 `;
 
 const Title = styled.h3`
   grid-area: title;
   font-size: 13px;
   line-height: 18px;
-  color: ${(props) => props.theme.colors.dark};
-  white-space: nowrap;
+  color: ${(props) => props.theme.colors.secondary};
+  white-space: normal;
   text-transform: uppercase;
   width: 180px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  max-height: 42px;
 `;
 
-const Date = styled.h4`
-  grid-area: date;
-  font-size: 12px;
-  line-height: 16px;
-  color: ${(props) => props.theme.colors.secondary};
-`;
-
-const Adress = styled.p`
-  grid-area: place;
-  white-space: nowrap;
-  font-size: 11px;
-  line-height: 15px;
-  color: ${(props) => props.theme.colors.mediumGray};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 175px;
-`;
-
-const Author = styled.p`
-  grid-area: author;
-  font-size: 11px;
-  line-height: 15px;
-  text-transform: uppercase;
-  span {
-    text-transform: none;
-  }
-`;
-
-const RoundCard = () => {
+const GroupCard = () => {
   const dispatch = useDispatch();
-  const roundsData = useSelector((state) => state.roundsReducer.roundsData);
+  const groupsData = useSelector((state) => state.groupsReducer.groupsData);
 
-  const getAllRounds = () => {
-    axios.get(`${backend}/rounds`).then(({ data }) => {
+  const getAllGroups = () => {
+    axios.get('/groups').then(({ data }) => {
       dispatch({
-        type: 'GET_ALL_ROUNDS',
+        type: 'GET_ALL_GROUPS',
         data,
       });
     });
   };
   useEffect(() => {
-    getAllRounds();
+    getAllGroups();
   }, [dispatch]);
 
   return (
     <>
       <CardContainer>
-        {roundsData
-          .map((round) => {
+        {groupsData
+          .map((group) => {
             return (
-              <Link to={`/rounds/${round.roundId}`}>
-                <CardWrapper key={round.roundId}>
+              <Link to={`/groups/${group.groupId}`}>
+                <CardWrapper key={group.groupId}>
                   <CardImg>
-                    <NewsImg
+                    <GroupImg
                       src={
-                        round.roundImage !== null
-                          ? round.roundImage
-                          : globalTheme.pictures.round
+                        group.groupImage !== null
+                          ? group.groupImage
+                          : globalTheme.pictures.group
                       }
-                      alt={round.gameName}
+                      alt={group.groupName}
                     />
                   </CardImg>
                   <TextWrapper>
-                    <Title>{round.roundName}</Title>
-                    <Adress>{round.roundPlace}</Adress>
-                    <Author>
-                      <span>par</span> {round.roundCreator}
-                    </Author>
-                    <Date>{round.roundDate}</Date>
+                    <Title>{group.groupName}</Title>
+                    <p>{group.maxPlayers} membres</p>
                   </TextWrapper>
                 </CardWrapper>
               </Link>
@@ -159,4 +126,4 @@ const RoundCard = () => {
   );
 };
 
-export default RoundCard;
+export default GroupCard;

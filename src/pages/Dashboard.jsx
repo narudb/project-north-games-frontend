@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import EventContainer from '../components/EventContainer';
 import NewsContainer from '../components/NewsContainer';
 import RoundContainer from '../components/RoundContainer';
+import GroupContainer from '../components/GroupContainer';
 import FormContainer from '../components/FormContainer';
 import Geolocation from '../components/Geolocation';
 
@@ -28,6 +29,7 @@ const Dashboard = () => {
       <EventContainer />
       <FormContainer />
       <RoundContainer />
+      <GroupContainer />
       <Geolocation />
     </DashboardWrapper>
   );

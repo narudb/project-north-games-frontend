@@ -8,6 +8,7 @@ import Input from './ui/FormInput';
 import InputContent from './ui/FormContent';
 import InputBtn from './ui/FormInputBtn';
 import 'react-toastify/dist/ReactToastify.css';
+import { backend } from '../conf';
 
 const FormNews = ({ open, setOpen }) => {
   const [news, setNews] = useState({});
@@ -19,7 +20,7 @@ const FormNews = ({ open, setOpen }) => {
   const notify = () => toast.dark('ta news a bien été posté!');
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`/news`, news).then(notify).then(setOpen(!open)).catch(error);
+    axios.post(`${backend}/news`, news).then(notify).catch(error);
   };
   return (
     <div>

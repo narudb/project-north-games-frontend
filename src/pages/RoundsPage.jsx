@@ -3,9 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
-const NewsPageContainer = styled.div`
+const RoundPageContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 145px 280px 1fr;
@@ -15,7 +15,7 @@ const NewsPageContainer = styled.div`
     'text text';
 `;
 
-const EventTitle = styled.h2`
+const RoundTitle = styled.h2`
   grid-area: title;
   justify-self: center;
   align-self: center;
@@ -26,40 +26,45 @@ const EventTitle = styled.h2`
   letter-spacing: 0.2em;
 `;
 
-const EventImg = styled.img`
+const RoundImg = styled.img`
   grid-area: img;
-  object-fit: scale-down;
+  object-fit: cover;
   width: 100%;
   height: 100%;
+  background-color: ${(props) => props.theme.colors.mediumGray};
 `;
 
-const EventInfos = styled.div`
+const Avatar = styled.img`
+  height: 6vh;
+  width: 6vh;
+  border: solid 4px white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  opacity: 1;
+`;
+
+const RoundInfos = styled.div`
   grid-area: infos;
-  padding: 30px;
+  padding-left: 30px;
   display: flex;
   flex-flow: row wrap;
 `;
 
 const InfosWrapper = styled.div`
   width: 100%;
-  height: 50%;
-  padding: 15px;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start;
   align-items: center;
-
   p {
     font-family: ${(props) => props.theme.fonts.primary};
     line-height: 30px;
     font-size: 18px;
   }
-
   span {
     font-family: ${(props) => props.theme.fonts.primary};
     opacity: 0.6;
   }
-
   img {
     width: 50px;
     height: 50px;
@@ -68,9 +73,9 @@ const InfosWrapper = styled.div`
   }
 `;
 
-const EventText = styled.div`
+const RoundText = styled.div`
   grid-area: text;
-  padding: 30px;
+  padding: 30px 30vw 0 0;
   display: flex;
   flex-flow: row wrap;
 `;
@@ -84,14 +89,6 @@ const TextWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-const AuthorWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: baseline;
-`;
-
 const TextPara = styled.p`
   font-family: ${(props) => props.theme.fonts.primary};
   line-height: 30px;
@@ -100,58 +97,76 @@ const TextPara = styled.p`
 
 const TextTitle = styled.h3`
   font-weight: bold;
-  font-size: 18px;
   border-bottom: 2px solid #fff;
   margin-bottom: 10px;
   margin-right: 10px;
-  letter-spacing: 0.1em;
 `;
 
-const EventsPage = () => {
+const RoundsPage = () => {
   const dispatch = useDispatch();
-  const oneEvent = useSelector((state) => state.eventsReducer.oneEvent);
+  const oneRound = useSelector((state) => state.roundsReducer.oneRound);
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`${backend}/events/${id}`).then(({ data }) => {
+    axios.get(`/rounds/${id}`).then(({ data }) => {
       dispatch({
-        type: 'GET_ONE_EVENTS',
+        type: 'GET_ONE_ROUND',
         data,
       });
     });
   }, [dispatch, id]);
 
   return (
-    <NewsPageContainer>
-      <EventTitle>{oneEvent.title}</EventTitle>
-      <EventImg src={oneEvent.pictureUrl} alt={oneEvent.title} />
-      <EventInfos>
+    <RoundPageContainer>
+      <RoundTitle>{oneRound.roundName}</RoundTitle>
+      <RoundImg
+        src={
+          oneRound.roundImage !== null
+            ? oneRound.roundImage
+            : globalTheme.pictures.round
+        }
+        alt={oneRound.gameName}
+      />
+      <RoundInfos>
         <InfosWrapper>
           <img src="/icons/event-icon.svg" alt="Date" />
           <div>
-            <p>{oneEvent.eventDate}</p>
-            <span>{oneEvent.eventTime}</span>
+            <p>{oneRound.roundDate}</p>
+            <span>{oneRound.roundTime}</span>
           </div>
         </InfosWrapper>
         <InfosWrapper>
           <img src="/icons/location-icon.svg" alt="Location" />
           <div>
-            <p>{oneEvent.adress}</p>
+            <p>{oneRound.roundPlace}</p>
           </div>
         </InfosWrapper>
-      </EventInfos>
-      <EventText>
+        <InfosWrapper>
+          <Avatar
+            src={
+              oneRound.roundAvatar !== null
+                ? oneRound.roundAvatar
+                : globalTheme.pictures.avatar
+            }
+            alt="auteur"
+          />
+          <TextPara>{oneRound.roundCreator}</TextPara>
+        </InfosWrapper>
+        <InfosWrapper>
+          <img src="/icons/group-icon.svg" alt="Max players" />
+          <div>
+            <p>Nombre de joueurs : {oneRound.max_players}</p>
+          </div>
+        </InfosWrapper>
+      </RoundInfos>
+      <RoundText>
         <TextWrapper>
           <TextTitle>Description:</TextTitle>
-          <TextPara>{oneEvent.description}</TextPara>
+          <TextPara>{oneRound.roundContent}</TextPara>
         </TextWrapper>
-        <AuthorWrapper>
-          <TextTitle>Auteur:</TextTitle>
-          <TextPara>{oneEvent.author}</TextPara>
-        </AuthorWrapper>
-      </EventText>
-    </NewsPageContainer>
+      </RoundText>
+    </RoundPageContainer>
   );
 };
 
-export default EventsPage;
+export default RoundsPage;

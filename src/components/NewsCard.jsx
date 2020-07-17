@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { backend } from '../conf';
 
 const NewsContainer = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ const NewsCard = () => {
   const newsData = useSelector((state) => state.newsReducer.newsData);
 
   useEffect(() => {
-    axios.get('/news').then(({ data }) => {
+    axios.get(`${backend}/news`).then(({ data }) => {
       dispatch({
         type: 'GET_ALL_NEWS',
         data,

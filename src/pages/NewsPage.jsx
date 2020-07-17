@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { backend } from '../conf';
 
 const NewsPageContainer = styled.div`
   height: 100vh;
@@ -31,7 +32,7 @@ export default function NewsPage() {
   const { id } = useParams();
 
   const getOneNews = () => {
-    axios.get(`/news/${id}`).then(({ data }) => {
+    axios.get(`${backend}/news/${id}`).then(({ data }) => {
       dispatch({
         type: 'GET_ONE_NEWS',
         data,
