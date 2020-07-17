@@ -4,7 +4,7 @@ import TitleStyle from './ui/Title';
 import RoundCard from './RoundCard';
 
 const StyledContainer = styled.div`
-  grid-area: aside;
+  grid-area: asideDown;
   height: 45vh;
   overflow: scroll;
   display: flex;
