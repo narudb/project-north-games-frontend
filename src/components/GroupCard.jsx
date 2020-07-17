@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
+import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
 import StyledLink from './ui/StyledLink';
 
@@ -83,7 +84,7 @@ const GroupCard = () => {
   const groupsData = useSelector((state) => state.groupsReducer.groupsData);
 
   const getAllGroups = () => {
-    axios.get('/groups').then(({ data }) => {
+    axios.get(`${backend}/groups`).then(({ data }) => {
       dispatch({
         type: 'GET_ALL_GROUPS',
         data,
