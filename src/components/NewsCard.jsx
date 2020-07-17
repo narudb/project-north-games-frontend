@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { backend } from '../conf';
+import StyledLink from './ui/StyledLink';
 
 const NewsContainer = styled.div`
   display: flex;
@@ -57,7 +58,7 @@ const NewsCard = () => {
   const newsData = useSelector((state) => state.newsReducer.newsData);
 
   useEffect(() => {
-    axios.get('/news').then(({ data }) => {
+    axios.get(`${backend}/news`).then(({ data }) => {
       dispatch({
         type: 'GET_ALL_NEWS',
         data,
@@ -70,7 +71,7 @@ const NewsCard = () => {
         {newsData
           .map((news) => {
             return (
-              <Link to={`/news/${news.id}`} key={news.id}>
+              <StyledLink to={`/news/${news.id}`} key={news.id}>
                 <NewsWrapper>
                   <CardImg>
                     <NewsImg src={news.pictureUrl} alt="news-img" />
@@ -80,7 +81,7 @@ const NewsCard = () => {
                     <TextStyle>{news.contenText}</TextStyle>
                   </TextWrapper>
                 </NewsWrapper>
-              </Link>
+              </StyledLink>
             );
           })
           .slice(0, 3)}
