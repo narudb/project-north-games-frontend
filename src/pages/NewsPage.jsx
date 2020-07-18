@@ -31,18 +31,14 @@ export default function NewsPage() {
   const oneNews = useSelector((state) => state.oneNewsReducer.oneNews);
   const { id } = useParams();
 
-  const getOneNews = () => {
+  useEffect(() => {
     axios.get(`${backend}/news/${id}`).then(({ data }) => {
       dispatch({
         type: 'GET_ONE_NEWS',
         data,
       });
     });
-  };
-
-  useEffect(() => {
-    getOneNews();
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <NewsPageContainer>
