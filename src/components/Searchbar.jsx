@@ -30,7 +30,7 @@ export default function Searchbar() {
         byNews.title.toLowerCase().includes(searchTitle.toLowerCase())
       )
     );
-  }, [searchTitle, news]);
+  }, [searchTitle]);
 
   return (
     <div>
