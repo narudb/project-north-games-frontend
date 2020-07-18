@@ -101,8 +101,8 @@ const GroupCard = () => {
         {groupsData
           .map((group) => {
             return (
-              <StyledLink to={`/groups/${group.groupId}`}>
-                <CardWrapper key={group.groupId}>
+              <StyledLink to={`/groups/${group.groupId}`} key={group.groupId}>
+                <CardWrapper>
                   <CardImg>
                     <GroupImg
                       src={
