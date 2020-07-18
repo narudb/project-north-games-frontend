@@ -110,18 +110,22 @@ const Author = styled.p`
 const RoundCard = () => {
   const dispatch = useDispatch();
   const roundsData = useSelector((state) => state.roundsReducer.roundsData);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
 
-  const getAllRounds = () => {
-    axios.get(`${backend}/rounds`).then(({ data }) => {
-      dispatch({
-        type: 'GET_ALL_ROUNDS',
-        data,
-      });
-    });
-  };
   useEffect(() => {
-    getAllRounds();
-  }, [dispatch]);
+    axios
+      .get(`${backend}/rounds`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'GET_ALL_ROUNDS',
+          data,
+        });
+      });
+  }, [dispatch, authToken]);
 
   return (
     <>

@@ -107,16 +107,23 @@ const TextTitle = styled.h3`
 const RoundsPage = () => {
   const dispatch = useDispatch();
   const oneRound = useSelector((state) => state.roundsReducer.oneRound);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`${backend}/rounds/${id}`).then(({ data }) => {
-      dispatch({
-        type: 'GET_ONE_ROUND',
-        data,
+    axios
+      .get(`${backend}/rounds/${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'GET_ONE_ROUND',
+          data,
+        });
       });
-    });
-  }, [dispatch, id]);
+  }, [dispatch, id, authToken]);
 
   return (
     <RoundPageContainer>

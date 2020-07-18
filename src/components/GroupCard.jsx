@@ -82,18 +82,22 @@ const Title = styled.h3`
 const GroupCard = () => {
   const dispatch = useDispatch();
   const groupsData = useSelector((state) => state.groupsReducer.groupsData);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
 
-  const getAllGroups = () => {
-    axios.get(`${backend}/groups`).then(({ data }) => {
-      dispatch({
-        type: 'GET_ALL_GROUPS',
-        data,
-      });
-    });
-  };
   useEffect(() => {
-    getAllGroups();
-  }, [dispatch]);
+    axios
+      .get(`${backend}/groups`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'GET_ALL_GROUPS',
+          data,
+        });
+      });
+  }, [dispatch, authToken]);
 
   return (
     <>
