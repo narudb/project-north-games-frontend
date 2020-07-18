@@ -47,7 +47,14 @@ const UserIdentity = () => {
 
   return (
     <UserWrapper>
-      <Avatar src={globalTheme.pictures.avatar} />
+      <Avatar
+        src={
+          userData.avatar !== null
+            ? userData.avatar
+            : globalTheme.pictures.avatar
+        }
+        alt={userData.name}
+      />
       <Username>{userData.name}</Username>
     </UserWrapper>
   );
