@@ -79,6 +79,10 @@ const Title = styled.h3`
   max-height: 42px;
 `;
 
+const StyledPara = styled.p`
+  margin-right: 191px;
+`;
+
 const GroupCard = () => {
   const dispatch = useDispatch();
   const groupsData = useSelector((state) => state.groupsReducer.groupsData);
@@ -102,30 +106,34 @@ const GroupCard = () => {
   return (
     <>
       <CardContainer>
-        {groupsData
-          .map((group) => {
-            return (
-              <StyledLink to={`/groups/${group.groupId}`} key={group.groupId}>
-                <CardWrapper>
-                  <CardImg>
-                    <GroupImg
-                      src={
-                        group.groupImage !== null
-                          ? group.groupImage
-                          : globalTheme.pictures.group
-                      }
-                      alt={group.groupName}
-                    />
-                  </CardImg>
-                  <TextWrapper>
-                    <Title>{group.groupName}</Title>
-                    <p>{group.maxPlayers} membres</p>
-                  </TextWrapper>
-                </CardWrapper>
-              </StyledLink>
-            );
-          })
-          .slice(0, 10)}
+        {groupsData.length > 0 ? (
+          groupsData
+            .map((group) => {
+              return (
+                <StyledLink to={`/groups/${group.groupId}`} key={group.groupId}>
+                  <CardWrapper>
+                    <CardImg>
+                      <GroupImg
+                        src={
+                          group.groupImage !== null
+                            ? group.groupImage
+                            : globalTheme.pictures.group
+                        }
+                        alt={group.groupName}
+                      />
+                    </CardImg>
+                    <TextWrapper>
+                      <Title>{group.groupName}</Title>
+                      <p>{group.maxPlayers} membres</p>
+                    </TextWrapper>
+                  </CardWrapper>
+                </StyledLink>
+              );
+            })
+            .slice(0, 10)
+        ) : (
+          <StyledPara>Pas de groupe pour le moment</StyledPara>
+        )}
       </CardContainer>
     </>
   );
