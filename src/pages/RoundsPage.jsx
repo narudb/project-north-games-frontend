@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import globalTheme from '../theme/globalTheme';
+import { backend } from '../conf';
 
 const RoundPageContainer = styled.div`
   display: grid;
@@ -100,6 +101,7 @@ const TextTitle = styled.h3`
   border-bottom: 2px solid #fff;
   margin-bottom: 10px;
   margin-right: 10px;
+  letter-spacing: 0.1em;
 `;
 
 const RoundsPage = () => {
@@ -108,7 +110,7 @@ const RoundsPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`/rounds/${id}`).then(({ data }) => {
+    axios.get(`${backend}/rounds/${id}`).then(({ data }) => {
       dispatch({
         type: 'GET_ONE_ROUND',
         data,
