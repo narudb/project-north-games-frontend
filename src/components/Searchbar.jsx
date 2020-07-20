@@ -5,73 +5,114 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { backend } from '../conf';
 
+const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 50vw;
+  height: auto;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+`;
+
+const SearchTitle = styled.h4`
+  color: black;
+  margin-bottom: 2px;
+`;
+
 const DivInput = styled.input`
   background-color: ${(props) => props.theme.colors.secondary};
   background-image: url(/icons/search-icon.svg);
   background-repeat: no-repeat;
   background-position: right;
   border-radius: 5px;
-  width: 196.34px;
+  width: 20vw;
   height: 35px;
 `;
 
-const icons = ['ಠ_ಠ', '( ͠° ͟ʖ ͠°)', '(v°_°v)', '¬_¬', '(；⌣̀_⌣́)'];
+const UlStyle = styled.ul`
+  list-style-type: none;
+`;
+
+const NavLink = styled(Link)`
+  color: ${(props) => props.theme.fonts.mediumGray};
+  font-family: ${(props) => props.theme.fonts.primary};
+  text-decoration: none;
+`;
+
+const LiStyle = styled.li`
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* white-space: pre-line; */
+`;
+
+const ImgSearch = styled.img`
+  width: 2vw;
+  height: 2vw;
+`;
+
 function NoResult() {
-  const numIcon = Math.floor(Math.random() * icons.length);
   return (
-    <li className="NoResult">
-      <h5>{icons[numIcon]}</h5>
-      <p>
-        Désolé, on a <br />
-        rien trouvé !
-      </p>
+    <li>
+      <p>No result</p>
     </li>
   );
 }
 
 const SearchResults = ({ nouvelles, events, groups }) => {
   return (
-    <div id="SearchResults" className="flexer">
-      <section className="item">
-        <h4>Actualités</h4>
-        <ul>
+    <SearchWrapper>
+      <section>
+        <SearchTitle>Actualités</SearchTitle>
+        <UlStyle>
           {nouvelles.map((news) => {
             return (
-              <li key={news.id}>
-                <Link to={`/news/${news.id}`}>{news.title}</Link>
-              </li>
+              <LiStyle key={news.id}>
+                <NavLink to={`/news/${news.id}`}>
+                  <ImgSearch src={news.pictureUrl} alt={news.title} />
+                  {news.title}
+                </NavLink>
+              </LiStyle>
             );
           })}
           {nouvelles.length ? <></> : <NoResult />}
-        </ul>
+        </UlStyle>
       </section>
-      <section className="big-item">
-        <h4>Evénements</h4>
-        <ul>
+      <section>
+        <SearchTitle>Evénements</SearchTitle>
+        <UlStyle>
           {events.map((event) => {
             return (
-              <li key={event.id}>
-                <Link to={`/events/${event.id}`}>{event.title}</Link>
-              </li>
+              <LiStyle key={event.id}>
+                <NavLink to={`/events/${event.id}`}>
+                  <ImgSearch src={event.pictureUrl} alt={event.title} />
+                  {event.title}
+                </NavLink>
+              </LiStyle>
             );
           })}
           {events.length ? <></> : <NoResult />}
-        </ul>
+        </UlStyle>
       </section>
-      <section className="item">
-        <h4>Groupes</h4>
-        <ul>
+      <section>
+        <SearchTitle>Groupes</SearchTitle>
+        <UlStyle>
           {groups.map((group) => {
             return (
-              <li key={group.id}>
-                <Link to={`/groups/${group.id}`}>{group.name}</Link>
-              </li>
+              <LiStyle key={group.id}>
+                <NavLink to={`/groups/${group.id}`}>
+                  <ImgSearch src={group.groupImage} alt={group.name} />
+                  {group.name}
+                </NavLink>
+              </LiStyle>
             );
           })}
           {groups.length ? <></> : <NoResult />}
-        </ul>
+        </UlStyle>
       </section>
-    </div>
+    </SearchWrapper>
   );
 };
 
