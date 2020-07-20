@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import globalTheme from '../theme/globalTheme';
+import { backend } from '../conf';
 
 const CardContainer = styled.div`
   display: flex;
@@ -83,7 +84,7 @@ const GroupCard = () => {
   const groupsData = useSelector((state) => state.groupsReducer.groupsData);
 
   const getAllGroups = () => {
-    axios.get('/groups').then(({ data }) => {
+    axios.get(`${backend}/groups`).then(({ data }) => {
       dispatch({
         type: 'GET_ALL_GROUPS',
         data,
@@ -97,30 +98,28 @@ const GroupCard = () => {
   return (
     <>
       <CardContainer>
-        {groupsData
-          .map((group) => {
-            return (
-              <Link to={`/groups/${group.groupId}`}>
-                <CardWrapper key={group.groupId}>
-                  <CardImg>
-                    <GroupImg
-                      src={
-                        group.groupImage !== null
-                          ? group.groupImage
-                          : globalTheme.pictures.group
-                      }
-                      alt={group.groupName}
-                    />
-                  </CardImg>
-                  <TextWrapper>
-                    <Title>{group.groupName}</Title>
-                    <p>{group.maxPlayers} membres</p>
-                  </TextWrapper>
-                </CardWrapper>
-              </Link>
-            );
-          })
-          .slice(0, 10)}
+        {groupsData.map((group) => {
+          return (
+            <Link to={`/groups/${group.id}`} key={group.id}>
+              <CardWrapper>
+                <CardImg>
+                  <GroupImg
+                    src={
+                      group.image !== null
+                        ? group.image
+                        : globalTheme.pictures.group
+                    }
+                    alt={group.name}
+                  />
+                </CardImg>
+                <TextWrapper>
+                  <Title>{group.name}</Title>
+                  <p>{group.maxPlayer} membres</p>
+                </TextWrapper>
+              </CardWrapper>
+            </Link>
+          );
+        })}
       </CardContainer>
     </>
   );

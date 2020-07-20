@@ -129,8 +129,8 @@ const RoundCard = () => {
         {roundsData
           .map((round) => {
             return (
-              <Link to={`/rounds/${round.roundId}`}>
-                <CardWrapper key={round.roundId}>
+              <Link to={`/rounds/${round.roundId}`} key={round.roundId}>
+                <CardWrapper>
                   <CardImg>
                     <NewsImg
                       src={
