@@ -9,6 +9,8 @@ const NewsContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const NewsWrapper = styled.div`
@@ -19,8 +21,7 @@ const NewsWrapper = styled.div`
   );
   border-radius: 5px;
   overflow: hidden;
-  margin-top: 20px;
-  margin-right: 20px;
+  margin: 1em;
 `;
 
 const CardImg = styled.div`
@@ -68,23 +69,21 @@ const NewsCard = () => {
   return (
     <>
       <NewsContainer>
-        {newsData
-          .map((news) => {
-            return (
-              <Link to={`/news/${news.id}`} key={news.id}>
-                <NewsWrapper>
-                  <CardImg>
-                    <NewsImg src={news.pictureUrl} alt="news-img" />
-                  </CardImg>
-                  <TextWrapper>
-                    <Title>{news.title}</Title>
-                    <TextStyle>{news.contenText}</TextStyle>
-                  </TextWrapper>
-                </NewsWrapper>
-              </Link>
-            );
-          })
-          .slice(0, 3)}
+        {newsData.map((news) => {
+          return (
+            <Link to={`/news/${news.id}`} key={news.id}>
+              <NewsWrapper>
+                <CardImg>
+                  <NewsImg src={news.pictureUrl} alt="news-img" />
+                </CardImg>
+                <TextWrapper>
+                  <Title>{news.title}</Title>
+                  <TextStyle>{news.contenText}</TextStyle>
+                </TextWrapper>
+              </NewsWrapper>
+            </Link>
+          );
+        })}
       </NewsContainer>
     </>
   );
