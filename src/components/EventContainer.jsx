@@ -1,41 +1,45 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import AddBtn from './ui/AddBtn';
 import TitleStyle from './ui/Title';
 import EventCard from './EventCard';
-import TitleWrapper from './ui/TitleWrapper';
 import FormEvent from './FormEvent';
 
 const StyledContainer = styled.div`
   grid-area: events;
   height: 45vh;
-  overflow: scroll;
+  overflow: hidden;
+  display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 const EventContainer = () => {
-  const [openBtnEvent, setOpenBtnEvent] = useState(false);
-  const handleClickEvt = () => {
-    setOpenBtnEvent(!openBtnEvent);
+  const [open, setOpen] = useState(false);
+  const isLoggedIn = useSelector((state) => state.userReducer.loggedIn);
+
+  const handleClick = () => {
+    setOpen(!open);
   };
+
   return (
     <StyledContainer>
       <TitleWrapper>
-        <TitleStyle>Autour de moi</TitleStyle>
-        <AddBtn type="submit" value="open" onClick={handleClickEvt}>
-          +
-        </AddBtn>
+        <TitleStyle>{open ? 'Créer ton event' : 'Autour de moi'}</TitleStyle>
+        {isLoggedIn ? (
+          <AddBtn type="submit" value="open" onClick={handleClick}>
+            +
+          </AddBtn>
+        ) : null}
       </TitleWrapper>
-      {openBtnEvent ? (
-        <FormEvent
-          openBtnEvent={openBtnEvent}
-          setOpenBtnEvent={setOpenBtnEvent}
-        />
-      ) : (
-        <EventCard />
-      )}
+      {open ? <FormEvent /> : <EventCard />}
     </StyledContainer>
   );
 };

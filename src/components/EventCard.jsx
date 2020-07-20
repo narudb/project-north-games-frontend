@@ -4,11 +4,16 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
 import StyledLink from './ui/StyledLink';
+import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
   display: flex;
-  justify-content: center;
   flex-flow: row wrap;
+  height: 35vh;
+  width: 100%;
+  justify-content: space-evenly;
+  overflow-y: scroll;
+
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -28,7 +33,7 @@ const CardWrapper = styled.div`
   background: ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   overflow: hidden;
-  margin: 1em;
+  margin: 10px;
 `;
 
 const CardImg = styled.div`
@@ -118,7 +123,14 @@ const EventCard = () => {
               <StyledLink to={`/events/${event.id}`} key={event.id}>
                 <CardWrapper>
                   <CardImg>
-                    <NewsImg src={event.pictureUrl} alt="event-img" />
+                    <NewsImg
+                      src={
+                        event.pictureUrl !== null
+                          ? event.pictureUrl
+                          : globalTheme.pictures.event
+                      }
+                      alt="event-img"
+                    />
                   </CardImg>
                   <TextWrapper>
                     <Date>{event.eventDate}</Date>

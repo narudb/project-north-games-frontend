@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
 import StyledLink from './ui/StyledLink';
+import globalTheme from '../theme/globalTheme';
 
 const NewsContainer = styled.div`
   display: flex;
@@ -88,7 +89,14 @@ const NewsCard = () => {
             <StyledLink to={`/news/${news.id}`} key={news.id}>
               <NewsWrapper>
                 <CardImg>
-                  <NewsImg src={news.pictureUrl} alt="news-img" />
+                  <NewsImg
+                    src={
+                      news.pictureUrl !== null
+                        ? news.pictureUrl
+                        : globalTheme.pictures.event
+                    }
+                    alt="news-img"
+                  />
                 </CardImg>
                 <TextWrapper>
                   <Title>{news.title}</Title>
