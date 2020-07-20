@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import axios from 'axios';
 import { backend } from '../conf';
@@ -64,7 +65,33 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formValid(formErrors)) {
-      axios.post(`${backend}/auth/signup`, newUser);
+      axios
+        .post(`${backend}/auth/signup`, newUser)
+        .then(
+          toast.success('Votre compte à bien été créé', {
+            position: 'bottom-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          })
+        )
+        .catch(() => {
+          toast.error(
+            'Une erreur est survenue lors de la création de votre compte',
+            {
+              position: 'bottom-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
+        });
     }
   };
 

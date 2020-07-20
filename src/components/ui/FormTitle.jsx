@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const FormTitleStyle = styled.h2`
-  margin-top: 20px;
   font-family: 'Montserrat', sans-serif;
   color: ${(props) => props.theme.colors.primary};
   font-style: normal;

@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 import TitleStyle from './ui/Title';
 import NewsCard from './NewsCard';
 import AddBtn from './ui/AddBtn';
 import FormNews from './FormNews';
-import StyledContainer from './ui/StyledContainer';
-import TitleWrapper from './ui/TitleWrapper';
+
+const StyledContainer = styled.div`
+  grid-area: news;
+  height: 45vh;
+  overflow: hidden;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
 const NewsContainer = () => {
   const [open, setOpen] = useState(false);
+  const isLoggedIn = useSelector((state) => state.userReducer.loggedIn);
+
   const handleClick = () => {
     setOpen(!open);
   };
@@ -15,12 +32,14 @@ const NewsContainer = () => {
   return (
     <StyledContainer>
       <TitleWrapper>
-        <TitleStyle>Actu à la une </TitleStyle>
-        <AddBtn type="submit" value="open" onClick={handleClick}>
-          +
-        </AddBtn>
+        <TitleStyle>{open ? 'Ajoutes ta news' : 'Actu à la une'}</TitleStyle>
+        {isLoggedIn ? (
+          <AddBtn type="submit" value="open" onClick={handleClick}>
+            +
+          </AddBtn>
+        ) : null}
       </TitleWrapper>
-      {open ? <FormNews open={open} setOpen={setOpen} /> : <NewsCard />}
+      {open ? <FormNews /> : <NewsCard />}
     </StyledContainer>
   );
 };
