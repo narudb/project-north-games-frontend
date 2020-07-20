@@ -43,7 +43,7 @@ const UserIdentity = () => {
           payload: data,
         });
       });
-  });
+  }, []);
 
   return (
     <UserWrapper>
