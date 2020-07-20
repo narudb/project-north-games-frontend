@@ -4,7 +4,7 @@ import EventContainer from '../components/EventContainer';
 import NewsContainer from '../components/NewsContainer';
 import RoundContainer from '../components/RoundContainer';
 import GroupContainer from '../components/GroupContainer';
-import FormContainer from '../components/FormContainer';
+// import FormContainer from '../components/FormContainer';
 import Geolocation from '../components/Geolocation';
 
 const DashboardWrapper = styled.div`
@@ -27,7 +27,7 @@ const Dashboard = () => {
     <DashboardWrapper>
       <NewsContainer />
       <EventContainer />
-      <FormContainer />
+      {/* <FormContainer /> */}
       <RoundContainer />
       <GroupContainer />
       <Geolocation />

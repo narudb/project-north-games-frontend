@@ -114,7 +114,7 @@ const GroupCard = () => {
                   </CardImg>
                   <TextWrapper>
                     <Title>{group.groupName}</Title>
-                    <p>{group.maxPlayers} membres</p>
+                    <p>{group.GroupMaxPlayers} membres</p>
                   </TextWrapper>
                 </CardWrapper>
               </Link>
