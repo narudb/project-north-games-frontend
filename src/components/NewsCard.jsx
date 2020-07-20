@@ -70,23 +70,21 @@ const NewsCard = () => {
   return (
     <>
       <NewsContainer>
-        {newsData
-          .map((news) => {
-            return (
-              <StyledLink to={`/news/${news.id}`} key={news.id}>
-                <NewsWrapper>
-                  <CardImg>
-                    <NewsImg src={news.pictureUrl} alt="news-img" />
-                  </CardImg>
-                  <TextWrapper>
-                    <Title>{news.title}</Title>
-                    <TextStyle>{news.contenText}</TextStyle>
-                  </TextWrapper>
-                </NewsWrapper>
-              </StyledLink>
-            );
-          })
-          .slice(0, 3)}
+        {newsData.map((news) => {
+          return (
+            <StyledLink to={`/news/${news.id}`} key={news.id}>
+              <NewsWrapper>
+                <CardImg>
+                  <NewsImg src={news.pictureUrl} alt="news-img" />
+                </CardImg>
+                <TextWrapper>
+                  <Title>{news.title}</Title>
+                  <TextStyle>{news.contenText}</TextStyle>
+                </TextWrapper>
+              </NewsWrapper>
+            </StyledLink>
+          );
+        })}
       </NewsContainer>
     </>
   );

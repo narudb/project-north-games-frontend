@@ -108,5 +108,4 @@ const FormNews = () => {
     </FormContainer>
   );
 };
-
 export default FormNews;
