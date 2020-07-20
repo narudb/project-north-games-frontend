@@ -4,19 +4,21 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import axios from 'axios';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
 const SearchWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  width: 50vw;
+  width: 40vw;
   height: auto;
   border-radius: 5px;
   background-color: white;
   padding: 10px;
+  position: absolute;
 `;
 
 const SearchTitle = styled.h4`
-  color: black;
+  color: ${(props) => props.theme.colors.secondary};
   margin-bottom: 2px;
 `;
 
@@ -28,6 +30,8 @@ const DivInput = styled.input`
   border-radius: 5px;
   width: 20vw;
   height: 35px;
+  margin: 45px 0 0 49px;
+  background: white;
 `;
 
 const UlStyle = styled.ul`
@@ -38,25 +42,41 @@ const NavLink = styled(Link)`
   color: ${(props) => props.theme.fonts.mediumGray};
   font-family: ${(props) => props.theme.fonts.primary};
   text-decoration: none;
+  flex-direction: row;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin: 2px;
+`;
+
+const P = styled.p`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${(props) => props.theme.colors.mediumGray};
 `;
 
 const LiStyle = styled.li`
-  width: 15vw;
+  width: 10vw;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  /* white-space: pre-line; */
 `;
 
 const ImgSearch = styled.img`
   width: 2vw;
   height: 2vw;
+  margin-right: 5px;
+`;
+const PNoresult = styled.p`
+  color: black;
 `;
 
 function NoResult() {
   return (
     <li>
-      <p>No result</p>
+      <PNoresult>No result</PNoresult>
     </li>
   );
 }
@@ -71,8 +91,15 @@ const SearchResults = ({ nouvelles, events, groups }) => {
             return (
               <LiStyle key={news.id}>
                 <NavLink to={`/news/${news.id}`}>
-                  <ImgSearch src={news.pictureUrl} alt={news.title} />
-                  {news.title}
+                  <ImgSearch
+                    src={
+                      news.pictureUrl !== null
+                        ? news.pictureUrl
+                        : globalTheme.pictures.event
+                    }
+                    alt={news.title}
+                  />
+                  <P>{news.title}</P>
                 </NavLink>
               </LiStyle>
             );
@@ -87,8 +114,15 @@ const SearchResults = ({ nouvelles, events, groups }) => {
             return (
               <LiStyle key={event.id}>
                 <NavLink to={`/events/${event.id}`}>
-                  <ImgSearch src={event.pictureUrl} alt={event.title} />
-                  {event.title}
+                  <ImgSearch
+                    src={
+                      event.pictureUrl !== null
+                        ? event.pictureUrl
+                        : globalTheme.pictures.event
+                    }
+                    alt={event.title}
+                  />
+                  <P>{event.title}</P>
                 </NavLink>
               </LiStyle>
             );
@@ -103,8 +137,15 @@ const SearchResults = ({ nouvelles, events, groups }) => {
             return (
               <LiStyle key={group.id}>
                 <NavLink to={`/groups/${group.id}`}>
-                  <ImgSearch src={group.groupImage} alt={group.name} />
-                  {group.name}
+                  <ImgSearch
+                    src={
+                      group.groupImage !== null
+                        ? group.groupImage
+                        : globalTheme.pictures.group
+                    }
+                    alt={group.name}
+                  />
+                  <P>{group.name}</P>
                 </NavLink>
               </LiStyle>
             );
