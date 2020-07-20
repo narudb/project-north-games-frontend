@@ -4,7 +4,6 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
 import { backend } from '../conf';
-import FormTitleStyle from './ui/FormTitle';
 import Form from './ui/FormPost';
 import Input from './ui/FormInput';
 import InputContent from './ui/FormContent';
@@ -14,8 +13,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const FormContainer = styled.div`
   width: 100%;
   overflow-y: scroll;
-  height: 70%;
+  height: 30vh;
+  margin-bottom: 40px;
   display: block;
+  padding-bottom: 10px;
 
   ::-webkit-scrollbar {
     width: 8px;
@@ -68,7 +69,6 @@ const FormNews = () => {
         pauseOnHover
         style={{ fontSize: '20px', textAlign: 'center' }}
       />
-      <FormTitleStyle>Ajoutes ta news</FormTitleStyle>
       <div>
         <Form
           onSubmit={(e) => {
