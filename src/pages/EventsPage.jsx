@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
 const NewsPageContainer = styled.div`
   display: grid;
@@ -120,7 +121,10 @@ const EventsPage = () => {
   return (
     <NewsPageContainer>
       <EventTitle>{oneEvent.title}</EventTitle>
-      <EventImg src={oneEvent.pictureUrl} alt={oneEvent.title} />
+      <EventImg
+        src={oneEvent.pictureUrl || globalTheme.pictures.event}
+        alt={oneEvent.title}
+      />
       <EventInfos>
         <InfosWrapper>
           <img src="/icons/event-icon.svg" alt="Date" />

@@ -13,19 +13,6 @@ const NewsContainer = styled.div`
   height: 30vh;
   justify-content: space-evenly;
   margin-bottom: 40px;
-  overflow-y: scroll;
-
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.colors.primary};
-    border-radius: 5px;
-  }
 `;
 
 const NewsWrapper = styled.div`
@@ -94,11 +81,7 @@ const NewsCard = () => {
                 <NewsWrapper>
                   <CardImg>
                     <NewsImg
-                      src={
-                        news.pictureUrl !== null
-                          ? news.pictureUrl
-                          : globalTheme.pictures.event
-                      }
+                      src={news.pictureUrl || globalTheme.pictures.event}
                       alt="news-img"
                     />
                   </CardImg>

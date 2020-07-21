@@ -124,11 +124,7 @@ const EventCard = () => {
                 <CardWrapper>
                   <CardImg>
                     <NewsImg
-                      src={
-                        event.pictureUrl !== null
-                          ? event.pictureUrl
-                          : globalTheme.pictures.event
-                      }
+                      src={event.pictureUrl || globalTheme.pictures.event}
                       alt="event-img"
                     />
                   </CardImg>

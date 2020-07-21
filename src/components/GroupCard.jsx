@@ -110,20 +110,16 @@ const GroupCard = () => {
           groupsData
             .map((group) => {
               return (
-                <StyledLink to={`/groups/${group.groupId}`} key={group.groupId}>
+                <StyledLink to={`/groups/${group.id}`} key={group.id}>
                   <CardWrapper>
                     <CardImg>
                       <GroupImg
-                        src={
-                          group.groupImage !== null
-                            ? group.groupImage
-                            : globalTheme.pictures.group
-                        }
-                        alt={group.groupName}
+                        src={group.image || globalTheme.pictures.group}
+                        alt={group.name}
                       />
                     </CardImg>
                     <TextWrapper>
-                      <Title>{group.groupName}</Title>
+                      <Title>{group.name}</Title>
                       <p>{group.maxPlayers} membres</p>
                     </TextWrapper>
                   </CardWrapper>

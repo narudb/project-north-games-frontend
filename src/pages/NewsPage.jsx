@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
 const NewsPageContainer = styled.div`
   height: 100vh;
@@ -44,7 +45,10 @@ export default function NewsPage() {
         <span>{oneNews.author} </span>
         {oneNews.creationDate}
       </p>
-      <ImageNews src={oneNews.pictureUrl} alt={oneNews.title} />
+      <ImageNews
+        src={oneNews.pictureUrl || globalTheme.pictures.avatar}
+        alt={oneNews.title}
+      />
       <p>{oneNews.content}</p>
     </NewsPageContainer>
   );
