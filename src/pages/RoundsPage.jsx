@@ -123,11 +123,7 @@ const RoundsPage = () => {
     <RoundPageContainer>
       <RoundTitle>{oneRound.roundName}</RoundTitle>
       <RoundImg
-        src={
-          oneRound.roundImage !== null
-            ? oneRound.roundImage
-            : globalTheme.pictures.round
-        }
+        src={oneRound.roundImage || globalTheme.pictures.round}
         alt={oneRound.gameName}
       />
       <RoundInfos>
@@ -141,24 +137,20 @@ const RoundsPage = () => {
         <InfosWrapper>
           <img src="/icons/location-icon.svg" alt="Location" />
           <div>
-            <p>{oneRound.roundPlace}</p>
+            <p>{oneRound.place}</p>
           </div>
         </InfosWrapper>
         <InfosWrapper>
           <Avatar
-            src={
-              oneRound.roundAvatar !== null
-                ? oneRound.roundAvatar
-                : globalTheme.pictures.avatar
-            }
+            src={oneRound.authorAvatar || globalTheme.pictures.avatar}
             alt="auteur"
           />
-          <TextPara>{oneRound.roundCreator}</TextPara>
+          <TextPara>{oneRound.authorName}</TextPara>
         </InfosWrapper>
         <InfosWrapper>
           <img src="/icons/group-icon.svg" alt="Max players" />
           <div>
-            <p>Nombre de joueurs : {oneRound.max_players}</p>
+            <p>Nombre de joueurs : {oneRound.groupMaxPlayers}</p>
           </div>
         </InfosWrapper>
       </RoundInfos>
