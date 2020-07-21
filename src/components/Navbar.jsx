@@ -11,21 +11,24 @@ const HeaderWrapper = styled.header`
 const Logo = styled.img`
   height: 13vh;
   width: 13vw;
-  margin-top: 10px;
+  margin: 10px 0 0 37px;
 `;
 const Notif = styled.img`
-  margin-top: 15px;
+  margin: 15px 2vw 0 0;
   height: 4vh;
   width: 4vw;
 `;
 const SearchWrapper = styled.div`
   width: 30vw;
   display: flex;
+  align-items: center;
 `;
 const Avatar = styled.img`
-  height: 8vh;
-  width: 4vw;
+  height: 60px;
+  width: 60px;
+  border: solid 4px white;
   border-radius: 50%;
+  margin: 0 2vw 0 0;
 `;
 const Username = styled.p`
   font-family: Montserrat;
