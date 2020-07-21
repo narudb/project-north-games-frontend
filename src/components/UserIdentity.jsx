@@ -4,12 +4,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
+import Avatar from './ui/Avatar';
 
-const Avatar = styled.img`
-  height: 8vh;
-  width: 4vw;
-  border-radius: 50%;
-`;
 const Username = styled.p`
   font-family: ${(props) => props.theme.fonts.primary};
   font-style: normal;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import globalTheme from '../theme/globalTheme';
+import Avatar from '../components/ui/Avatar';
 import { backend } from '../conf';
 
 const GroupPageContainer = styled.div`
@@ -73,29 +74,42 @@ const TextPara = styled.p`
 const GroupsPage = () => {
   const dispatch = useDispatch();
   const oneGroup = useSelector((state) => state.groupsReducer.oneGroup);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
   const authorOfGroup = useSelector(
     (state) => state.groupsReducer.authorOfGroup
   );
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`${backend}/groups/${id}`).then(({ data }) => {
-      dispatch({
-        type: 'GET_ONE_GROUP',
-        data,
+    axios
+      .get(`${backend}/groups/${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'GET_ONE_GROUP',
+          data,
+        });
       });
-    });
-    // axios.get(`${backend}/groups/${id}`).then(({ data }) => {
-    //   dispatch({
-    //     type: 'GET_AUTHOR_OF_GROUP',
-    //     data,
-    //   });
-    // });
+    axios
+      .get(`${backend}/groups/${id}/author`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'GET_AUTHOR_OF_GROUP',
+          data,
+        });
+      });
   }, [dispatch, id]);
 
   return (
     <GroupPageContainer>
-      <GroupTitle>{oneGroup.groupName}</GroupTitle>
+      <GroupTitle>{oneGroup.name}</GroupTitle>
       <GroupImg
         src={
           oneGroup.groupImage !== null
@@ -113,7 +127,8 @@ const GroupsPage = () => {
           </div>
         </InfosWrapper>
         <InfosWrapper>
-          <TextPara>{authorOfGroup.author}</TextPara>
+          <Avatar src={globalTheme.pictures.avatar} />
+          <TextPara>Auteur: {authorOfGroup.author}</TextPara>
         </InfosWrapper>
         <InfosWrapper>
           <img src="/icons/group-icon.svg" alt="Max players" />
