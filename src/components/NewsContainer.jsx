@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import TitleStyle from './ui/Title';
 import NewsCard from './NewsCard';
@@ -22,6 +23,8 @@ const TitleWrapper = styled.div`
 
 const NewsContainer = () => {
   const [open, setOpen] = useState(false);
+  const isLoggedIn = useSelector((state) => state.userReducer.loggedIn);
+
   const handleClick = () => {
     setOpen(!open);
   };
@@ -29,13 +32,14 @@ const NewsContainer = () => {
   return (
     <StyledContainer>
       <TitleWrapper>
-        <TitleStyle>Actu à la une </TitleStyle>
-        <AddBtn type="submit" value="open" onClick={handleClick}>
-          +
-        </AddBtn>
+        <TitleStyle>{open ? 'Ajoutes ta news' : 'Actu à la une'}</TitleStyle>
+        {isLoggedIn ? (
+          <AddBtn type="submit" value="open" onClick={handleClick}>
+            +
+          </AddBtn>
+        ) : null}
       </TitleWrapper>
-      <FormNews open={open} />
-      <NewsCard />
+      {open ? <FormNews /> : <NewsCard />}
     </StyledContainer>
   );
 };

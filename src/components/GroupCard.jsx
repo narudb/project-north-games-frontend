@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import globalTheme from '../theme/globalTheme';
+import StyledLink from './ui/StyledLink';
 import { backend } from '../conf';
 
 const CardContainer = styled.div`
@@ -79,47 +79,59 @@ const Title = styled.h3`
   max-height: 42px;
 `;
 
+const StyledPara = styled.p`
+  margin-right: 191px;
+`;
+
 const GroupCard = () => {
   const dispatch = useDispatch();
   const groupsData = useSelector((state) => state.groupsReducer.groupsData);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
 
-  const getAllGroups = () => {
-    axios.get(`${backend}/groups`).then(({ data }) => {
-      dispatch({
-        type: 'GET_ALL_GROUPS',
-        data,
-      });
-    });
-  };
   useEffect(() => {
-    getAllGroups();
-  }, [dispatch]);
+    axios
+      .get(`${backend}/groups`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'GET_ALL_GROUPS',
+          data,
+        });
+      });
+  }, [dispatch, authToken]);
 
   return (
     <>
       <CardContainer>
-        {groupsData.map((group) => {
-          return (
-            <Link to={`/groups/${group.id}`} key={group.id}>
-              <CardWrapper>
-                <CardImg>
-                  <GroupImg
-                    src={
-                      group.image !== null
-                        ? group.image
-                        : globalTheme.pictures.group
-                    }
-                    alt={group.name}
-                  />
-                </CardImg>
-                <TextWrapper>
-                  <Title>{group.name}</Title>
-                  <p>{group.maxPlayer} membres</p>
-                </TextWrapper>
-              </CardWrapper>
-            </Link>
-          );
-        })}
+        {groupsData.length > 0 ? (
+          groupsData.map((group) => {
+            return (
+              <StyledLink to={`/groups/${group.groupId}`} key={group.groupId}>
+                <CardWrapper>
+                  <CardImg>
+                    <GroupImg
+                      src={
+                        group.groupImage !== null
+                          ? group.groupImage
+                          : globalTheme.pictures.group
+                      }
+                      alt={group.groupName}
+                    />
+                  </CardImg>
+                  <TextWrapper>
+                    <Title>{group.groupName}</Title>
+                    <p>{group.maxPlayers} membres</p>
+                  </TextWrapper>
+                </CardWrapper>
+              </StyledLink>
+            );
+          })
+        ) : (
+          <StyledPara>Pas de groupe pour le moment</StyledPara>
+        )}
       </CardContainer>
     </>
   );

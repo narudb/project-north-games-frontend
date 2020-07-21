@@ -1,6 +1,7 @@
 const initialStore = {
   groupsData: [],
   oneGroup: {},
+  authorOfGroup: {},
 };
 
 const groupsReducer = (state = initialStore, action) => {
@@ -14,6 +15,11 @@ const groupsReducer = (state = initialStore, action) => {
       return {
         ...state,
         oneGroup: action.data,
+      };
+    case 'GET_AUTHOR_OF_GROUP':
+      return {
+        ...state,
+        authorOfGroup: action.data,
       };
 
     default:

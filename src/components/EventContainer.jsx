@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import AddBtn from './ui/AddBtn';
 import TitleStyle from './ui/Title';
 import EventCard from './EventCard';
+import FormEvent from './FormEvent';
 
 const StyledContainer = styled.div`
   grid-area: events;
@@ -9,15 +12,34 @@ const StyledContainer = styled.div`
   overflow: hidden;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  width: 100%;
 `;
 
 const EventContainer = () => {
+  const [open, setOpen] = useState(false);
+  const isLoggedIn = useSelector((state) => state.userReducer.loggedIn);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   return (
     <StyledContainer>
-      <TitleStyle>Autour de moi</TitleStyle>
-      <EventCard />
+      <TitleWrapper>
+        <TitleStyle>{open ? 'Créer ton event' : 'Autour de moi'}</TitleStyle>
+        {isLoggedIn ? (
+          <AddBtn type="submit" value="open" onClick={handleClick}>
+            +
+          </AddBtn>
+        ) : null}
+      </TitleWrapper>
+      {open ? <FormEvent /> : <EventCard />}
     </StyledContainer>
   );
 };

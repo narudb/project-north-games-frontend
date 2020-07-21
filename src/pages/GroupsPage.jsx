@@ -73,6 +73,9 @@ const TextPara = styled.p`
 const GroupsPage = () => {
   const dispatch = useDispatch();
   const oneGroup = useSelector((state) => state.groupsReducer.oneGroup);
+  const authorOfGroup = useSelector(
+    (state) => state.groupsReducer.authorOfGroup
+  );
   const { id } = useParams();
 
   useEffect(() => {
@@ -82,6 +85,12 @@ const GroupsPage = () => {
         data,
       });
     });
+    // axios.get(`${backend}/groups/${id}`).then(({ data }) => {
+    //   dispatch({
+    //     type: 'GET_AUTHOR_OF_GROUP',
+    //     data,
+    //   });
+    // });
   }, [dispatch, id]);
 
   return (
@@ -104,7 +113,7 @@ const GroupsPage = () => {
           </div>
         </InfosWrapper>
         <InfosWrapper>
-          <TextPara>{oneGroup.groupAuthor}</TextPara>
+          <TextPara>{authorOfGroup.author}</TextPara>
         </InfosWrapper>
         <InfosWrapper>
           <img src="/icons/group-icon.svg" alt="Max players" />

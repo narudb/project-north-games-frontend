@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
+import { backend } from '../conf';
 import Title from './ui/Title';
 import Form from './ui/Form';
 import Input from './ui/Input';
@@ -10,6 +13,7 @@ const SignInWrapper = styled.div`
 `;
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const [authUser, setAuthUser] = useState({});
 
   const handleChange = (e) => {
@@ -17,8 +21,19 @@ const SignIn = () => {
     setAuthUser(tmp);
   };
 
-  const handleSubmit = (e) => {
+  const signIn = (e) => {
     e.preventDefault();
+
+    axios.post(`${backend}/auth/signin`, authUser).then(({ data }) => {
+      dispatch({
+        type: 'LOGIN',
+        payload: {
+          token: data.token,
+          mail: data.user.mail,
+          id: data.user.id,
+        },
+      });
+    });
   };
 
   return (
@@ -26,13 +41,12 @@ const SignIn = () => {
       <Title>Je me connecte</Title>
       <Form
         onSubmit={(e) => {
-          handleSubmit(e);
+          signIn(e);
         }}
       >
         <Input
           type="email"
-          name="email"
-          id="email"
+          name="mail"
           required
           placeholder="Ton Email"
           onChange={(e) => {
@@ -43,7 +57,6 @@ const SignIn = () => {
         <Input
           type="password"
           name="password"
-          id="password"
           required
           placeholder="Ton mot de passe"
           onChange={(e) => {
