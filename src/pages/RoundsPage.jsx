@@ -35,12 +35,10 @@ const RoundImg = styled.img`
 `;
 
 const Avatar = styled.img`
-  height: 6vh;
-  width: 6vh;
   border: solid 4px white;
   border-radius: 50%;
-  width: 50px;
   height: 50px;
+  width: 50px;
   opacity: 1;
 `;
 
