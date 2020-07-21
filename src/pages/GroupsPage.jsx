@@ -105,7 +105,7 @@ const GroupsPage = () => {
           data,
         });
       });
-  }, [dispatch, id]);
+  }, [dispatch, id, authToken]);
 
   return (
     <GroupPageContainer>
