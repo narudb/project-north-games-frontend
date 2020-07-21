@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
 import StyledLink from './ui/StyledLink';
+import { backend } from '../conf';
 
 const CardContainer = styled.div`
   display: flex;
@@ -107,30 +107,28 @@ const GroupCard = () => {
     <>
       <CardContainer>
         {groupsData.length > 0 ? (
-          groupsData
-            .map((group) => {
-              return (
-                <StyledLink to={`/groups/${group.groupId}`} key={group.groupId}>
-                  <CardWrapper>
-                    <CardImg>
-                      <GroupImg
-                        src={
-                          group.groupImage !== null
-                            ? group.groupImage
-                            : globalTheme.pictures.group
-                        }
-                        alt={group.groupName}
-                      />
-                    </CardImg>
-                    <TextWrapper>
-                      <Title>{group.groupName}</Title>
-                      <p>{group.maxPlayers} membres</p>
-                    </TextWrapper>
-                  </CardWrapper>
-                </StyledLink>
-              );
-            })
-            .slice(0, 10)
+          groupsData.map((group) => {
+            return (
+              <StyledLink to={`/groups/${group.id}`} key={group.id}>
+                <CardWrapper>
+                  <CardImg>
+                    <GroupImg
+                      src={
+                        group.image !== null
+                          ? group.image
+                          : globalTheme.pictures.group
+                      }
+                      alt={group.name}
+                    />
+                  </CardImg>
+                  <TextWrapper>
+                    <Title>{group.name}</Title>
+                    <p>{group.maxPLayer} membres</p>
+                  </TextWrapper>
+                </CardWrapper>
+              </StyledLink>
+            );
+          })
         ) : (
           <StyledPara>Pas de groupe pour le moment</StyledPara>
         )}

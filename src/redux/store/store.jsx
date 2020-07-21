@@ -5,7 +5,7 @@ import positionReducer from '../reducers/positionReducer';
 import oneNewsReducer from '../reducers/oneNewsReducer';
 import roundsReducer from '../reducers/roundsReducer';
 import userReducer from '../reducers/userReducer';
-import groupsReducer from '../reducers/groupsReducers';
+import groupsReducer from '../reducers/groupsReducer';
 
 const rootReducer = combineReducers({
   newsReducer,
