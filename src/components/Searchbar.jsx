@@ -38,8 +38,7 @@ const UlStyle = styled.ul`
 `;
 
 const NavLink = styled(Link)`
-  color: ${(props) => props.theme.fonts.mediumGray};
-  font-family: ${(props) => props.theme.fonts.primary};
+  color: ${(props) => props.theme.colors.mediumGray};
   text-decoration: none;
   flex-direction: row;
   overflow: hidden;

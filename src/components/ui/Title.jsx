@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const TitleStyle = styled.h2`
-  font-family: 'Montserrat', sans-serif;
   color: ${(props) => props.theme.colors.primary};
   font-style: normal;
   font-weight: bold;

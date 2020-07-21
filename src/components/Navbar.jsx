@@ -14,7 +14,7 @@ const Logo = styled.img`
   margin: 10px 0 0 37px;
 `;
 const Notif = styled.img`
-  margin: 15px 20px 0 0;
+  margin: 15px 0 0 0;
   height: 4vh;
   width: 4vw;
 `;
@@ -28,7 +28,6 @@ const Avatar = styled.img`
   width: 60px;
   border: solid 4px white;
   border-radius: 50%;
-  margin: 0 20px 0 0;
 `;
 const Username = styled.p`
   font-family: Montserrat;
@@ -47,6 +46,7 @@ const UserIdentity = styled.div`
 const Div = styled.div`
   display: flex;
   margin-top: 20px;
+  justify-content: space-between;
 `;
 const Navbar = () => {
   return (

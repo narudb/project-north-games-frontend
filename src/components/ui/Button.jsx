@@ -6,7 +6,6 @@ const Button = styled.button`
   justify-self: center;
   align-self: center;
   border-radius: 5px;
-  font-family: 'Montserrat';
   font-weight: bold;
   font-size: 16px;
   outline: none;

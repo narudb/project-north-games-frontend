@@ -20,7 +20,6 @@ const EventTitle = styled.h2`
   justify-self: center;
   align-self: center;
   text-align: center;
-  font-family: ${(props) => props.theme.fonts.primary};
   font-size: 45px;
   font-weight: bold;
   letter-spacing: 0.2em;
@@ -50,13 +49,11 @@ const InfosWrapper = styled.div`
   align-items: center;
 
   p {
-    font-family: ${(props) => props.theme.fonts.primary};
     line-height: 30px;
     font-size: 18px;
   }
 
   span {
-    font-family: ${(props) => props.theme.fonts.primary};
     opacity: 0.6;
   }
 
@@ -93,7 +90,6 @@ const AuthorWrapper = styled.div`
 `;
 
 const TextPara = styled.p`
-  font-family: ${(props) => props.theme.fonts.primary};
   line-height: 30px;
   font-size: 14px;
 `;
