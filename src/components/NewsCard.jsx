@@ -75,11 +75,7 @@ const NewsCard = () => {
         {newsData
           .map((news) => {
             return (
-              <Link
-                style={{ textDecorationLine: 'none' }}
-                to={`/news/${news.id}`}
-                key={news.id}
-              >
+              <Link to={`/news/${news.id}`} key={news.id}>
                 <NewsWrapper>
                   <CardImg>
                     <NewsImg

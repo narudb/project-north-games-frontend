@@ -120,11 +120,7 @@ const EventCard = () => {
           })
           .map((event) => {
             return (
-              <Link
-                style={{ textDecorationLine: 'none' }}
-                to={`/events/${event.id}`}
-                key={event.id}
-              >
+              <Link to={`/events/${event.id}`} key={event.id}>
                 <CardWrapper>
                   <CardImg>
                     <NewsImg
