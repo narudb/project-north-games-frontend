@@ -101,7 +101,10 @@ const GroupCard = () => {
       <CardContainer>
         {groupsData.map((group) => {
           return (
-            <Link to={`/groups/${group.id}`}>
+            <Link
+              style={{ textDecorationLine: 'none' }}
+              to={`/groups/${group.id}`}
+            >
               <CardWrapper key={group.id}>
                 <CardImg>
                   <GroupImg

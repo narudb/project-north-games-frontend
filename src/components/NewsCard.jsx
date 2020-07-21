@@ -39,7 +39,6 @@ const TextWrapper = styled.div`
   padding: 10px 15px;
   color: ${(props) => props.theme.colors.primary};
   text-transform: uppercase;
-  white-space: nowrap;
 `;
 
 const Title = styled.h3`
@@ -47,11 +46,13 @@ const Title = styled.h3`
   line-height: 24px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const TextStyle = styled.p`
   font-size: 12px;
   line-height: 16px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -74,7 +75,11 @@ const NewsCard = () => {
         {newsData
           .map((news) => {
             return (
-              <Link to={`/news/${news.id}`} key={news.id}>
+              <Link
+                style={{ textDecorationLine: 'none' }}
+                to={`/news/${news.id}`}
+                key={news.id}
+              >
                 <NewsWrapper>
                   <CardImg>
                     <NewsImg
