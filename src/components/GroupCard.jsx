@@ -109,21 +109,21 @@ const GroupCard = () => {
         {groupsData.length > 0 ? (
           groupsData.map((group) => {
             return (
-              <StyledLink to={`/groups/${group.groupId}`} key={group.groupId}>
+              <StyledLink to={`/groups/${group.id}`} key={group.id}>
                 <CardWrapper>
                   <CardImg>
                     <GroupImg
                       src={
-                        group.groupImage !== null
-                          ? group.groupImage
+                        group.image !== null
+                          ? group.image
                           : globalTheme.pictures.group
                       }
-                      alt={group.groupName}
+                      alt={group.name}
                     />
                   </CardImg>
                   <TextWrapper>
-                    <Title>{group.groupName}</Title>
-                    <p>{group.maxPlayers} membres</p>
+                    <Title>{group.name}</Title>
+                    <p>{group.maxPLayer} membres</p>
                   </TextWrapper>
                 </CardWrapper>
               </StyledLink>
