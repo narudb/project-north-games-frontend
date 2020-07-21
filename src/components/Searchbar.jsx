@@ -23,15 +23,14 @@ const SearchTitle = styled.h4`
 `;
 
 const DivInput = styled.input`
-  background-color: ${(props) => props.theme.colors.secondary};
-  background-image: url(/icons/search-icon.svg);
+  background-color: ${(props) => props.theme.colors.primary};
+  background-image: url(/icons/search-icon-blue.svg);
   background-repeat: no-repeat;
   background-position: right;
   border-radius: 5px;
   width: 20vw;
   height: 35px;
-  margin: 45px 0 0 49px;
-  background: white;
+  margin: 0 0 0 49px;
 `;
 
 const UlStyle = styled.ul`
@@ -139,8 +138,8 @@ const SearchResults = ({ nouvelles, events, groups }) => {
                 <NavLink to={`/groups/${group.id}`}>
                   <ImgSearch
                     src={
-                      group.groupImage !== null
-                        ? group.groupImage
+                      group.image !== null
+                        ? group.image
                         : globalTheme.pictures.group
                     }
                     alt={group.name}
