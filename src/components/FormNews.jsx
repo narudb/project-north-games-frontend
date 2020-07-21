@@ -74,7 +74,6 @@ const FormNews = ({ open }) => {
             <Input
               type="text"
               name="picture_url"
-              required
               onChange={(e) => {
                 NewsChange(e);
               }}
