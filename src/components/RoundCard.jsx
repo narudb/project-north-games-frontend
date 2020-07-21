@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
+import StyledLink from './ui/StyledLink';
 
 const CardContainer = styled.div`
   display: flex;
@@ -110,18 +110,22 @@ const Author = styled.p`
 const RoundCard = () => {
   const dispatch = useDispatch();
   const roundsData = useSelector((state) => state.roundsReducer.roundsData);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
 
-  const getAllRounds = () => {
-    axios.get(`${backend}/rounds`).then(({ data }) => {
-      dispatch({
-        type: 'GET_ALL_ROUNDS',
-        data,
-      });
-    });
-  };
   useEffect(() => {
-    getAllRounds();
-  }, [dispatch]);
+    axios
+      .get(`${backend}/rounds`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        dispatch({
+          type: 'GET_ALL_ROUNDS',
+          data,
+        });
+      });
+  }, [dispatch, authToken]);
 
   return (
     <>
@@ -129,8 +133,8 @@ const RoundCard = () => {
         {roundsData
           .map((round) => {
             return (
-              <Link to={`/rounds/${round.roundId}`}>
-                <CardWrapper key={round.roundId}>
+              <StyledLink to={`/rounds/${round.roundId}`} key={round.roundId}>
+                <CardWrapper>
                   <CardImg>
                     <NewsImg
                       src={
@@ -150,7 +154,7 @@ const RoundCard = () => {
                     <Date>{round.roundDate}</Date>
                   </TextWrapper>
                 </CardWrapper>
-              </Link>
+              </StyledLink>
             );
           })
           .slice(0, 10)}

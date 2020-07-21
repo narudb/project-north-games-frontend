@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import StyledLink from './ui/StyledLink';
 import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 80%;
+  flex-flow: row wrap;
+  height: 35vh;
+  width: 100%;
+  justify-content: space-evenly;
   overflow-y: scroll;
 
   ::-webkit-scrollbar {
@@ -32,8 +33,7 @@ const CardWrapper = styled.div`
   background: ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   overflow: hidden;
-  margin-bottom: 15px;
-  margin-right: 20px;
+  margin: 10px;
 `;
 
 const CardImg = styled.div`
@@ -120,7 +120,7 @@ const EventCard = () => {
           })
           .map((event) => {
             return (
-              <Link to={`/events/${event.id}`} key={event.id}>
+              <StyledLink to={`/events/${event.id}`} key={event.id}>
                 <CardWrapper>
                   <CardImg>
                     <NewsImg
@@ -138,10 +138,9 @@ const EventCard = () => {
                     <Adress>{event.adress}</Adress>
                   </TextWrapper>
                 </CardWrapper>
-              </Link>
+              </StyledLink>
             );
-          })
-          .slice(0, 3)}
+          })}
       </CardContainer>
     </>
   );

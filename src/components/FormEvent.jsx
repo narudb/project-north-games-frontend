@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
 import { backend } from '../conf';
 import Form from './ui/FormPost';
 import Input from './ui/FormInput';
@@ -13,8 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const FormContainer = styled.div`
   width: 100%;
   overflow-y: scroll;
-  height: 30vh;
-  margin-bottom: 40px;
+  height: 35vh;
   display: block;
   padding-bottom: 10px;
 
@@ -31,30 +30,33 @@ const FormContainer = styled.div`
   }
 `;
 
-const FormNews = () => {
-  const [news, setNews] = useState({});
-  const authToken = useSelector((state) => state.userReducer.authData.token);
+const FormEvent = () => {
+  const [events, setEvents] = useState({});
+  const authData = useSelector((state) => state.userReducer.authData);
 
   const NewsChange = (e) => {
-    const tmp = { ...news, [e.target.name]: e.target.value };
-    setNews(tmp);
+    const tmp = {
+      ...events,
+      [e.target.name]: e.target.value,
+      author_id: authData.id,
+    };
+    setEvents(tmp);
   };
 
   const error = () => toast.error('oups il y a une erreur');
-  const notify = () => toast.dark('ta news a bien été posté!');
+  const notify = () => toast.dark('ton event a bien été posté!');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${backend}/news`, news, {
+      .post(`${backend}/events`, events, {
         headers: {
-          Authorization: `Bearer ${authToken || null}`,
+          Authorization: `Bearer ${authData.token || null}`,
         },
       })
       .then(notify)
       .catch(error);
   };
-
   return (
     <FormContainer>
       <ToastContainer
@@ -77,6 +79,24 @@ const FormNews = () => {
         >
           <Input
             type="text"
+            name="event_date"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Date de l'events au format AAAA/MM/JJ HH:MM:SS"
+          />
+          <InputContent
+            type="text"
+            name="adress"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Adresse"
+          />
+          <Input
+            type="text"
             name="title"
             required
             onChange={(e) => {
@@ -84,23 +104,56 @@ const FormNews = () => {
             }}
             placeholder="Titre"
           />
-          <InputContent
-            type="text"
-            name="content"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Contenu"
-          />
           <Input
             type="text"
             name="picture_url"
-            required
             onChange={(e) => {
               NewsChange(e);
             }}
             placeholder="url de ton image"
+          />
+          <InputContent
+            type="text"
+            name="description"
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Décris l'event"
+          />
+          <Input
+            type="number"
+            name="is_published"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="inscris 1 si publiée ou 0 si non publiée"
+          />
+          <Input
+            type="text"
+            name="release_date"
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Date de libération au format AAAA/MM/JJ HH:MM:SS"
+          />
+          <Input
+            type="text"
+            name="event_latitude"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Latitude"
+          />
+          <Input
+            type="text"
+            name="event_longitude"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Longitude"
           />
           <InputBtn type="submit" value="poster" />
         </Form>
@@ -108,4 +161,5 @@ const FormNews = () => {
     </FormContainer>
   );
 };
-export default FormNews;
+
+export default FormEvent;
