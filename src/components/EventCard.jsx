@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
 const CardContainer = styled.div`
   display: flex;
@@ -122,7 +123,14 @@ const EventCard = () => {
               <Link to={`/events/${event.id}`} key={event.id}>
                 <CardWrapper>
                   <CardImg>
-                    <NewsImg src={event.pictureUrl} alt="event-img" />
+                    <NewsImg
+                      src={
+                        event.pictureUrl !== null
+                          ? event.pictureUrl
+                          : globalTheme.pictures.event
+                      }
+                      alt="event-img"
+                    />
                   </CardImg>
                   <TextWrapper>
                     <Date>{event.eventDate}</Date>

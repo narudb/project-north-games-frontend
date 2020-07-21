@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
 const NewsContainer = styled.div`
   display: flex;
@@ -38,15 +39,17 @@ const TextWrapper = styled.div`
   padding: 10px 15px;
   color: ${(props) => props.theme.colors.primary};
   text-transform: uppercase;
+  white-space: nowrap;
 `;
 
 const Title = styled.h3`
   font-size: 18px;
   line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const TextStyle = styled.p`
-  white-space: nowrap;
   font-size: 12px;
   line-height: 16px;
   overflow: hidden;
@@ -74,7 +77,14 @@ const NewsCard = () => {
               <Link to={`/news/${news.id}`} key={news.id}>
                 <NewsWrapper>
                   <CardImg>
-                    <NewsImg src={news.pictureUrl} alt="news-img" />
+                    <NewsImg
+                      src={
+                        news.pictureUrl !== null
+                          ? news.pictureUrl
+                          : globalTheme.pictures.event
+                      }
+                      alt="news-img"
+                    />
                   </CardImg>
                   <TextWrapper>
                     <Title>{news.title}</Title>
