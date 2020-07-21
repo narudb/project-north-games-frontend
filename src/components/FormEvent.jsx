@@ -32,10 +32,14 @@ const FormContainer = styled.div`
 
 const FormEvent = () => {
   const [events, setEvents] = useState({});
-  const authToken = useSelector((state) => state.userReducer.authData.token);
+  const authData = useSelector((state) => state.userReducer.authData);
 
   const NewsChange = (e) => {
-    const tmp = { ...events, [e.target.name]: e.target.value };
+    const tmp = {
+      ...events,
+      [e.target.name]: e.target.value,
+      author_id: authData.id,
+    };
     setEvents(tmp);
   };
 
@@ -47,7 +51,7 @@ const FormEvent = () => {
     axios
       .post(`${backend}/events`, events, {
         headers: {
-          Authorization: `Bearer ${authToken || null}`,
+          Authorization: `Bearer ${authData.token || null}`,
         },
       })
       .then(notify)
@@ -136,6 +140,7 @@ const FormEvent = () => {
           <Input
             type="text"
             name="event_latitude"
+            required
             onChange={(e) => {
               NewsChange(e);
             }}
@@ -144,6 +149,7 @@ const FormEvent = () => {
           <Input
             type="text"
             name="event_longitude"
+            required
             onChange={(e) => {
               NewsChange(e);
             }}
