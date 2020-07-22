@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axios from 'axios';
-import { backend } from '../conf';
 import globalTheme from '../theme/globalTheme';
 import StyledLink from './ui/StyledLink';
+import { backend } from '../conf';
 
 const CardContainer = styled.div`
   display: flex;

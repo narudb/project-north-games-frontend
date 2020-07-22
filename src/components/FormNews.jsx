@@ -91,12 +91,37 @@ const FormNews = () => {
             onChange={(e) => {
               NewsChange(e);
             }}
+          />
+          <Input
+            type="text"
+            name="author"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Auteur"
+          />
+          <Input
+            type="text"
+            name="title"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Titre"
+          />
+          <InputContent
+            type="text"
+            name="content"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
             placeholder="Contenu"
           />
           <Input
             type="text"
             name="picture_url"
-            required
             onChange={(e) => {
               NewsChange(e);
             }}

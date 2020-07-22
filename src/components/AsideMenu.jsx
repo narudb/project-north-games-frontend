@@ -60,7 +60,7 @@ const AsideMenu = () => {
         <StyledLink to="/rounds">
           <Logos src="/icons/parties-icon.svg" alt="Rounds" />
         </StyledLink>
-        <StyledLink to="groups">
+        <StyledLink to="/groups">
           <Logos src="/icons/group-icon.svg" alt="Groups" />
         </StyledLink>
         <StyledLink to="/library">
