@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -90,11 +91,7 @@ const SearchResults = ({ nouvelles, events, groups }) => {
               <LiStyle key={news.id}>
                 <NavLink to={`/news/${news.id}`}>
                   <ImgSearch
-                    src={
-                      news.pictureUrl !== null
-                        ? news.pictureUrl
-                        : globalTheme.pictures.event
-                    }
+                    src={news.pictureUrl || globalTheme.pictures.event}
                     alt={news.title}
                   />
                   <P>{news.title}</P>
@@ -102,7 +99,7 @@ const SearchResults = ({ nouvelles, events, groups }) => {
               </LiStyle>
             );
           })}
-          {nouvelles.length ? <></> : <NoResult />}
+          {nouvelles.length ? null : <NoResult />}
         </UlStyle>
       </section>
       <section>
@@ -113,11 +110,7 @@ const SearchResults = ({ nouvelles, events, groups }) => {
               <LiStyle key={event.id}>
                 <NavLink to={`/events/${event.id}`}>
                   <ImgSearch
-                    src={
-                      event.pictureUrl !== null
-                        ? event.pictureUrl
-                        : globalTheme.pictures.event
-                    }
+                    src={event.pictureUrl || globalTheme.pictures.event}
                     alt={event.title}
                   />
                   <P>{event.title}</P>
@@ -125,7 +118,7 @@ const SearchResults = ({ nouvelles, events, groups }) => {
               </LiStyle>
             );
           })}
-          {events.length ? <></> : <NoResult />}
+          {events.length ? null : <NoResult />}
         </UlStyle>
       </section>
       <section>
@@ -136,11 +129,7 @@ const SearchResults = ({ nouvelles, events, groups }) => {
               <LiStyle key={group.id}>
                 <NavLink to={`/groups/${group.id}`}>
                   <ImgSearch
-                    src={
-                      group.image !== null
-                        ? group.image
-                        : globalTheme.pictures.group
-                    }
+                    src={group.image || globalTheme.pictures.group}
                     alt={group.name}
                   />
                   <P>{group.name}</P>
@@ -148,7 +137,7 @@ const SearchResults = ({ nouvelles, events, groups }) => {
               </LiStyle>
             );
           })}
-          {groups.length ? <></> : <NoResult />}
+          {groups.length ? null : <NoResult />}
         </UlStyle>
       </section>
     </SearchWrapper>
@@ -160,26 +149,33 @@ const SearchBar = () => {
   const [nouvelles, setNews] = useState([]);
   const [events, setEvent] = useState([]);
   const [groups, setGroups] = useState([]);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
 
   const fetchData = () => {
-    axios.get(`${backend}/groups?name=${needle}`).then(({ data }) => {
-      setGroups(
-        data.filter((group) => {
-          return group.name.indexOf(needle) !== -1;
-        })
-      );
-    });
+    axios
+      .get(`${backend}/groups?name=${needle}`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        setGroups(
+          data.filter((group) => {
+            return group.name.trim().toLowerCase().indexOf(needle) !== -1;
+          })
+        );
+      });
     axios.get(`${backend}/events?title=${needle}`).then(({ data }) => {
       setEvent(
         data.filter((event) => {
-          return event.title.indexOf(needle) !== -1;
+          return event.title.trim().toLowerCase().indexOf(needle) !== -1;
         })
       );
     });
     axios.get(`${backend}/news?title=${needle}`).then(({ data }) => {
       setNews(
         data.filter((nouvelle) => {
-          return nouvelle.title.indexOf(needle) !== -1;
+          return nouvelle.title.trim().toLowerCase().indexOf(needle) !== -1;
         })
       );
     });
@@ -200,7 +196,7 @@ const SearchBar = () => {
           placeholder="Recherche"
           value={needle}
           onChange={(e) => {
-            setNeedle(e.target.value);
+            setNeedle(e.target.value.toLowerCase());
           }}
         />
       </form>
@@ -212,10 +208,9 @@ const SearchBar = () => {
 };
 
 SearchResults.propTypes = {
-  nouvelles: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
-  groups: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
-  events: PropTypes.arrayOf(PropTypes.object), // eslint-disable-line
-  idx: PropTypes.number, // eslint-disable-line
+  nouvelles: PropTypes.arrayOf(PropTypes.object).isRequired,
+  groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+  events: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SearchBar;
