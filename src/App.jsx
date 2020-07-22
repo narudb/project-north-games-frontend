@@ -13,6 +13,7 @@ import EventsPage from './pages/EventsPage';
 import globalTheme from './theme/globalTheme';
 
 const PageWrapper = styled.div`
+  font-family: ${(props) => props.theme.fonts.primary};
   background: linear-gradient(${(props) => props.theme.colors.bckgGradient});
   width: 100vw;
   height: 100vh;

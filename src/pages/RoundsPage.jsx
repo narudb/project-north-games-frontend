@@ -21,7 +21,6 @@ const RoundTitle = styled.h2`
   justify-self: center;
   align-self: center;
   text-align: center;
-  font-family: ${(props) => props.theme.fonts.primary};
   font-size: 45px;
   font-weight: bold;
   letter-spacing: 0.2em;
@@ -36,12 +35,10 @@ const RoundImg = styled.img`
 `;
 
 const Avatar = styled.img`
-  height: 6vh;
-  width: 6vh;
   border: solid 4px white;
   border-radius: 50%;
-  width: 50px;
   height: 50px;
+  width: 50px;
   opacity: 1;
 `;
 
@@ -58,12 +55,10 @@ const InfosWrapper = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   p {
-    font-family: ${(props) => props.theme.fonts.primary};
     line-height: 30px;
     font-size: 18px;
   }
   span {
-    font-family: ${(props) => props.theme.fonts.primary};
     opacity: 0.6;
   }
   img {
@@ -91,7 +86,6 @@ const TextWrapper = styled.div`
 `;
 
 const TextPara = styled.p`
-  font-family: ${(props) => props.theme.fonts.primary};
   line-height: 30px;
   font-size: 14px;
 `;
@@ -129,11 +123,7 @@ const RoundsPage = () => {
     <RoundPageContainer>
       <RoundTitle>{oneRound.roundName}</RoundTitle>
       <RoundImg
-        src={
-          oneRound.roundImage !== null
-            ? oneRound.roundImage
-            : globalTheme.pictures.round
-        }
+        src={oneRound.roundImage || globalTheme.pictures.round}
         alt={oneRound.gameName}
       />
       <RoundInfos>
@@ -152,11 +142,7 @@ const RoundsPage = () => {
         </InfosWrapper>
         <InfosWrapper>
           <Avatar
-            src={
-              oneRound.authorAvatar !== null
-                ? oneRound.authorAvatar
-                : globalTheme.pictures.avatar
-            }
+            src={oneRound.authorAvatar || globalTheme.pictures.avatar}
             alt="auteur"
           />
           <TextPara>{oneRound.authorName}</TextPara>

@@ -8,9 +8,11 @@ export default {
     mediumGray: '#606b72',
     greyButton: '#e7e8e9',
   },
+
   fonts: {
     primary: 'Montserrat, sans-serif',
   },
+
   pictures: {
     avatar: '/images/wizard-face.png',
     event: '/images/newspaper.png',

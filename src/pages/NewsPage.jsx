@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
 const NewsPageContainer = styled.div`
   height: 100vh;
@@ -11,13 +12,9 @@ const NewsPageContainer = styled.div`
   justify-items: center;
 `;
 
-const POneNews = styled.p`
-  font-family: ${(props) => props.theme.fonts.primary};
-`;
-
 const TitleOneNews = styled.h2`
-  font-family: ${(props) => props.theme.fonts.primary};
   font-size: 20px;
+  text-transform: uppercase;
 `;
 
 const ImageNews = styled.img`
@@ -43,13 +40,16 @@ export default function NewsPage() {
   return (
     <NewsPageContainer>
       <TitleOneNews>{oneNews.title}</TitleOneNews>
-      <POneNews>
+      <p>
         written by
         <span>{oneNews.author} </span>
         {oneNews.creationDate}
-      </POneNews>
-      <ImageNews src={oneNews.pictureUrl} alt={oneNews.title} />
-      <POneNews>{oneNews.content}</POneNews>
+      </p>
+      <ImageNews
+        src={oneNews.pictureUrl || globalTheme.pictures.avatar}
+        alt={oneNews.title}
+      />
+      <p>{oneNews.content}</p>
     </NewsPageContainer>
   );
 }

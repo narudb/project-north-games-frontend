@@ -13,19 +13,6 @@ const NewsContainer = styled.div`
   height: 30vh;
   justify-content: space-evenly;
   margin-bottom: 40px;
-  overflow-y: scroll;
-
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.colors.primary};
-    border-radius: 5px;
-  }
 `;
 
 const NewsWrapper = styled.div`
@@ -59,12 +46,15 @@ const TextWrapper = styled.div`
 const Title = styled.h3`
   font-size: 18px;
   line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const TextStyle = styled.p`
-  white-space: nowrap;
   font-size: 12px;
   line-height: 16px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -84,28 +74,26 @@ const NewsCard = () => {
   return (
     <>
       <NewsContainer>
-        {newsData.map((news) => {
-          return (
-            <StyledLink to={`/news/${news.id}`} key={news.id}>
-              <NewsWrapper>
-                <CardImg>
-                  <NewsImg
-                    src={
-                      news.pictureUrl !== null
-                        ? news.pictureUrl
-                        : globalTheme.pictures.event
-                    }
-                    alt="news-img"
-                  />
-                </CardImg>
-                <TextWrapper>
-                  <Title>{news.title}</Title>
-                  <TextStyle>{news.contenText}</TextStyle>
-                </TextWrapper>
-              </NewsWrapper>
-            </StyledLink>
-          );
-        })}
+        {newsData
+          .map((news) => {
+            return (
+              <StyledLink to={`/news/${news.id}`} key={news.id}>
+                <NewsWrapper>
+                  <CardImg>
+                    <NewsImg
+                      src={news.pictureUrl || globalTheme.pictures.event}
+                      alt="news-img"
+                    />
+                  </CardImg>
+                  <TextWrapper>
+                    <Title>{news.title}</Title>
+                    <TextStyle>{news.contenText}</TextStyle>
+                  </TextWrapper>
+                </NewsWrapper>
+              </StyledLink>
+            );
+          })
+          .slice(0, 3)}
       </NewsContainer>
     </>
   );

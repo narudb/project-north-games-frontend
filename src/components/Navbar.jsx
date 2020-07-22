@@ -13,21 +13,22 @@ const HeaderWrapper = styled.header`
 const Logo = styled.img`
   height: 13vh;
   width: 13vw;
-  margin-top: 10px;
+  margin: 10px 0 0 37px;
 `;
 const Notif = styled.img`
-  margin-top: 15px;
+  margin: 15px 0 0 0;
   height: 4vh;
   width: 4vw;
 `;
 const SearchWrapper = styled.div`
   width: 30vw;
   display: flex;
+  align-items: center;
 `;
-
 const Div = styled.div`
   display: flex;
   margin-top: 20px;
+  justify-content: space-between;
 `;
 
 const Navbar = () => {

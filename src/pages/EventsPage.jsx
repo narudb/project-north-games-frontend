@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
 
 const NewsPageContainer = styled.div`
   display: grid;
@@ -20,7 +21,6 @@ const EventTitle = styled.h2`
   justify-self: center;
   align-self: center;
   text-align: center;
-  font-family: ${(props) => props.theme.fonts.primary};
   font-size: 45px;
   font-weight: bold;
   letter-spacing: 0.2em;
@@ -50,13 +50,11 @@ const InfosWrapper = styled.div`
   align-items: center;
 
   p {
-    font-family: ${(props) => props.theme.fonts.primary};
     line-height: 30px;
     font-size: 18px;
   }
 
   span {
-    font-family: ${(props) => props.theme.fonts.primary};
     opacity: 0.6;
   }
 
@@ -93,7 +91,6 @@ const AuthorWrapper = styled.div`
 `;
 
 const TextPara = styled.p`
-  font-family: ${(props) => props.theme.fonts.primary};
   line-height: 30px;
   font-size: 14px;
 `;
@@ -124,7 +121,10 @@ const EventsPage = () => {
   return (
     <NewsPageContainer>
       <EventTitle>{oneEvent.title}</EventTitle>
-      <EventImg src={oneEvent.pictureUrl} alt={oneEvent.title} />
+      <EventImg
+        src={oneEvent.pictureUrl || globalTheme.pictures.event}
+        alt={oneEvent.title}
+      />
       <EventInfos>
         <InfosWrapper>
           <img src="/icons/event-icon.svg" alt="Date" />

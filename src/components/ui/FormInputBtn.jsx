@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const InputBtn = styled.input`
   padding: 8px;
   border-radius: 5px;
-  font-family: 'Montserrat';
   width: 50%;
   font-size: 20px;
   outline: none;

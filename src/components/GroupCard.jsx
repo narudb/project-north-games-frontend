@@ -107,28 +107,26 @@ const GroupCard = () => {
     <>
       <CardContainer>
         {groupsData.length > 0 ? (
-          groupsData.map((group) => {
-            return (
-              <StyledLink to={`/groups/${group.id}`} key={group.id}>
-                <CardWrapper>
-                  <CardImg>
-                    <GroupImg
-                      src={
-                        group.image !== null
-                          ? group.image
-                          : globalTheme.pictures.group
-                      }
-                      alt={group.name}
-                    />
-                  </CardImg>
-                  <TextWrapper>
-                    <Title>{group.name}</Title>
-                    <p>{group.maxPLayer} membres</p>
-                  </TextWrapper>
-                </CardWrapper>
-              </StyledLink>
-            );
-          })
+          groupsData
+            .map((group) => {
+              return (
+                <StyledLink to={`/groups/${group.id}`} key={group.id}>
+                  <CardWrapper>
+                    <CardImg>
+                      <GroupImg
+                        src={group.image || globalTheme.pictures.group}
+                        alt={group.name}
+                      />
+                    </CardImg>
+                    <TextWrapper>
+                      <Title>{group.name}</Title>
+                      <p>{group.maxPlayers} membres</p>
+                    </TextWrapper>
+                  </CardWrapper>
+                </StyledLink>
+              );
+            })
+            .slice(0, 10)
         ) : (
           <StyledPara>Pas de groupe pour le moment</StyledPara>
         )}

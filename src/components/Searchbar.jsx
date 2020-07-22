@@ -1,51 +1,216 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import axios from 'axios';
 import { backend } from '../conf';
+import globalTheme from '../theme/globalTheme';
+
+const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 40vw;
+  height: auto;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px;
+  position: absolute;
+`;
+
+const SearchTitle = styled.h4`
+  color: ${(props) => props.theme.colors.secondary};
+  margin-bottom: 2px;
+`;
 
 const DivInput = styled.input`
-  background-color: ${(props) => props.theme.colors.secondary};
-  background-image: url(/icons/search-icon.svg);
+  background-color: ${(props) => props.theme.colors.primary};
+  background-image: url(/icons/search-icon-blue.svg);
   background-repeat: no-repeat;
   background-position: right;
   border-radius: 5px;
-  width: 196.34px;
+  width: 20vw;
   height: 35px;
+  margin: 0 0 0 49px;
 `;
 
-export default function Searchbar() {
-  const [news, setNews] = useState([]);
-  const [searchNewsByTitle, setSearchNewsByTitle] = useState([]);
-  const [searchTitle, setSearchTitle] = useState('');
+const UlStyle = styled.ul`
+  list-style-type: none;
+`;
 
-  useLayoutEffect(() => {
-    axios.get(`${backend}/news?author=${searchTitle}`).then((res) => {
-      setNews(res.data);
+const NavLink = styled(Link)`
+  color: ${(props) => props.theme.colors.mediumGray};
+  text-decoration: none;
+  flex-direction: row;
+  overflow: hidden;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin: 2px;
+`;
+
+const P = styled.p`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${(props) => props.theme.colors.mediumGray};
+`;
+
+const LiStyle = styled.li`
+  width: 10vw;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ImgSearch = styled.img`
+  width: 2vw;
+  height: 2vw;
+  margin-right: 5px;
+`;
+const PNoresult = styled.p`
+  color: black;
+`;
+
+function NoResult() {
+  return (
+    <li>
+      <PNoresult>No result</PNoresult>
+    </li>
+  );
+}
+
+const SearchResults = ({ nouvelles, events, groups }) => {
+  return (
+    <SearchWrapper>
+      <section>
+        <SearchTitle>Actualités</SearchTitle>
+        <UlStyle>
+          {nouvelles.map((news) => {
+            return (
+              <LiStyle key={news.id}>
+                <NavLink to={`/news/${news.id}`}>
+                  <ImgSearch
+                    src={news.pictureUrl || globalTheme.pictures.event}
+                    alt={news.title}
+                  />
+                  <P>{news.title}</P>
+                </NavLink>
+              </LiStyle>
+            );
+          })}
+          {nouvelles.length ? null : <NoResult />}
+        </UlStyle>
+      </section>
+      <section>
+        <SearchTitle>Evénements</SearchTitle>
+        <UlStyle>
+          {events.map((event) => {
+            return (
+              <LiStyle key={event.id}>
+                <NavLink to={`/events/${event.id}`}>
+                  <ImgSearch
+                    src={event.pictureUrl || globalTheme.pictures.event}
+                    alt={event.title}
+                  />
+                  <P>{event.title}</P>
+                </NavLink>
+              </LiStyle>
+            );
+          })}
+          {events.length ? null : <NoResult />}
+        </UlStyle>
+      </section>
+      <section>
+        <SearchTitle>Groupes</SearchTitle>
+        <UlStyle>
+          {groups.map((group) => {
+            return (
+              <LiStyle key={group.id}>
+                <NavLink to={`/groups/${group.id}`}>
+                  <ImgSearch
+                    src={group.image || globalTheme.pictures.group}
+                    alt={group.name}
+                  />
+                  <P>{group.name}</P>
+                </NavLink>
+              </LiStyle>
+            );
+          })}
+          {groups.length ? null : <NoResult />}
+        </UlStyle>
+      </section>
+    </SearchWrapper>
+  );
+};
+
+const SearchBar = () => {
+  const [needle, setNeedle] = useState('');
+  const [nouvelles, setNews] = useState([]);
+  const [events, setEvent] = useState([]);
+  const [groups, setGroups] = useState([]);
+  const authToken = useSelector((state) => state.userReducer.authData.token);
+
+  const fetchData = () => {
+    axios
+      .get(`${backend}/groups?name=${needle}`, {
+        headers: {
+          Authorization: `Bearer ${authToken || null}`,
+        },
+      })
+      .then(({ data }) => {
+        setGroups(
+          data.filter((group) => {
+            return group.name.trim().toLowerCase().indexOf(needle) !== -1;
+          })
+        );
+      });
+    axios.get(`${backend}/events?title=${needle}`).then(({ data }) => {
+      setEvent(
+        data.filter((event) => {
+          return event.title.trim().toLowerCase().indexOf(needle) !== -1;
+        })
+      );
     });
-  }, [searchTitle]);
+    axios.get(`${backend}/news?title=${needle}`).then(({ data }) => {
+      setNews(
+        data.filter((nouvelle) => {
+          return nouvelle.title.trim().toLowerCase().indexOf(needle) !== -1;
+        })
+      );
+    });
+  };
 
   useEffect(() => {
-    setSearchNewsByTitle(
-      news.filter((byNews) =>
-        byNews.title.toLowerCase().includes(searchTitle.toLowerCase())
-      )
-    );
-  }, [searchTitle]);
+    if (!needle) return;
+    fetchData(needle);
+  }, [needle]);
 
   return (
     <div>
-      <DivInput
-        type="text"
-        onChange={(e) => {
-          setSearchTitle(e.target.value);
-        }}
-      />
-
-      <div>
-        {searchNewsByTitle.map((oneNews) => (
-          <p key={oneNews.id}>{oneNews.title}</p>
-        ))}
-      </div>
+      <form action="" autoComplete="on">
+        <DivInput
+          id="search"
+          name="search"
+          type="text"
+          placeholder="Recherche"
+          value={needle}
+          onChange={(e) => {
+            setNeedle(e.target.value.toLowerCase());
+          }}
+        />
+      </form>
+      {needle && (
+        <SearchResults nouvelles={nouvelles} groups={groups} events={events} />
+      )}
     </div>
   );
-}
+};
+
+SearchResults.propTypes = {
+  nouvelles: PropTypes.arrayOf(PropTypes.object).isRequired,
+  groups: PropTypes.arrayOf(PropTypes.object).isRequired,
+  events: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default SearchBar;
