@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import AddBtn from './ui/AddBtn';
 import TitleStyle from './ui/Title';
 import GroupCard from './GroupCard';
+import FormGroup from './FormGroup';
 
 const StyledContainer = styled.div`
   grid-area: asideDown;
@@ -14,10 +16,19 @@ const StyledContainer = styled.div`
 `;
 
 const GroupContainer = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   return (
     <StyledContainer>
-      <TitleStyle>Mes groupes</TitleStyle>
-      <GroupCard />
+      <TitleStyle>{open ? 'Créer ton groupe' : 'Mes groupes'}</TitleStyle>
+      <AddBtn type="submit" value="open" onClick={handleClick}>
+        +
+      </AddBtn>
+      {open ? <FormGroup /> : <GroupCard />}
     </StyledContainer>
   );
 };
