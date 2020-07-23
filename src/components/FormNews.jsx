@@ -56,6 +56,8 @@ const FormNews = () => {
       })
       .then(notify)
       .catch(error);
+    e.target.reset();
+    setNews({});
   };
 
   return (

@@ -54,6 +54,8 @@ const FormGroup = () => {
       })
       .then(notify)
       .catch(error);
+    e.target.reset();
+    setGroup({});
   };
   return (
     <FormContainer>

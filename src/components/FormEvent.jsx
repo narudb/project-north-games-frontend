@@ -55,7 +55,10 @@ const FormEvent = () => {
       })
       .then(notify)
       .catch(error);
+    e.target.reset();
+    setEvents({});
   };
+
   return (
     <FormContainer>
       <div>
