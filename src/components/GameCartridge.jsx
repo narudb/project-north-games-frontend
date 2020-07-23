@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
 
 const CartridgeWrapper = styled.div`
-  border: solid 1px red;
   width: 50vw;
   height: 220px;
   background-color: ${(props) => props.theme.colors.tertiary};
