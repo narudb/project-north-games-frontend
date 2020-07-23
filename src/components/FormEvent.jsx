@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { backend } from '../conf';
 import Form from './ui/FormPost';
 import Input from './ui/FormInput';
 import InputContent from './ui/FormContent';
 import InputBtn from './ui/FormInputBtn';
-import 'react-toastify/dist/ReactToastify.css';
 
 const FormContainer = styled.div`
   width: 100%;
@@ -43,8 +42,8 @@ const FormEvent = () => {
     setEvents(tmp);
   };
 
-  const error = () => toast.error('oups il y a une erreur');
-  const notify = () => toast.dark('ton event a bien été posté!');
+  const error = () => toast.error('Oups il y a une erreur');
+  const notify = () => toast.success('Ton event a bien été posté!');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,27 +55,27 @@ const FormEvent = () => {
       })
       .then(notify)
       .catch(error);
+    e.target.reset();
+    setEvents({});
   };
+
   return (
     <FormContainer>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={6000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        style={{ fontSize: '20px', textAlign: 'center' }}
-      />
       <div>
         <Form
           onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
+          <Input
+            type="text"
+            name="title"
+            required
+            onChange={(e) => {
+              NewsChange(e);
+            }}
+            placeholder="Titre"
+          />
           <Input
             type="text"
             name="event_date"
@@ -97,20 +96,11 @@ const FormEvent = () => {
           />
           <Input
             type="text"
-            name="title"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Titre"
-          />
-          <Input
-            type="text"
             name="picture_url"
             onChange={(e) => {
               NewsChange(e);
             }}
-            placeholder="url de ton image"
+            placeholder="Url de ton image"
           />
           <InputContent
             type="text"
@@ -119,41 +109,6 @@ const FormEvent = () => {
               NewsChange(e);
             }}
             placeholder="Décris l'event"
-          />
-          <Input
-            type="number"
-            name="is_published"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="inscris 1 si publiée ou 0 si non publiée"
-          />
-          <Input
-            type="text"
-            name="release_date"
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Date de libération au format AAAA/MM/JJ HH:MM:SS"
-          />
-          <Input
-            type="text"
-            name="event_latitude"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Latitude"
-          />
-          <Input
-            type="text"
-            name="event_longitude"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Longitude"
           />
           <InputBtn type="submit" value="poster" />
         </Form>

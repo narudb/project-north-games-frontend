@@ -12,9 +12,23 @@ const NewsPageContainer = styled.div`
   justify-items: center;
 `;
 
+const AuthorPara = styled.p`
+  letter-spacing: 0.1rem;
+  line-height: 30px;
+  font-size: 14px;
+`;
+
 const TitleOneNews = styled.h2`
-  font-size: 20px;
-  text-transform: uppercase;
+  font-size: 45px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  text-align: center;
+  line-height: 55px;
+`;
+
+const TextPara = styled.p`
+  line-height: 30px;
+  font-size: 18px;
 `;
 
 const ImageNews = styled.img`
@@ -40,16 +54,15 @@ export default function NewsPage() {
   return (
     <NewsPageContainer>
       <TitleOneNews>{oneNews.title}</TitleOneNews>
-      <p>
-        written by
-        <span>{oneNews.author} </span>
+      <AuthorPara>
+        written by <span>{oneNews.author}</span> on
         {oneNews.creationDate}
-      </p>
+      </AuthorPara>
       <ImageNews
-        src={oneNews.pictureUrl || globalTheme.pictures.avatar}
+        src={oneNews.pictureUrl || globalTheme.pictures.event}
         alt={oneNews.title}
       />
-      <p>{oneNews.content}</p>
+      <TextPara>{oneNews.content}</TextPara>
     </NewsPageContainer>
   );
 }

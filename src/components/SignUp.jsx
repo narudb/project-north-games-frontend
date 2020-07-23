@@ -29,6 +29,9 @@ const SignUp = () => {
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   );
 
+  const error = () => toast.error('Oups il y a une erreur');
+  const notify = () => toast.success('Ton compte a bien été créé');
+
   const formValid = (form) => {
     Object.values(form).forEach((val) => {
       if (val.length === 0) {
@@ -65,34 +68,11 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formValid(formErrors)) {
-      axios
-        .post(`${backend}/auth/signup`, newUser)
-        .then(
-          toast.success('Votre compte à bien été créé', {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          })
-        )
-        .catch(() => {
-          toast.error(
-            'Une erreur est survenue lors de la création de votre compte',
-            {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            }
-          );
-        });
+      axios.post(`${backend}/auth/signup`, newUser).then(notify).catch(error);
     }
+    e.target.reset();
+    setNewUser({});
+    setValide(true);
   };
 
   return (
