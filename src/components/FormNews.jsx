@@ -32,10 +32,14 @@ const FormContainer = styled.div`
 
 const FormNews = () => {
   const [news, setNews] = useState({});
-  const authToken = useSelector((state) => state.userReducer.authData.token);
+  const authData = useSelector((state) => state.userReducer.authData);
 
   const NewsChange = (e) => {
-    const tmp = { ...news, [e.target.name]: e.target.value };
+    const tmp = {
+      ...news,
+      [e.target.name]: e.target.value,
+      author_id: authData.id,
+    };
     setNews(tmp);
   };
 
@@ -47,7 +51,7 @@ const FormNews = () => {
     axios
       .post(`${backend}/news`, news, {
         headers: {
-          Authorization: `Bearer ${authToken || null}`,
+          Authorization: `Bearer ${authData.token || null}`,
         },
       })
       .then(notify)
