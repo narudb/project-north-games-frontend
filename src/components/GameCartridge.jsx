@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { backend } from '../conf';
 
 const CartridgeWrapper = styled.div`
   border: solid 1px red;
@@ -36,35 +39,44 @@ const Content = styled.p`
 `;
 
 const GameCartridge = () => {
+  const dispatch = useDispatch();
+  const oneGame = useSelector((state) => state.gameReducer.oneGame);
+
+  useEffect(() => {
+    axios.get(`${backend}/games/8`).then(({ data }) => {
+      dispatch({
+        type: 'GET_ONE_GAME',
+        data,
+      });
+    });
+  }, [dispatch]);
+
   return (
     <CartridgeWrapper>
-      <GameImg
-        src="https://www.ac-deco.com/72494-thickbox_default/jeu-de-strategie-horreur-a-arkham-derniere-heure.jpg"
-        alt="game img"
-      />
+      <GameImg src={oneGame.thumbnail} alt={oneGame.name} />
       <div>
         <Title>Auteur :</Title>
-        <Content>Toto</Content>
+        <Content>{oneGame.author}</Content>
       </div>
       <div>
         <Title>Thèmes :</Title>
-        <Content>Toto</Content>
+        <Content>{oneGame.themes}</Content>
       </div>
       <div>
         <Title>Editeur :</Title>
-        <Content>Toto</Content>
+        <Content>{oneGame.editor}</Content>
       </div>
       <div>
         <Title>Nombre de joueurs :</Title>
-        <Content>Toto</Content>
+        <Content>{oneGame.nb_players}</Content>
       </div>
       <div>
         <Title>Illustrateur :</Title>
-        <Content>Toto</Content>
+        <Content>{oneGame.illustrator}</Content>
       </div>
       <div>
         <Title>Durée :</Title>
-        <Content>Toto</Content>
+        <Content>{oneGame.time} minutes</Content>
       </div>
     </CartridgeWrapper>
   );
