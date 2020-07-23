@@ -120,7 +120,7 @@ const GroupCard = () => {
                     </CardImg>
                     <TextWrapper>
                       <Title>{group.name}</Title>
-                      <p>{group.maxPlayers} membres</p>
+                      <p>{group.maxPLayer} membres</p>
                     </TextWrapper>
                   </CardWrapper>
                 </StyledLink>
