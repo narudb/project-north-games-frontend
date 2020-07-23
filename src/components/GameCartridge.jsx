@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { backend } from '../conf';
 
@@ -37,12 +38,12 @@ const Content = styled.p`
   text-transform: uppercase;
 `;
 
-const GameCartridge = () => {
+const GameCartridge = ({ id }) => {
   const dispatch = useDispatch();
   const oneGame = useSelector((state) => state.gameReducer.oneGame);
 
   useEffect(() => {
-    axios.get(`${backend}/games/8`).then(({ data }) => {
+    axios.get(`${backend}/games/${id}`).then(({ data }) => {
       dispatch({
         type: 'GET_ONE_GAME',
         data,
@@ -79,6 +80,10 @@ const GameCartridge = () => {
       </div>
     </CartridgeWrapper>
   );
+};
+
+GameCartridge.propTypes = {
+  id: PropTypes.number.isRequired,
 };
 
 export default GameCartridge;
