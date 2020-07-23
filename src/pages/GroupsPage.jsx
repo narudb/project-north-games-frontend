@@ -127,7 +127,10 @@ const GroupsPage = () => {
           </div>
         </InfosWrapper>
         <InfosWrapper>
-          <Avatar src={globalTheme.pictures.avatar} />
+          <Avatar
+            src={authorOfGroup.authorAvatar || globalTheme.pictures.avatar}
+            alt={authorOfGroup.author}
+          />
           <TextPara>Auteur: {authorOfGroup.author}</TextPara>
         </InfosWrapper>
         <InfosWrapper>
