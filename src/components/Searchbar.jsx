@@ -32,6 +32,7 @@ const DivInput = styled.input`
   width: 20vw;
   height: 35px;
   margin: 0 0 0 49px;
+  outline: none;
 `;
 
 const UlStyle = styled.ul`
@@ -68,6 +69,7 @@ const ImgSearch = styled.img`
   height: 2vw;
   margin-right: 5px;
 `;
+
 const PNoresult = styled.p`
   color: black;
 `;

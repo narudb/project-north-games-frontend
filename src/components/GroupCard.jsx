@@ -10,7 +10,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 80%;
+  height: 35vh;
   overflow-y: scroll;
 
   ::-webkit-scrollbar {
@@ -48,7 +48,7 @@ const CardImg = styled.div`
   width: 80px;
   height: 80px;
   margin: 2px;
-  background-color: gray;
+  background-color: ${(props) => props.theme.colors.primary};
   overflow: hidden;
   border-radius: 5px;
 `;
