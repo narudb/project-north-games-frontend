@@ -30,10 +30,9 @@ const GroupTitle = styled.h2`
 
 const GroupImg = styled.img`
   grid-area: img;
-  object-fit: cover;
+  object-fit: scale-down;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => props.theme.colors.mediumGray};
 `;
 
 const GroupInfos = styled.div`
@@ -111,11 +110,7 @@ const GroupsPage = () => {
     <GroupPageContainer>
       <GroupTitle>{oneGroup.name}</GroupTitle>
       <GroupImg
-        src={
-          oneGroup.groupImage !== null
-            ? oneGroup.groupImage
-            : globalTheme.pictures.round
-        }
+        src={oneGroup.groupImage || globalTheme.pictures.group}
         alt={oneGroup.gameName}
       />
       <GroupInfos>
@@ -127,13 +122,19 @@ const GroupsPage = () => {
           </div>
         </InfosWrapper>
         <InfosWrapper>
-          <Avatar src={globalTheme.pictures.avatar} />
+          <Avatar
+            src={authorOfGroup.authorAvatar || globalTheme.pictures.avatar}
+            alt={authorOfGroup.author}
+          />
           <TextPara>Auteur: {authorOfGroup.author}</TextPara>
         </InfosWrapper>
         <InfosWrapper>
           <img src="/icons/group-icon.svg" alt="Max players" />
           <div>
-            <p>Nombre de joueurs : {oneGroup.numberOfPlayers}</p>
+            <p>
+              Nombre de joueurs : {oneGroup.numberOfPlayers} /{' '}
+              {oneGroup.GroupMaxPlayers}
+            </p>
           </div>
         </InfosWrapper>
       </GroupInfos>

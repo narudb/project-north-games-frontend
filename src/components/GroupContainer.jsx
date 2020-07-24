@@ -15,6 +15,11 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 const GroupContainer = () => {
   const [open, setOpen] = useState(false);
 
@@ -24,10 +29,12 @@ const GroupContainer = () => {
 
   return (
     <StyledContainer>
-      <TitleStyle>{open ? 'Créer ton groupe' : 'Mes groupes'}</TitleStyle>
-      <AddBtn type="submit" value="open" onClick={handleClick}>
-        +
-      </AddBtn>
+      <TitleWrapper>
+        <TitleStyle>{open ? 'Créer ton groupe' : 'Mes groupes'}</TitleStyle>
+        <AddBtn type="submit" value="open" onClick={handleClick}>
+          +
+        </AddBtn>
+      </TitleWrapper>
       {open ? <FormGroup /> : <GroupCard />}
     </StyledContainer>
   );

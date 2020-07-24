@@ -25,6 +25,12 @@ const ImageNews = styled.img`
   margin: 0 0 35px 0;
 `;
 
+const AuthorPara = styled.p`
+  letter-spacing: 0.1rem;
+  line-height: 30px;
+  font-size: 14px;
+`;
+
 const TitleOneNews = styled.h2`
   height: 30px;
   max-width: 90%;
@@ -34,6 +40,7 @@ const TitleOneNews = styled.h2`
   text-transform: uppercase;
   color: ${(props) => props.theme.colors.articleWriting};
   margin: 0 0 20px 0;
+
 `;
 
 const Intro = styled.p`
@@ -71,7 +78,7 @@ export default function NewsPage() {
   return (
     <NewsPageContainer>
       <ImageNews
-        src={oneNews.pictureUrl || globalTheme.pictures.avatar}
+        src={oneNews.pictureUrl || globalTheme.pictures.event}
         alt={oneNews.title}
       />
       <TitleOneNews>{oneNews.title}</TitleOneNews>

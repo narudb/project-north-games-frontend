@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { backend } from '../conf';
 import Form from './ui/FormPost';
 import Input from './ui/FormInput';
 import InputContent from './ui/FormContent';
 import InputBtn from './ui/FormInputBtn';
-import 'react-toastify/dist/ReactToastify.css';
 
 const FormContainer = styled.div`
   width: 100%;
@@ -33,42 +32,36 @@ const FormContainer = styled.div`
 
 const FormNews = () => {
   const [news, setNews] = useState({});
-  const authToken = useSelector((state) => state.userReducer.authData.token);
+  const authData = useSelector((state) => state.userReducer.authData);
 
   const NewsChange = (e) => {
-    const tmp = { ...news, [e.target.name]: e.target.value };
+    const tmp = {
+      ...news,
+      [e.target.name]: e.target.value,
+      author_id: authData.id,
+    };
     setNews(tmp);
   };
 
-  const error = () => toast.error('oups il y a une erreur');
-  const notify = () => toast.dark('ta news a bien été posté!');
+  const error = () => toast.error('Oups il y a une erreur');
+  const notify = () => toast.success('Ta news a bien été posté!');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${backend}/news`, news, {
         headers: {
-          Authorization: `Bearer ${authToken || null}`,
+          Authorization: `Bearer ${authData.token || null}`,
         },
       })
       .then(notify)
       .catch(error);
+    e.target.reset();
+    setNews({});
   };
 
   return (
     <FormContainer>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={6000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        style={{ fontSize: '20px', textAlign: 'center' }}
-      />
       <div>
         <Form
           onSubmit={(e) => {
@@ -91,33 +84,7 @@ const FormNews = () => {
             onChange={(e) => {
               NewsChange(e);
             }}
-          />
-          <Input
-            type="text"
-            name="author"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Auteur"
-          />
-          <Input
-            type="text"
-            name="title"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Titre"
-          />
-          <InputContent
-            type="text"
-            name="content"
-            required
-            onChange={(e) => {
-              NewsChange(e);
-            }}
-            placeholder="Contenu"
+            placeholder="Écris ton contenu ici"
           />
           <Input
             type="text"
@@ -125,7 +92,7 @@ const FormNews = () => {
             onChange={(e) => {
               NewsChange(e);
             }}
-            placeholder="url de ton image"
+            placeholder="Url de ton image"
           />
           <InputBtn type="submit" value="poster" />
         </Form>

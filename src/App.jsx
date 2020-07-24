@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AsideMenu from './components/AsideMenu';
 import Dashboard from './pages/Dashboard';
@@ -51,6 +52,17 @@ const App = () => {
             <Route path="/events/:id" component={EventsPage} />
           </Switch>
         </Main>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={6000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </PageWrapper>
     </ThemeProvider>
   );

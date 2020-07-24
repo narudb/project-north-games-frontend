@@ -51,7 +51,7 @@ const CardImg = styled.div`
   width: 80px;
   height: 80px;
   margin: 2px;
-  background-color: gray;
+  background-color: ${(props) => props.theme.colors.primary};
   overflow: hidden;
   border-radius: 5px;
 `;

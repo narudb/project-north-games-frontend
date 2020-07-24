@@ -10,6 +10,7 @@ const AddBtn = styled.button`
   color: ${(props) => props.theme.colors.secondary};
   background-color: ${(props) => props.theme.colors.primary};
   border: 2px solid #008cba;
+  outline: none;
 
   :hover {
     color: ${(props) => props.theme.colors.dark};

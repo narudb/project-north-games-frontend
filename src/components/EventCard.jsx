@@ -39,7 +39,7 @@ const CardWrapper = styled.div`
 const CardImg = styled.div`
   width: 100%;
   height: 171px;
-  background-color: gray;
+  background-color: ${(props) => props.theme.colors.primary};
   overflow: hidden;
 `;
 

@@ -11,5 +11,6 @@ const InputContent = styled.input`
   &::placeholder {
     font-style: italic;
   }
+  margin: 10px;
 `;
 export default InputContent;
