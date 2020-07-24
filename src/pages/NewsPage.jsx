@@ -34,6 +34,7 @@ const TitleOneNews = styled.h2`
   text-transform: uppercase;
   color: ${(props) => props.theme.colors.articleWriting};
   margin: 0 0 20px 0;
+  text-align: center;
 `;
 
 const Intro = styled.p`
@@ -43,7 +44,7 @@ const Intro = styled.p`
   line-height: 17px;
   text-align: justify;
   color: ${(props) => props.theme.colors.articleWriting};
-  margin: 0 0 34px 0;
+  margin: 34px 0;
 `;
 
 const Article = styled.p`
