@@ -28,6 +28,7 @@ const DivInput = styled.input`
   background-image: url(/icons/search-icon-blue.svg);
   background-repeat: no-repeat;
   background-position: right;
+  font-family: ${(props) => props.theme.fonts.primary};
   border-radius: 5px;
   width: 20vw;
   height: 35px;
