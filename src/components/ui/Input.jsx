@@ -8,7 +8,7 @@ const InputStyle = styled.input`
   outline-color: ${(props) => props.theme.colors.secondary};
   padding: 4px;
   border: none;
-
+  font-family: ${(props) => props.theme.fonts.primary};
   &::placeholder {
     font-style: italic;
   }
