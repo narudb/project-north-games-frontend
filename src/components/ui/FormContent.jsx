@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-const InputContent = styled.input`
+const InputContent = styled.textarea`
   width: 90%;
-  height: 100px;
+  height: 50px;
   border-radius: 5px;
   font-size: 14px;
+  font-family: ${(props) => props.theme.fonts.primary};
   outline-color: ${(props) => props.theme.colors.secondary};
   padding: 4px;
   border: none;
@@ -12,5 +13,7 @@ const InputContent = styled.input`
     font-style: italic;
   }
   margin: 10px;
+  resize: none;
+  overflow: auto;
 `;
 export default InputContent;

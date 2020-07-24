@@ -8,7 +8,7 @@ const InputBtn = styled.input`
   border: none;
   color: ${(props) => props.theme.colors.mediumGray};
   background-color: ${(props) => props.theme.colors.primary};
-
+  font-family: ${(props) => props.theme.fonts.primary};
   &:hover {
     color: ${(props) => props.theme.colors.secondary};
     font-weight: bold;
