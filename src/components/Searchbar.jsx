@@ -82,7 +82,7 @@ function NoResult() {
   );
 }
 
-const SearchResults = ({ nouvelles, events, groups }) => {
+const SearchResults = ({ nouvelles, events, groups, setNeedle }) => {
   return (
     <SearchWrapper>
       <section>
@@ -90,7 +90,12 @@ const SearchResults = ({ nouvelles, events, groups }) => {
         <UlStyle>
           {nouvelles.map((news) => {
             return (
-              <LiStyle key={news.id}>
+              <LiStyle
+                key={news.id}
+                onClick={() => {
+                  setNeedle('');
+                }}
+              >
                 <NavLink to={`/news/${news.id}`}>
                   <ImgSearch
                     src={news.pictureUrl || globalTheme.pictures.event}
@@ -109,7 +114,12 @@ const SearchResults = ({ nouvelles, events, groups }) => {
         <UlStyle>
           {events.map((event) => {
             return (
-              <LiStyle key={event.id}>
+              <LiStyle
+                key={event.id}
+                onClick={() => {
+                  setNeedle('');
+                }}
+              >
                 <NavLink to={`/events/${event.id}`}>
                   <ImgSearch
                     src={event.pictureUrl || globalTheme.pictures.event}
@@ -128,7 +138,12 @@ const SearchResults = ({ nouvelles, events, groups }) => {
         <UlStyle>
           {groups.map((group) => {
             return (
-              <LiStyle key={group.id}>
+              <LiStyle
+                key={group.id}
+                onClick={() => {
+                  setNeedle('');
+                }}
+              >
                 <NavLink to={`/groups/${group.id}`}>
                   <ImgSearch
                     src={group.image || globalTheme.pictures.group}
@@ -203,7 +218,12 @@ const SearchBar = () => {
         />
       </form>
       {needle && (
-        <SearchResults nouvelles={nouvelles} groups={groups} events={events} />
+        <SearchResults
+          nouvelles={nouvelles}
+          groups={groups}
+          events={events}
+          setNeedle={setNeedle}
+        />
       )}
     </div>
   );
@@ -213,6 +233,7 @@ SearchResults.propTypes = {
   nouvelles: PropTypes.arrayOf(PropTypes.object).isRequired,
   groups: PropTypes.arrayOf(PropTypes.object).isRequired,
   events: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setNeedle: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
