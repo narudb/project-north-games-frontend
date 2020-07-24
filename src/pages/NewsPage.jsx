@@ -25,12 +25,6 @@ const ImageNews = styled.img`
   margin: 0 0 35px 0;
 `;
 
-const AuthorPara = styled.p`
-  letter-spacing: 0.1rem;
-  line-height: 30px;
-  font-size: 14px;
-`;
-
 const TitleOneNews = styled.h2`
   height: 30px;
   max-width: 90%;
