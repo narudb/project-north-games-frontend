@@ -35,7 +35,7 @@ const EventContainer = () => {
         <TitleStyle>{open ? 'Créer ton event' : 'Autour de moi'}</TitleStyle>
         {isLoggedIn ? (
           <AddBtn type="submit" value="open" onClick={handleClick}>
-            +
+            {!open ? '+' : '-'}
           </AddBtn>
         ) : null}
       </TitleWrapper>
