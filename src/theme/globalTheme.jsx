@@ -9,6 +9,7 @@ export default {
     articleWriting: '#222c32',
     mediumGray: '#606b72',
     greyButton: '#e7e8e9',
+    blueHover: '#E4F3FF',
   },
 
   fonts: {

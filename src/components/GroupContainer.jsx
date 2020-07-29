@@ -32,7 +32,7 @@ const GroupContainer = () => {
       <TitleWrapper>
         <TitleStyle>{open ? 'Créer ton groupe' : 'Mes groupes'}</TitleStyle>
         <AddBtn type="submit" value="open" onClick={handleClick}>
-          +
+          {!open ? '+' : '-'}
         </AddBtn>
       </TitleWrapper>
       {open ? <FormGroup /> : <GroupCard />}

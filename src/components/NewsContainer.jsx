@@ -35,7 +35,7 @@ const NewsContainer = () => {
         <TitleStyle>{open ? 'Ajoutes ta news' : 'Actu à la une'}</TitleStyle>
         {isLoggedIn ? (
           <AddBtn type="submit" value="open" onClick={handleClick}>
-            +
+            {!open ? '+' : '-'}
           </AddBtn>
         ) : null}
       </TitleWrapper>

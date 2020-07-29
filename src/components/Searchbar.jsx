@@ -20,7 +20,7 @@ const SearchWrapper = styled.div`
 
 const SearchTitle = styled.h4`
   color: ${(props) => props.theme.colors.secondary};
-  margin-bottom: 2px;
+  padding: 10px;
 `;
 
 const DivInput = styled.input`
@@ -41,12 +41,10 @@ const UlStyle = styled.ul`
 `;
 
 const NavLink = styled(Link)`
-  color: ${(props) => props.theme.colors.mediumGray};
   text-decoration: none;
   flex-direction: row;
   overflow: hidden;
-  font-weight: bold;
-  font-size: 12px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   margin: 2px;
@@ -63,6 +61,10 @@ const LiStyle = styled.li`
   width: 10vw;
   display: flex;
   flex-direction: column;
+  margin-bottom: 8px;
+  &:hover {
+    background: ${(props) => props.theme.colors.blueHover};
+  }
 `;
 
 const ImgSearch = styled.img`
